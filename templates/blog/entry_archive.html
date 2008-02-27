@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Newest</h3>
+
+{% for object in latest %}
+<div class="entry">
+    <h3>{{ object.title }}</h3>
+    <ul class="entry_info">
+        <li class="date">Posted{% if object.author %} by <a href="#">{{ object.author.username }}</a>{% endif %} on {{ object.publish|date:"j F Y" }} in {{ object.section.title }}</li>
+        <li class="comments"><a href="#">0 comments</a></li>
+    </ul>					
+    <p>
+        {{ object.tease }}
+    </p>
+</div>
+
+{% endfor %}
+
+{% endblock %}

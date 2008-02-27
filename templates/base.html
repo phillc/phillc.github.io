@@ -1,0 +1,84 @@
+<!DOCTYPE html 
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Language" content="en-us" />
+        <title>WTFLab | {% block title %}Aggregation of all things wtf.{% endblock %}</title>
+        <meta name="ROBOTS" content="ALL" />
+        <meta name="Copyright" content="This site's design and contents Copyright (c) 2008 Phillip Campbell." />
+        <meta name="keywords" content="wtf humor" />
+        <meta name="description" content="Aggregation of all things wtf." />
+        <link href="/media/css/{% block cssid %}style{% endblock %}.css" rel="stylesheet" type="text/css" media="screen" />
+{% block extrahead %}{% endblock %}
+    </head>
+
+    <body id="{% block sectionid %}generic{% endblock %}">
+
+        <div id="header">
+            <div id="header_inner">
+                <h1><a href="/"><span>WTF</span> lab</a></h1>
+                <div id="main_nav">
+                    <ul>
+                        <li><a href="">WTF</a></li>
+                        <li><a href="">Thought</a></li>
+                        <li><a href="">Video</a></li>
+                        <li><a href="">Dirty Minds</a></li>
+                    </ul>
+                </div>
+        	</div>
+            <h2><span>All</span> things WTF
+        </div>
+        <div id="main">
+            <div id="main_inner" class="fluid">
+                <div id="primary">
+                    <div id="left">
+                    {% block content %}
+                    {% endblock %}
+        			</div>
+        		</div>
+        		<div id="side">
+        			<div id="mid">
+        				<h4><span>Search</span></h4>
+        				<form method="entry" action="">
+        				<div id="search">
+        					<input type="text" class="text" name="keywords" />
+        					<input type="submit" class="button" value="Go" />
+        					<br class="clear" />
+        				</div>
+        				</form>
+        				<h4><span>About</span> Me</h4>
+        				<p><strong>Phillip Campbell</strong> is me!</p>
+        				<h4><span>Another</span> Category</h4>
+        				<ul class="links">
+            				<li><a href="#">one</a></li>
+            				<li><a href="#">two</a></li>
+            				<li><a href="#">three</a></li>
+            				<li><a href="#">four</a></li>
+        				</ul>
+        			</div>
+        			<div id="right">
+        				<h4><span>Yet another</span> category</h4>
+        				<ul class="links">
+            				<li><a href="#">11111</a></li>
+            				<li><a href="#">2222222</a></li>
+            				<li><a href="#">3</a></li>
+            				<li><a href="#">44444444444</a></li>
+        				</ul>
+        				<h4><span>Cool</span> Stuff</h4>
+        				<ul class="links">
+            				<li><a href="#">!!!!!!!!!!!!!!</a></li>
+            				<li><a href="#">@@@@@@@@</a></li>
+            				<li><a href="#">########</a></li>
+        				</ul>
+        			</div>
+        		</div>
+        		<br class="clear" />
+        	</div>
+        </div>
+        <div id="footer" class="fluid">
+            Copyright &copy; 2008 <a href="http://mrphillc.com/">Phillip Campbell</a> and wtflab.com. All rights reserved.
+        </div>
+    </body>
+</html>
