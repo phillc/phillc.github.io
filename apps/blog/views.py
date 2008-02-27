@@ -5,8 +5,13 @@ from django.views.generic import date_based
 def sections_index():
     return true
 
-def section():
-    return true
+def section(request, section):
+    sectiono = get_object_or_404(Section, slug=section)
+    return date_based.archive_index(
+        request,
+        date_field = 'publish',
+        queryset = Entry.published.filter(section=sectiono),
+    )
 
 def archive_year(request, section, year):
     sectiono = get_object_or_404(Section, slug=section)
@@ -14,7 +19,7 @@ def archive_year(request, section, year):
         request,
         year = year,
         date_field = 'publish',
-        queryset = Entry.objects.filter(section=sectiono),
+        queryset = Entry.published.filter(section=sectiono),
     )
 
 def archive_month(request, section, year, month):
@@ -24,7 +29,7 @@ def archive_month(request, section, year, month):
         year = year,
         month = month,
         date_field = 'publish',
-        queryset = Entry.objects.filter(section=sectiono),
+        queryset = Entry.published.filter(section=sectiono),
     )
 
 def archive_day():
