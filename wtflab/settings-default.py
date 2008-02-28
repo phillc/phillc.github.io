@@ -15,7 +15,7 @@ DATABASE_USER = 'wtflab'             # Not used with sqlite3.
 DATABASE_PASSWORD = 'w9t9f9'         # Not used with sqlite3.
 
 CACHE_BACKEND = 'memcached://127.0.0.1:112211/'
-CACHE_MIDDLEWARE_SECONDS = 300
+CACHE_MIDDLEWARE_SECONDS = 0
 CACHE_MIDDLEWARE_KEY_PREFIX = 'wtflab'
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
@@ -74,7 +74,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    'C:/Users/phillc/Desktop/workspace/wtflab.com/wtflab/templates'
+    '/home/phillc/wtflab/templates'
 )
 
 INSTALLED_APPS = (
@@ -82,7 +82,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.admin',
-    'apps.blog',
+    'wtflab.apps.blog',
     'django_evolution',
 )
 
