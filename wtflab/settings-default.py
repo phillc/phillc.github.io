@@ -14,10 +14,10 @@ DATABASE_NAME = 'wtflab'             # Or path to database file if using sqlite3
 DATABASE_USER = 'wtflab'             # Not used with sqlite3.
 DATABASE_PASSWORD = 'w9t9f9'         # Not used with sqlite3.
 
-CACHE_BACKEND = 'memcached://127.0.0.1:112211/'
-CACHE_MIDDLEWARE_SECONDS = 0
-CACHE_MIDDLEWARE_KEY_PREFIX = 'wtflab'
-CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+#CACHE_BACKEND = 'memcached://127.0.0.1:112211/'
+#CACHE_MIDDLEWARE_SECONDS = 0
+#CACHE_MIDDLEWARE_KEY_PREFIX = 'wtflab'
+#CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 
 # Local time zone for this installation. Choices can be found here:
