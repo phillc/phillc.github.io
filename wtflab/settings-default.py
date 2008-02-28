@@ -9,12 +9,16 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'wtflab'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'wtflab'             # Not used with sqlite3.
-DATABASE_PASSWORD = '123321'         # Not used with sqlite3.
-DATABASE_HOST = 'localhost'             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+DATABASE_ENGINE = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_NAME = 'db_wtflab'             # Or path to database file if using sqlite3.
+DATABASE_USER = 'pg_phillc'             # Not used with sqlite3.
+DATABASE_PASSWORD = 'w9t9f9'         # Not used with sqlite3.
+
+CACHE_BACKEND = 'memcached://127.0.0.1:112211/'
+CACHE_MIDDLEWARE_SECONDS = 60 * 60
+CACHE_MIDDLEWARE_KEY_PREFIX = 'wtflab'
+CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -35,12 +39,12 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = 'C:/Users/phillc/Desktop/workspace/wtflab/htdocs/media/'
+MEDIA_ROOT = '/home/wtflab.com/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = 'http://localhost/media'
+MEDIA_URL = 'http://wtflab.com/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -70,7 +74,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    'C:/Users/phillc/Desktop/workspace/wtflab/templates'
+    'C:/Users/phillc/Desktop/workspace/wtflab.com/wtflab/templates'
 )
 
 INSTALLED_APPS = (
