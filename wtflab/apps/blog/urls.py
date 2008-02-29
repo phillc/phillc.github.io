@@ -18,7 +18,6 @@ urlpatterns = patterns('django.views.generic.date_based',
 urlpatterns += patterns('wtflab.apps.blog.views',
     (r'^(?P<section>[\w-]+)/$', 'section'),
     (r'^(?P<section>[\w-]+)/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\w{1,2})/(?P<slug>\w+)/$', 'entry_detail'),
-    (r'^(?P<section>[\w-]+)/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<week>\w{1,2})/$', 'archive_week'),
     (r'^(?P<section>[\w-]+)/(?P<year>\d{4})/(?P<month>[a-z]{3})/$', 'archive_month'),
     (r'^(?P<section>[\w-]+)/(?P<year>\d{4})/$', 'archive_year'),
 )
