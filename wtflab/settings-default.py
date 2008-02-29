@@ -82,7 +82,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.admin',
-    'wtflab.apps.blog',
+    'apps.blog',
     'django_evolution',
 )
 
