@@ -4,11 +4,9 @@
 
 {% block content %}
 
-<h3>{% block h3 %}{% endblock %}</h3>
-
 {% for object in object_list %}
 <div class="entry">
-    <h3>{{ object.title }}</h3>
+    <h4>{{ object.title }}</h4>
     <ul class="entry_info">
         <li class="date">Posted{% if object.author %} by <a href="#">{{ object.author.username }}</a>{% endif %} on {{ object.publish|date:"j F Y" }}</li>
         <li class="comments"><a href="#">0 comments</a></li>

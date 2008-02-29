@@ -23,58 +23,56 @@
                     <ul>
                         <li><a href="/wtf/">WTF</a></li>
                         <li><a href="/thought/">Thought</a></li>
+                        <li><a href="/tech/">Tech</a></li>
                         <li><a href="/video/">Video</a></li>
                         <li><a href="/dirty-minds/">Dirty Minds</a></li>
                     </ul>
                 </div>
-        	</div>
-            <h2><span>All</span> things WTF
+            </div>
+            <h2><span>All</span> things WTF</h2>
         </div>
         <div id="main">
             <div id="main_inner" class="fluid">
                 <div id="primary">
                     <div id="left">
+                    <h3>{% block h3 %}{% endblock %}</h3>
                     {% block content %}
                     {% endblock %}
-        			</div>
-        		</div>
-        		<div id="side">
-        			<div id="mid">
-        				<h4><span>Search</span></h4>
-        				<form method="entry" action="">
-        				<div id="search">
-        					<input type="text" class="text" name="keywords" />
-        					<input type="submit" class="button" value="Go" />
-        					<br class="clear" />
-        				</div>
-        				</form>
-        				<h4><span>About</span> Me</h4>
-        				<p><strong>Phillip Campbell</strong> is me!</p>
-        				<h4><span>Another</span> Category</h4>
-        				<ul class="links">
-            				<li><a href="#">one</a></li>
-            				<li><a href="#">two</a></li>
-            				<li><a href="#">three</a></li>
-            				<li><a href="#">four</a></li>
-        				</ul>
-        			</div>
-        			<div id="right">
-        				<h4><span>Yet another</span> category</h4>
-        				<ul class="links">
-            				<li><a href="#">11111</a></li>
-            				<li><a href="#">2222222</a></li>
-            				<li><a href="#">3</a></li>
-            				<li><a href="#">44444444444</a></li>
-        				</ul>
-        				<h4><span>Cool</span> Stuff</h4>
-        				<ul class="links">
-            				<li><a href="#">!!!!!!!!!!!!!!</a></li>
-            				<li><a href="#">@@@@@@@@</a></li>
-            				<li><a href="#">########</a></li>
-        				</ul>
-        			</div>
-        		</div>
-        		<br class="clear" />
+                    </div>
+                </div>
+                <div id="side">
+                    <div id="mid">
+                        <h5><span>Search</span></h5>
+                        <form method="entry" action="">
+                            <div id="search">
+                                <input type="text" class="text" name="keywords" />
+                                <input type="submit" class="button" value="Go" />
+                                <br class="clear" />
+                            </div>
+                        </form>
+                        <h5><span>About</span> site</h5>
+                        <p>Not been paying attention? My personal blog of all things wtf.</p>
+                    </div>
+                    <div id="right">
+                        <h5><span>Archive</span></h5>
+                        <ul class="links">
+                            <li><a href="#">Feb 2008</a></li>
+                        </ul>
+                        <h5><span>Recent</span> articles</h5>
+                        <ul class="links">
+                            <li><a href="#"></a></li>
+                        </ul>
+                        <h5><span>Popular</span> recently</h5>
+                        <ul class="links">
+                            <li><a href="#"></a></li>
+                        </ul>
+                        <h5><span>Popular</span> all time</h5>
+                        <ul class="links">
+                            <li><a href="#"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <br class="clear" />
         	</div>
         </div>
         <div id="footer" class="fluid">

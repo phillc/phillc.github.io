@@ -43,22 +43,23 @@ text-decoration: none;
 /*
 h1 = logo
 h2 = logo caption
-h3 = entry title
-h4 = sidebar title
+h3 = page title
+h4 = entry title
+h5 = sidebar title
 
 */
-h1,h2,h3,h4
+h1,h2,h3,h4,h5
 {
 font-weight: normal;
 letter-spacing: -1px;
 }
 
-h2,h3,h4
+h2,h3,h4,h5
 {
 text-transform: lowercase;
 }
 
-h3,h4
+h3,h4,h5
 {
 color: #184366;
 }
@@ -75,6 +76,11 @@ font-weight: bold;
 }
 
 h4 span
+{
+font-weight: bold;
+}
+
+h5 span
 {
 font-weight: bold;
 }
@@ -183,7 +189,6 @@ padding-top: 1.5em;
 
 #main_inner p
 {
-text-align: justify;
 margin-bottom: 1.5em;
 }
 
@@ -192,7 +197,7 @@ margin-bottom: 1.5em;
 margin-bottom: 1.5em;
 }
 
-#main_inner h3,h4
+#main_inner h4, h5
 {
 border-bottom: dotted 1px #E1E1E1;
 position: relative;
@@ -200,12 +205,11 @@ position: relative;
 
 #main_inner h3
 {
-font-size: 1.5em;
-padding-bottom: 0.08em;
-margin-bottom: 0.6em;
+font-size: 1.75em;
+margin-bottom: 0.5em;
 }
 
-#main_inner h4
+#main_inner h5
 {
 font-size: 1em;
 padding-bottom: 0.13em;
@@ -218,11 +222,11 @@ margin-top: 0.7em;
 position: relative;
 }
 
-#main_inner .entry h3
+#main_inner .entry h4
 {
-
-font-size: 1.3em;
+font-size: 1.2em;
 padding-bottom: 0.9em;
+margin-bottom: 0.6em;
 }
 
 #main_inner .entry ul.entry_info
