@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
 from wtflab.apps.blog.managers import PublishedManager
+from tagging.fields import TagField
 
 class Section(models.Model):
     """This represents a Section of the website"""
@@ -33,7 +34,7 @@ class Entry(models.Model):
     created   = models.DateTimeField(auto_now_add=True)
     modified  = models.DateTimeField(auto_now=True)
     section   = models.ForeignKey(Section)
-    #add tagging
+    tags      = TagField()
     
     objects = models.Manager()
     published = PublishedManager()
