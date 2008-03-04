@@ -30,13 +30,13 @@ line-height: 1.35em;
 
 a
 {
-text-decoration: underline;
+text-decoration: none;
 color: #F16C00;
 }
 
 a:hover
 {
-text-decoration: none;
+text-decoration: underline;
 }
 
 /* headers */
@@ -59,7 +59,7 @@ h2,h3,h4,h5
 text-transform: lowercase;
 }
 
-h3,h4,h5
+h3,h4,h4 a,h5
 {
 color: #184366;
 }
@@ -233,7 +233,7 @@ margin-bottom: 0.6em;
 {
 list-style: none;
 position: absolute;
-top: 3em;
+top: 2.8em;
 font-size: 0.6em;
 }
 

@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from wtflab.apps.blog.managers import PublishedManager
 from tagging.fields import TagField
 from django.db.models import permalink
+from comment_utils.moderation import CommentModerator, moderator
 
 class Section(models.Model):
     """This represents a Section of the website"""
@@ -37,6 +38,7 @@ class Entry(models.Model):
     modified  = models.DateTimeField(auto_now=True)
     section   = models.ForeignKey(Section)
     tags      = TagField()
+    comments_enabled = models.BooleanField(default=True)
     
     objects = models.Manager()
     published = PublishedManager()
@@ -55,11 +57,17 @@ class Entry(models.Model):
     
     @permalink
     def get_absolute_url(self):
-        return ('django.views.generic.date_based.object_detail', (), {
+        return ('blog_entry', (), {
             'section' : str(self.section),
             'year'    : str(self.publish.year),
             'month'   : str(self.publish.strftime('%b')).lower(),
             'day'     : str(self.publish.day).zfill(2),
-            'slug'    : str(self.slug)
+            'slug'    : str(self.slug),
         })
+        
+class EntryModerator(CommentModerator):
+    akismet = True
+    enable_field = 'comments_enabled'
+    
+moderator.register(Entry, EntryModerator)
     

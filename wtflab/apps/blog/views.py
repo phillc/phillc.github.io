@@ -35,3 +35,15 @@ def archive_month(request, section, year, month):
         template_name = 'blog/section_archive_month.html',
         extra_context = {'section': sectiono.title},
     )
+
+def entry_detail(request, section, year, month, day, slug):
+    return date_based.object_detail(
+        request,
+        year = year,
+        month = month,
+        day = day,
+        slug = slug,
+        date_field = 'publish',
+        queryset = Entry.published.all(),
+        template_name = 'blog/entry_detail.html',
+    )
