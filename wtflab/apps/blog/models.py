@@ -37,7 +37,7 @@ class Entry(models.Model):
     created   = models.DateTimeField(auto_now_add=True)
     modified  = models.DateTimeField(auto_now=True)
     section   = models.ForeignKey(Section)
-    tags      = TagField(initial=None)
+    tags      = TagField()
     comments_enabled = models.BooleanField(default=True)
     
     objects = models.Manager()
