@@ -1,8 +1,10 @@
 from django.db import models
 from datetime import datetime
+from time import strftime
 from django.contrib.auth.models import User
 from wtflab.apps.blog.managers import PublishedManager
 from tagging.fields import TagField
+from django.db.models import permalink
 
 class Section(models.Model):
     """This represents a Section of the website"""
@@ -50,3 +52,14 @@ class Entry(models.Model):
     
     def __unicode__(self):
         return '%s' % self.title
+    
+    @permalink
+    def get_absolute_url(self):
+        return ('django.views.generic.date_based.object_detail', (), {
+            'section' : str(self.section),
+            'year'    : str(self.publish.year),
+            'month'   : str(self.publish.strftime('%b')).lower(),
+            'day'     : str(self.publish.day).zfill(2),
+            'slug'    : str(self.slug)
+        })
+    

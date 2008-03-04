@@ -35,8 +35,3 @@ def archive_month(request, section, year, month):
         template_name = 'blog/section_archive_month.html',
         extra_context = {'section': sectiono.title},
     )
-
-def archive_day():
-    return true
-
-
