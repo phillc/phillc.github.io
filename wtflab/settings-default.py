@@ -14,10 +14,10 @@ DATABASE_NAME = 'wtflab'             # Or path to database file if using sqlite3
 DATABASE_USER = 'wtflab'             # Not used with sqlite3.
 DATABASE_PASSWORD = 'w9t9f9'         # Not used with sqlite3.
 
-#CACHE_BACKEND = 'memcached://127.0.0.1:112211/'
-#CACHE_MIDDLEWARE_SECONDS = 0
-#CACHE_MIDDLEWARE_KEY_PREFIX = 'wtflab'
-#CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+CACHE_BACKEND = 'memcached://127.0.0.1:112211/'
+CACHE_MIDDLEWARE_SECONDS = 0
+CACHE_MIDDLEWARE_KEY_PREFIX = 'wtflab'
+CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 
 # Local time zone for this installation. Choices can be found here:
@@ -35,7 +35,7 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -78,11 +78,17 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.comments',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.admin',
+    'django.contrib.sites',
     'blog',
+    'comment_utils',
     'django_evolution',
+    'tagging',
 )
+
+AKISMET_API_KEY = 'f1b5a6f17633'
 
