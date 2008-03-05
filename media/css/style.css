@@ -161,17 +161,11 @@ font-weight: bold;
 font-size: 1.0em;
 text-transform: lowercase;
 text-decoration: none;
-/*border-top: solid 1px #FFF;
-border-left: solid 1px #FFF;
-border-right: solid 1px #FFF;*/
 }
 
 #main_nav li a:hover
 {
 color: #184366;
-/*border-top: solid 1px #F16C00;
-border-left: solid 1px #F16C00;
-border-right: solid 1px #F16C00;*/
 }
 
 /* Main */
@@ -190,6 +184,14 @@ padding-top: 1.5em;
 #main_inner p
 {
 margin-bottom: 1.5em;
+}
+
+#main_inner blockquote
+{
+background-color: #f0f0f0;
+border: 1px solid #999;
+font-size: .75em;
+padding: 0.5em;
 }
 
 #main_inner ul
@@ -245,6 +247,14 @@ display: inline;
 #main_inner .entry ul.entry_info li.comments
 {
 margin-left: 0.8em;
+}
+
+#main_inner .entry_details p
+{
+background-color: #f0f0f0;
+border: 1px solid #999;
+font-size: .75em;
+padding: 0.5em;
 }
 
 #primary

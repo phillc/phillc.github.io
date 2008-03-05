@@ -6,6 +6,7 @@ from wtflab.apps.blog.managers import PublishedManager
 from tagging.fields import TagField
 from django.db.models import permalink
 from comment_utils.moderation import CommentModerator, moderator
+from comment_utils.managers import CommentedObjectManager
 
 class Section(models.Model):
     """This represents a Section of the website"""
@@ -30,8 +31,8 @@ class Entry(models.Model):
     title     = models.CharField(max_length=64)
     slug      = models.SlugField(prepopulate_from=('title',), unique_for_date='publish')
     author    = models.ForeignKey(User, blank=True, null=True)
-    tease     = models.TextField(blank=True)
-    body      = models.TextField()
+    tease     = models.TextField(blank=True, default='<p>\n</p>')
+    body      = models.TextField(default='<p>\n</p>')
     status    = models.IntegerField(choices=STATUS_CHOICES, radio_admin=True, default=1)
     publish   = models.DateTimeField(default=datetime.now)
     created   = models.DateTimeField(auto_now_add=True)
@@ -40,7 +41,7 @@ class Entry(models.Model):
     tags      = TagField()
     comments_enabled = models.BooleanField(default=True)
     
-    objects = models.Manager()
+    objects = CommentedObjectManager()
     published = PublishedManager()
     
     class Meta:
