@@ -13,8 +13,9 @@
         <li class="comments"><a href="#">{{ comment_count }} comments</a></li>
     </ul>					
     <p>
-        {{ object.tease }}
+        {{ object.tease|safe }}
     </p>
+    <p class="readmore"><a href="{{ object.get_absolute_url }}">Continue Reading</a></p>
 </div>
 
 {% endfor %}

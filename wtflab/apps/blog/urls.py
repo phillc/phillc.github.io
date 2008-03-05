@@ -15,7 +15,7 @@ urlpatterns = patterns('django.views.generic.date_based',
 
 #break down to sections
 urlpatterns += patterns('blog.views',
-    url(r'^(?P<section>[\w-]+)/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>[\d]{2})/(?P<slug>\w+)/$', 'entry_detail', name='blog_entry'),
+    url(r'^(?P<section>[\w-]+)/(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>[\d]{2})/(?P<slug>[\w-]+)/$', 'entry_detail', name='blog_entry'),
     (r'^(?P<section>[\w-]+)/$', 'section'),
     (r'^(?P<section>[\w-]+)/(?P<year>\d{4})/(?P<month>[a-z]{3})/$', 'archive_month'),
     (r'^(?P<section>[\w-]+)/(?P<year>\d{4})/$', 'archive_year'),
