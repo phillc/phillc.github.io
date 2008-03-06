@@ -186,12 +186,22 @@ padding-top: 1.5em;
 margin-bottom: 1.5em;
 }
 
-#main_inner blockquote
+#main_inner pre
 {
 background-color: #f0f0f0;
 border: 1px solid #999;
 font-size: .75em;
 padding: 0.5em;
+margin: 0.5em
+}
+
+#main_inner blockquote
+{
+background-color: #f8f8f8;
+border: 1px solid #999;
+font-size: 1em;
+padding: 0.5em;
+margin: 0.5em
 }
 
 #main_inner ul
