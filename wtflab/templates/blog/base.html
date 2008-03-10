@@ -13,7 +13,7 @@
         <li class="comments"><a href="#">{{ comment_count }} comments</a></li>
     </ul>					
     <p>
-        {{ object.tease|safe }}
+        {{ object.tease|safe|linebreaks}}
     </p>
     <p class="readmore"><a href="{{ object.get_absolute_url }}">Continue Reading</a></p>
 </div>

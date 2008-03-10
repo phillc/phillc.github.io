@@ -5,4 +5,5 @@ urlpatterns = patterns('',
     (r'^admin/', include('django.contrib.admin.urls')),
     (r'^comments/', include('django.contrib.comments.urls.comments')),
     (r'', include('blog.urls')),
+    (r'^google9eee2da00290540a.html$', 'blog.views.section'),
 )
