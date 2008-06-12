@@ -1,23 +1,7 @@
 # Django settings for wtflab project.
-
-DEBUG = False
-TEMPLATE_DEBUG = DEBUG
-
-ADMINS = (
-     ('Phillip Campbell', 'spyyderz@gmail.com'),
-)
-
-MANAGERS = ADMINS
-
-DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'wtflab'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'wtflab'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'w9t9f9'         # Not used with sqlite3.
-
-CACHE_BACKEND = 'memcached://127.0.0.1:112211/'
-CACHE_MIDDLEWARE_SECONDS = 0
-CACHE_MIDDLEWARE_KEY_PREFIX = 'wtflab'
-CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+import sys, os
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 
 
 # Local time zone for this installation. Choices can be found here:
@@ -31,7 +15,6 @@ TIME_ZONE = 'America/New_York'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -39,12 +22,8 @@ USE_I18N = False
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/phillc/wtflab.com/media/'
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = 'http://wtflab.com/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -74,7 +53,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/phillc/wtflab.com/wtflab/templates'
+    os.path.join(PROJECT_ROOT, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -86,9 +65,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'blog',
     'comment_utils',
-    'django_evolution',
     'tagging',
 )
 
 AKISMET_API_KEY = 'f1b5a6f17633'
 
+from settings_local import *
