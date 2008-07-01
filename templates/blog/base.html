@@ -4,18 +4,18 @@
 
 {% block content %}
 {% load comment_utils %}
-{% for object in object_list %}
-{% get_public_free_comment_count for blog.entry object.id as comment_count %}
+{% for entry in entry_list %}
+{% get_public_free_comment_count for blog.entry entry.id as comment_count %}
 <div class="entry">
-    <h4><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h4>
+    <h4><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h4>
     <ul class="entry_info">
-        <li class="date">Posted{% if object.author %} by <a href="#">{{ object.author.username }}</a>{% endif %} on {{ object.publish|date:"d F Y" }}, in "<a href="">{{ object.section }}</a>"</li>
+        <li class="date">Posted{% if entry.author %} by <a href="#">{{ entry.author.username }}</a>{% endif %} on {{ entry.publish|date:"d F Y" }}, in "<a href="">{{ entry.section }}</a>"</li>
         <li class="comments"><a href="#">{{ comment_count }} comments</a></li>
     </ul>					
     <p>
-        {{ object.tease|safe|linebreaks}}
+        {{ entry.tease|safe|linebreaks}}
     </p>
-    <p class="readmore"><a href="{{ object.get_absolute_url }}">Continue Reading</a></p>
+    <p class="readmore"><a href="{{ entry.get_absolute_url }}">Continue Reading</a></p>
 </div>
 
 {% endfor %}

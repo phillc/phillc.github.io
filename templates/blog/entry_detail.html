@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %}WTF lab - {{ object.title }}{% endblock %}
+{% block title %}WTF lab - {{ entry.title }}{% endblock %}
 
 {% block content %}
 <div class="entry">
-    <h4>{{ object.title }}</h4>
+    <h4>{{ entry.title }}</h4>
     <div style="float:right;"><script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script></div>
-    {{ object.body|safe|linebreaks }}
+    {{ entry.body|safe|linebreaks }}
 </div>
 
 
 {% load comments comment_utils tagging_tags %}
-{% get_public_free_comment_count for blog.entry object.id as comment_count %}
-{% get_public_free_comment_list for blog.entry object.id as comment_list %}
+{% get_public_free_comment_count for blog.entry entry.id as comment_count %}
+{% get_public_free_comment_list for blog.entry entry.id as comment_list %}
 <br class="clear" />
-{% tags_for_object object as tags %}
+{% tags_for_object entry as tags %}
 <div class="entry_details">
-<p>This entry was written by: {{ object.author }}, published on: <a href="">{{ object.publish|date:"d F Y" }}</a>, in the section: <a href="">{{ object.section }}</a>, with tags: 
-{% for tag in tags %}<a href="">{{ tag }}</a> {% endfor %}, and commented on {{ comment_count }} times</p>
+<p>This entry was written by: {{ entry.author }}, published on: <a href="">{{ entry.publish|date:"d F Y" }}</a>, in the section: <a href="">{{ entry.section }}</a>, with tags: 
+" {% for tag in tags %}<a href="">{{ tag }}</a> {% endfor %}", and commented on {{ comment_count }} times</p>
 </div>
 
 <script type="text/javascript">
@@ -35,9 +35,9 @@ addthis_options = 'favorites, digg, reddit, delicious, furl, stumbleupon, techno
 {% endfor %}
 
 
-{% if object.comments_enabled %}
+{% if entry.comments_enabled %}
 <h5><span>Post</span> a comment</h5>
-{% free_comment_form for blog.entry object.id %}
+{% free_comment_form for blog.entry entry.id %}
 {% else %}
 <h5>Comments are closed</h5>
 <p>To prevent spam, comments are no longer allowed after sixty days.</p>
