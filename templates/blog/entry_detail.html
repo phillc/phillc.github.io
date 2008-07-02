@@ -6,13 +6,13 @@
 <div class="entry">
     <h4>{{ entry.title }}</h4>
     <div style="float:right;"><script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script></div>
-    {{ entry.body|safe|linebreaks }}
+    {{ entry.body|safe }}
 </div>
 
 
 {% load comments comment_utils tagging_tags %}
-{% get_public_free_comment_count for blog.entry entry.id as comment_count %}
-{% get_public_free_comment_list for blog.entry entry.id as comment_list %}
+{% get_public_free_comment_count for blog.Entry entry.id as comment_count %}
+{% get_public_free_comment_list for blog.Entry entry.id as comment_list %}
 <br class="clear" />
 {% tags_for_object entry as tags %}
 <div class="entry_details">
