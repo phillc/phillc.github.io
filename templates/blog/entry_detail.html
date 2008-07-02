@@ -11,7 +11,7 @@
 
 
 {% load comments comment_utils tagging_tags %}
-{% get_public_free_comment_count for blog.entry 1 as comment_count %}
+{% get_public_free_comment_count for blog.entry entry.id as comment_count %}
 {% get_public_free_comment_list for blog.entry entry.id as comment_list %}
 <br class="clear" />
 {% tags_for_object entry as tags %}
