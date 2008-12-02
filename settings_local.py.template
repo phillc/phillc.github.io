@@ -22,3 +22,4 @@ DATABASE_PASSWORD = ''         # Not used with sqlite3.
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = '/media/'
+
