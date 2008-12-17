@@ -1,8 +1,9 @@
 # Django settings for wtflab project.
-import sys, os
+import sys
+import os
+
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
-
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -64,10 +65,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'blog',
-    'comment_utils',
     'tagging',
 )
-
-AKISMET_API_KEY = 'f1b5a6f17633'
 
 from settings_local import *
