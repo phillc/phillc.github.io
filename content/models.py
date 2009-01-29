@@ -11,9 +11,6 @@ from blog.managers import PublishedManager
 
 from tagging.fields import TagField
 
-from comment_utils.moderation import CommentModerator, moderator
-from comment_utils.managers import CommentedObjectManager
-
 
 class Section(models.Model):
     """This represents a Section of the website"""
@@ -59,9 +56,6 @@ class Entry(models.Model):
     comments_enabled = models.BooleanField(default=True)
     render_method    = models.CharField(max_length=15, choices=RENDER_METHODS, default=RENDER_METHODS[0][0])
     tags             = TagField()
-    
-    objects = CommentedObjectManager()
-    published = PublishedManager()
     
     class Meta:
         verbose_name_plural = "Entries"
