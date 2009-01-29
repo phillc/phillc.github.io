@@ -41,8 +41,10 @@ class Entry(models.Model):
         ('textile', 'Textile')
     )
 
-    title            = models.CharField(max_length=64)
-    slug             = models.SlugField(unique_for_date='publish', prepopulate_from=('title',))
+    created_by = models.ForeignKey(User)
+
+    title = models.CharField(_('title'), max_length=64)
+    slug = models.SlugField(_('slug'), unique_for_month=True)
     author           = models.ForeignKey(User)
     tease_markdown   = models.TextField()
     tease            = models.TextField(editable=False)
