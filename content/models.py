@@ -45,7 +45,9 @@ class Entry(models.Model):
 
     title = models.CharField(_('title'), max_length=64)
     slug = models.SlugField(_('slug'), unique_for_month=True)
+
     author           = models.ForeignKey(User)
+
     tease_markdown   = models.TextField()
     tease            = models.TextField(editable=False)
     body_markdown    = models.TextField()
@@ -62,12 +64,6 @@ class Entry(models.Model):
     class Meta:
         verbose_name_plural = "Entries"
         ordering = ['-publish']
-
-    class Admin:
-        list_display = ('title', 'status', 'publish',)
-        list_filter   = ('publish', 'section', 'status', 'author',)
-        ordering = ('-publish',)
-        search_fields = ('title', 'body',)
         
     def __unicode__(self):
         return '%s' % self.title
