@@ -31,12 +31,19 @@ class Content(models.Model):
 
     status           = models.IntegerField(choices=STATUS_CHOICES, radio_admin=True, default=1)
     publish          = models.DateTimeField(default=datetime.now)
-    created          = models.DateTimeField(auto_now_add=True)
-    modified         = models.DateTimeField(auto_now=True)
+    created          = models.DateTimeField(editable=False)
+    modified         = models.DateTimeField(editable=False)
     section          = models.ForeignKey(Section)
     
     def __unicode__(self):
         return '%s' % self.title
+
+    def save(self):
+	if not self.id:
+	    self.created = datetime.datetime.now()
+	else:
+            self.modified = datetime.datetime.now()
+
 
     @permalink
     def get_absolute_url(self):
