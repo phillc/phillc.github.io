@@ -2,11 +2,10 @@ from datetime import datetime
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models import permalink
 from django.utils.translation import ugettext_lazy as _
+from content.managers import ContentManager
 
 class Section(models.Model):
-    """This represents a Section of the website"""
     title = models.CharField(max_length=64)
     slug = models.SlugField(unique=True, prepopulate_from=('title',))
         
@@ -14,7 +13,6 @@ class Section(models.Model):
         return '%s' % self.title
     
 class Content(models.Model):
-
     created_by = models.ForeignKey(User)
 
     title = models.CharField(_('title'), max_length=64)
@@ -34,13 +32,13 @@ class Content(models.Model):
 
     objects = ContentManager()
 
+    class Meta:
+        ordering = ['-date']
+
     def __unicode__(self):
         return '%s' % self.title
 
     def save(self):
 	if not self.id:
 	    self.created = datetime.datetime.now()
-	else:
-            self.modified = datetime.datetime.now()
-
- 
+        self.modified = datetime.datetime.now()
