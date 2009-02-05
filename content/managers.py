@@ -1,3 +1,6 @@
+from django.db import models
+from django.db.models import Q
+
 class ContentManager(models.Manager):
     def live(self):
         queryset = self.all()

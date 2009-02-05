@@ -42,3 +42,4 @@ class Content(models.Model):
 	if not self.id:
 	    self.created = datetime.datetime.now()
         self.modified = datetime.datetime.now()
+	super(Content, self).save()
