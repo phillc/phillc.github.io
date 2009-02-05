@@ -1,3 +1,19 @@
+from django.db import models
+from djangno.utils.translation import ugettext_lazy as _
+
+from content.models import Content
+from content.managers import ContentManager
+
+class Entry(Content):
+    tease_raw = models.TextField()
+    tease_html = models.TextField()
+
+    full_text_raw = models.TextField()
+    full_text_html = models.TextField()
+
+    tags = TagField()
+
+    objects = ContentManager()
 
     @permalink
     def get_absolute_url(self):
