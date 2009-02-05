@@ -17,28 +17,14 @@ class Section(models.Model):
     title = models.CharField(max_length=64)
     slug = models.SlugField(unique=True, prepopulate_from=('title',))
         
-    class Admin:
-        list_display = ('title', 'slug')
-        
     def __unicode__(self):
         return '%s' % self.title
     
-#class SectionOptions(admin.ModelAdmin):
-#    list_display = ('title', 'slug')
-#    prepopulated_fields = {'slug': ('title',)}
-#    
-#admin.site.register(Section, SectionOptions)
-
-class Entry(models.Model):
+class Author(models.Model):
     STATUS_CHOICES = (
         (1, 'Draft'),
         (2, 'Public'),
         (3, 'Closed'),
-    )
-
-    RENDER_METHODS = (
-        ('markdown', 'Markdown'),
-        ('textile', 'Textile')
     )
 
     created_by = models.ForeignKey(User)
@@ -46,19 +32,13 @@ class Entry(models.Model):
     title = models.CharField(_('title'), max_length=64)
     slug = models.SlugField(_('slug'), unique_for_month=True)
 
-    author           = models.ForeignKey(User)
+    author           = models.ForeignKey(Author)
 
-    tease_markdown   = models.TextField()
-    tease            = models.TextField(editable=False)
-    body_markdown    = models.TextField()
-    body             = models.TextField(editable=False)
     status           = models.IntegerField(choices=STATUS_CHOICES, radio_admin=True, default=1)
     publish          = models.DateTimeField(default=datetime.now)
     created          = models.DateTimeField(auto_now_add=True)
     modified         = models.DateTimeField(auto_now=True)
     section          = models.ForeignKey(Section)
-    comments_enabled = models.BooleanField(default=True)
-    render_method    = models.CharField(max_length=15, choices=RENDER_METHODS, default=RENDER_METHODS[0][0])
     tags             = TagField()
     
     class Meta:
@@ -107,18 +87,3 @@ class Entry(models.Model):
             },
         )
         
-#class EntryOptions(admin.ModelAdmin):
-#    list_display = ('title', 'status')
-#    list_filter   = ('publish', 'section', 'status', 'author')
-#    ordering = ('-publish',)
-#    search_fields = ('title', 'body')
-#    prepopulated_fields = {'slug': ('title',)}
-#    
-#admin.site.register(Entry, EntryOptions)
-
-class EntryModerator(CommentModerator):
-    akismet = True
-    enable_field = 'comments_enabled'
-    
-moderator.register(Entry, EntryModerator)
-    
