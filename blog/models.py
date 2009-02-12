@@ -1,15 +1,18 @@
 from django.db import models
-from djangno.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
+from django.db.models import permalink
 
 from content.models import Content
 from content.managers import ContentManager
 
-class Entry(Content):
-    tease_raw = models.TextField()
-    tease_html = models.TextField()
+from tagging.fields import TagField
 
-    full_text_raw = models.TextField()
-    full_text_html = models.TextField()
+class Entry(Content):
+    intro_text_raw = models.TextField(_('Introduction'))
+    intro_text_html = models.TextField(editable=False)
+
+    full_text_raw = models.TextField(_('Body Text'))
+    full_text_html = models.TextField(editable=False)
 
     tags = TagField()
 
