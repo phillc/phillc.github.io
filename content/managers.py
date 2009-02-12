@@ -2,13 +2,22 @@ import datetime
 
 from django.db import models
 from django.db.models import Q
+from django.db.models.query import QuerySet
+
+class ContentQuerySet(QuerySet):
+    def section(self, section):
+        return self.filter(
+            Q(section=section)
+        )
 
 class ContentManager(models.Manager):
+    def get_query_set(self):
+	return ContentQuerySet(self.model)
     def live(self):
         queryset = self.all()
         now = datetime.datetime.now()
         return queryset.filter(
             Q(is_published=True),
-            Q(start_publish_date__lte=now) | Q(start_publish_date__isnull=True),
-            Q(end_publish_date__gte=now) | Q(end_publish_date__isnull=True),
+            Q(publish_on__lte=now) | Q(publish_on__isnull=True),
+            Q(publish_end__gte=now) | Q(publish_end__isnull=True),
         )
