@@ -1,371 +1,76 @@
-*
-{
-margin: 0em;
-padding: 0em;
-}
-
-br.clear
-{
-clear: both;
-}
-
-/* can be made into static width by changing this*/
-div.fluid
-{
-width: 90% !important;
-}
-
 body
 {
-background-color: #fff;
-color: #565656;
-font-size: 12pt;
-font-family: "trebuchet ms", helvetica, sans-serif;
-}
-
-p
-{
-line-height: 1.35em;
+    background-color: #fff8e3;
 }
 
 a
 {
-text-decoration: none;
-color: #F16C00;
+    text-decoration: none;
+    color: #db4105;
 }
 
-a:hover
-{
-text-decoration: underline;
-}
-
-/* headers */
-/*
-h1 = logo
-h2 = logo caption
-h3 = page title
-h4 = entry title
-h5 = sidebar title
-
-*/
-h1,h2,h3,h4,h5
-{
-font-weight: normal;
-letter-spacing: -1px;
-}
-
-h2,h3,h4,h5
-{
-text-transform: lowercase;
-}
-
-h3,h4,h4 a,h5
-{
-color: #184366;
-}
-
-/* make the first words (inside spans) bold */
-h1 span
-{
-font-weight: bold;
-}
-
-h3 span
-{
-font-weight: bold;
-}
-
-h4 span
-{
-font-weight: bold;
-}
-
-h5 span
-{
-font-weight: bold;
-}
-
-/* images look nicer this way, and if i want to float it left... */
-img
-{
-padding: 3px;
-border: solid 1px #e1e1e1;
-}
-
-img.floatTL
-{
-float: left;
-margin-right: 1.1em;
-margin-bottom: 1.1em;
-margin-top: 0.37em;
-}
-
-/* Header */
 #header
 {
-width:100%;
+    background-color: #33332d;
+    margin-bottom: 2em;
 }
 
-#header_inner
+#header  .logo
 {
-background: #184366;
-position: relative;
+    height: 7em;
+    line-height: 7em;
 }
 
-#header_inner h1
+#header .logo h2
 {
-font-size: 10em;
-line-height: 0.7em;
-color: #fff;
+    color: #9fb4cc;
+    font-size: 2.5em;
 }
 
-#header_inner h1 a, #header_inner h1 a:hover
+#header .accent
 {
-color: #fff;
-text-decoration: none;
+    background-color: #db4105;
+    height: 5px;
 }
 
-#header h2
+.main
 {
-padding-left: 2em;
-font-size: 1em;
+
 }
 
-#main_nav
+.content
 {
-position: absolute;
-right: 2em;
-bottom: 0;
+    
 }
 
-#main_nav ul
+.content h1
 {
-list-style: none;
-padding: 0;
-margin: 0;
+    color: #cccc9f;
+    font-size: 2em;
+    margin: .5em 0;
 }
 
-#main_nav li
+.content .meta
 {
-float: left;
-margin: 0 0.15em;
+    margin-top: 2em;
+    font-family: Georgia, "Times New Roman", Times,serif;
+}
+.content .meta .day
+{
+    font-size: 4em;
 }
 
-#main_nav li a
+.content .text
 {
-margin-left: 0.5em;
-display: block;
-padding: 1em 1.25em 1.0em 1.25em;
-background: #fff;
-font-weight: bold;
-font-size: 1.0em;
-text-transform: lowercase;
-text-decoration: none;
+    border-bottom: 1px dotted #9FB4CC;
 }
 
-#main_nav li a:hover
+.content .text .extras
 {
-color: #184366;
+    margin: 0 0 1.5em;
 }
 
-/* Main */
-#main
+.side
 {
-background: #fff;
-}
-
-#main_inner
-{
-position: relative;
-margin: 0 auto;
-padding-top: 1.5em;
-}
-
-#main_inner p
-{
-margin-bottom: 1.5em;
-}
-
-#main_inner pre
-{
-background-color: #e4e4e4;
-border: 1px solid #999;
-font-size: .75em;
-padding: 0.5em;
-margin: 0.5em
-}
-
-#main_inner blockquote
-{
-background-color: #f8f8f8;
-border: 1px solid #999;
-font-size: 1em;
-padding: 0.5em;
-margin: 2em;
-}
-
-#main_inner ul
-{
-margin-bottom: 1.5em;
-}
-
-#main_inner h4, h5
-{
-border-bottom: dotted 1px #E1E1E1;
-position: relative;
-}
-
-#main_inner h3
-{
-font-size: 1.75em;
-margin-bottom: 0.5em;
-}
-
-#main_inner h5
-{
-font-size: 1em;
-padding-bottom: 0.13em;
-margin-bottom: 1.1em;
-margin-top: 0.7em;
-}
-
-#main_inner .entry
-{
-position: relative;
-}
-
-#main_inner .entry h4
-{
-font-size: 1.2em;
-padding-bottom: 0.9em;
-margin-bottom: 0.6em;
-}
-
-#main_inner .entry ul.entry_info
-{
-list-style: none;
-position: absolute;
-top: 2.8em;
-font-size: 0.6em;
-}
-
-#main_inner .entry ul.entry_info li
-{
-display: inline;
-}
-
-#main_inner .entry ul.entry_info li.comments
-{
-margin-left: 0.8em;
-}
-
-#main_inner .entry_details p
-{
-background-color: #f0f0f0;
-border: 1px solid #999;
-font-size: .75em;
-padding: 0.5em;
-}
-
-#primary
-{
-position: relative;
-margin-right: 25em;
-}
-
-#left
-{
-position: relative;
-float: left;
-width: 100%;
-margin-right: -25em;
-padding-right: 1.5em;
-}
-
-#side
-{
-float: right;
-}
-
-#mid
-{
-width: 9.5em;
-float: left;
-padding: 0em 1.5em 0.5em 1.5em;
-border-left: dotted 1px #E1E1E1;
-}
-
-#right
-{
-width: 9.5em;
-float: left;
-padding: 0em 0em 0.5em 1.5em;
-border-left: dotted 1px #E1E1E1;
-}
-
-/* Search */
-input.button
-{
-background: #FF790B;
-color: #fff;
-border: solid 1px #DB7623;
-font-weight: bold;
-text-transform: lowercase;
-font-size: 0.6em;
-height: 2em;
-}
-
-input.text
-{
-border: solid 1px #F1F1F1;
-font-size: 0.75em;
-padding: 0.19em 0.19em 0.19em 0.19em;
-}
-
-#search
-{
-position: relative;
-width: 100%;
-margin-bottom: 1.5em;
-}
-
-#search input.text
-{
-position: absolute;
-top: 0;
-left: 0;
-width: 9em;
-}
-
-#search input.button
-{
-position: absolute;
-top: 0;
-right: 0;
-min-width: 2em;
-max-width: 2.5em;
-}
-
-ul.links
-{
-list-style: none;
-}
-
-ul.links li
-{
-line-height: 1.5em;
-font-size: .8em;
-}
-
-/* Footer */
-#footer
-{
-margin: 0 auto;
-text-align: center;
-font-size: .8em;
-clear: both;
-border-top: dotted 1px #E1E1E1;
-margin-top: 0.75em;
-margin-bottom: 0.75em;
-padding-top: 0.75em;
+    
 }
