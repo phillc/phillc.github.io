@@ -1,3 +1,5 @@
+import markdown
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import permalink
@@ -17,6 +19,11 @@ class Entry(Content):
     tags = TagField()
 
     objects = ContentManager()
+
+    def save(self):
+        self.intro_text_html = markdown.markdown(self.intro_text_raw)
+	self.full_text_html = markdown.markdown(self.full_text_raw)
+        super(Entry, self).save()
 
     @permalink
     def get_absolute_url(self):

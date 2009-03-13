@@ -5,14 +5,15 @@ from django.db.models import Q
 from django.db.models.query import QuerySet
 
 class ContentQuerySet(QuerySet):
-    def section(self, section):
+    def category(self, category):
         return self.filter(
-            Q(section=section)
+            Q(category=category)
         )
 
 class ContentManager(models.Manager):
     def get_query_set(self):
 	return ContentQuerySet(self.model)
+
     def live(self):
         queryset = self.all()
         now = datetime.datetime.now()

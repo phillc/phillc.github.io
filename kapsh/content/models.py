@@ -17,7 +17,7 @@ class Author(models.Model):
     last_name = models.CharField(_('Last Name'), max_length=64)
 
     def __unicode__(self):
-        return u'%s %s' % (first_name, last_name)
+        return u'%s %s' % (self.first_name, self.last_name)
 
 
 class Content(models.Model):
@@ -51,3 +51,7 @@ class Content(models.Model):
 	    self.created = datetime.datetime.now()
         self.modified = datetime.datetime.now()
 	super(Content, self).save()
+
+    def live(self):
+        return self in Content.objects.live()
+    live.boolean = True
