@@ -8,7 +8,7 @@ class EntryAdmin(admin.ModelAdmin):
             'classes': ('adminMain',)
         }),
         ('Organizational', {
-            'fields': ('author',),
+            'fields': ('author', 'categories',),
             'classes': ('adminMain',)
         }),
         ('Content', {
@@ -41,5 +41,10 @@ class EntryAdmin(admin.ModelAdmin):
             "js/admin/blog_admin.js",
             "filebrowser/js/AddFileBrowser.js",
         )
+
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:
+            obj.created_by = request.user
+        obj.save()
 
 admin.site.register(Entry, EntryAdmin)

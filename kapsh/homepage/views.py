@@ -1,5 +1,6 @@
 from django.views.generic.simple import direct_to_template
 from content.models import Content
+
 def home(request):
     content_list = Content.objects.live()
     return direct_to_template(request,

@@ -38,9 +38,11 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'kapsh.homepage',
-    'kapsh.content',
+    'kapsh.authors',
     'kapsh.blog',
+    'kapsh.categories',
+    'kapsh.content',
+    'kapsh.homepage',
     'tagging',
 )
 
