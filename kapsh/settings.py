@@ -1,7 +1,6 @@
-import sys
 import os
 
-from kapsh.settings_local import *
+from kapsh_settings.settings_local import *
 
 PROJECT_ROOT = os.path.dirname(__file__)
 
@@ -37,13 +36,11 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.comments',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'kapsh.homepage',
-    'content',
-    'blog',
+    'kapsh.content',
+    'kapsh.blog',
     'tagging',
 )
 

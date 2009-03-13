@@ -1,14 +1,14 @@
 from django.contrib import admin
-from unboundedition.blog.models import Post
+from kapsh.blog.models import Entry
 
-class PostAdmin(admin.ModelAdmin):
+class EntryAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Identity', {
             'fields': ('title', 'slug',),
             'classes': ('adminMain',)
         }),
         ('Organizational', {
-            'fields': ('author', 'author_alias',),
+            'fields': ('author',),
             'classes': ('adminMain',)
         }),
         ('Content', {
@@ -20,12 +20,12 @@ class PostAdmin(admin.ModelAdmin):
             'classes': ('adminMain',)
         }),
         ('Advanced options', {
-            'fields': ('date', 'publish_on', 'publish_end', 'is_published',),
+            'fields': ('shown_date', 'publish_on', 'publish_end', 'is_published',),
             'classes': ('adminSide',)
         }),
     )
 
-    list_display = ('title', 'date', 'live', 'author',)
+    list_display = ('title', 'shown_date', 'is_published', 'author',)
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ['title']
     list_filter = ('is_published',)
@@ -41,3 +41,5 @@ class PostAdmin(admin.ModelAdmin):
             "js/admin/blog_admin.js",
             "filebrowser/js/AddFileBrowser.js",
         )
+
+admin.site.register(Entry, EntryAdmin)

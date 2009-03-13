@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from content.managers import ContentManager
 
-class Section(models.Model):
+class Category(models.Model):
     title = models.CharField(max_length=64)
     slug = models.SlugField(unique_for_month=True)
         
@@ -26,7 +26,7 @@ class Content(models.Model):
     title = models.CharField(_('title'), max_length=64)
     slug = models.SlugField(_('slug'), unique_for_month=True)
 
-    section = models.ForeignKey(Section)
+    categories = models.ManyToManyField(Category)
 
     author = models.ForeignKey(Author)
 

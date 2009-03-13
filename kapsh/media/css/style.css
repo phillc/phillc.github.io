@@ -54,15 +54,24 @@ a
 {
     margin-top: 2em;
     font-family: Georgia, "Times New Roman", Times,serif;
+    margin-right: 4em;
+    text-align: center;
 }
 .content .meta .day
 {
-    font-size: 4em;
+    font-size: 5em;
 }
 
 .content .text
 {
     border-bottom: 1px dotted #9FB4CC;
+}
+
+.content .text p 
+{
+    font-family: Baskerville, Times, Times New Roman, serif;
+    line-height: 1.5em;
+    font-size: 1.9em;
 }
 
 .content .text .extras

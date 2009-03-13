@@ -1,10 +1,12 @@
 from django.conf.urls.defaults import *
+from django.contrib import admin
 from kapsh.settings import DEBUG, DEV_SERVER, MEDIA_ROOT
+
+admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'kapsh.homepage.views.home', name='home'),
-    (r'^admin/', include('django.contrib.admin.urls')),
-    (r'^comments/', include('django.contrib.comments.urls.comments')),
+    ('^admin/', include(admin.site.urls)),
 )
 
 if DEBUG and DEV_SERVER:
