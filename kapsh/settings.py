@@ -1,6 +1,6 @@
 import os
 
-from kapsh_settings.settings_local import *
+from settings_kapsh.settings_local import *
 
 PROJECT_ROOT = os.path.dirname(__file__)
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'kapsh.categories',
     'kapsh.content',
     'kapsh.homepage',
+    'kapsh.tweets',
     'tagging',
 )
 

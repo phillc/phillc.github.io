@@ -6,14 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from content.managers import ContentManager
 
 class Content(models.Model):
-    created_by = models.ForeignKey(User)
-
-    title = models.CharField(_('title'), max_length=64)
-    slug = models.SlugField(_('slug'), unique_for_month=True)
-
-    categories = models.ManyToManyField('categories.Category')
-
-    author = models.ForeignKey('authors.Author')
+    created_by = models.ForeignKey(User, null=True)
 
     created = models.DateTimeField(editable=False)
     shown_date = models.DateTimeField(default=datetime.datetime.now)
@@ -28,14 +21,11 @@ class Content(models.Model):
     class Meta:
         ordering = ['-shown_date']
 
-    def __unicode__(self):
-        return '%s' % self.title
-
-    def save(self):
+    def save(self, force_insert=False, force_update=False):
 	if not self.id:
 	    self.created = datetime.datetime.now()
         self.modified = datetime.datetime.now()
-	super(Content, self).save()
+	super(Content, self).save(force_insert, force_update)
 
     def live(self):
         return self in Content.objects.live()

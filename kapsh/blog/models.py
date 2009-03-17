@@ -10,6 +10,13 @@ from content.managers import ContentManager
 from tagging.fields import TagField
 
 class Entry(Content):
+    title = models.CharField(_('title'), max_length=64)
+    slug = models.SlugField(_('slug'), unique_for_month=True)
+
+    categories = models.ManyToManyField('categories.Category')
+
+    author = models.ForeignKey('authors.Author')
+
     intro_text_raw = models.TextField(_('Introduction'))
     intro_text_html = models.TextField(editable=False)
 

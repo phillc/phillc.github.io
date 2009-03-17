@@ -12,7 +12,6 @@ a
 #header
 {
     background-color: #33332d;
-    margin-bottom: 2em;
 }
 
 #header  .logo
@@ -49,14 +48,13 @@ a
 {
     color: #cccc9f;
     font-size: 2em;
-    margin: .5em 0;
+    margin: 1em 0;
 }
 
 .content .meta
 {
-    margin-top: 2em;
+    margin: 2em 4em 2em 0;
     font-family: Georgia, "Times New Roman", Times,serif;
-    margin-right: 4em;
     text-align: center;
 }
 .content .meta .date
@@ -72,7 +70,6 @@ a
 .firstcontent .text
 {
     border: none;
-}
 }
 
 .content .text p 

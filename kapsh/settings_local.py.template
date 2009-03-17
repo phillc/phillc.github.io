@@ -25,3 +25,4 @@ DATABASE_PASSWORD = ''         # Not used with sqlite3.
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = '/media/'
 
+TWITTER_USER = ''
