@@ -25,6 +25,8 @@ a
 {
     color: #9fb4cc;
     font-size: 2.5em;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    font-weight: bold;
 }
 
 #header .accent
@@ -40,7 +42,7 @@ a
 
 .content
 {
-    
+    clear: both;
 }
 
 .content h1
@@ -57,14 +59,20 @@ a
     margin-right: 4em;
     text-align: center;
 }
-.content .meta .day
+.content .meta .date
 {
     font-size: 5em;
 }
 
 .content .text
 {
-    border-bottom: 1px dotted #9FB4CC;
+    border-top: 1px dotted #9FB4CC;
+}
+
+.firstcontent .text
+{
+    border: none;
+}
 }
 
 .content .text p 
