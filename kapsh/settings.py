@@ -47,12 +47,4 @@ INSTALLED_APPS = (
     'tagging',
 )
 
-
-
-
 ADMIN_MEDIA_PREFIX = '/media/admin/'
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = '4u)%9cgvf=l01be$wjrjkw!ag6tc@r(40+b%i37_uu^km&8-!p'
-
-

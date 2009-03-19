@@ -1,24 +1,18 @@
 {% extends 'base.html' %}
-
+{% load content_tags %}
 {% block main %}
 {% for content in content_list %}
 <div class="content{% if forloop.first %} firstcontent{% endif %}">
-    <div class="span-3">
-        <div class="meta">
-            <div class="type"><a href="#">Blogging</a></div>
-	    <div>{{ content.shown_date|date:"l" }}</div>
-            <div class="date">{{ content.shown_date|date:"d" }}</div>
-            <div>{{ content.shown_date|date:"F, Y" }}</div>
-            <div>{{ content.shown_date|date:"h:i a" }}</div>
-        </div>
-    </div>
-    <div class="text span-15 last">
-        <h1>{{ content.title }}</h1>
-	{{ content.entry.intro_text_html|safe }}
-        <div class="extras">
-            <a href="#">Continue Reading &raquo;</a> <a href="#">Comment &raquo;</a>
-        </div>
-    </div>
+	<div class="span-3">
+		<div class="meta">
+			<div class="type"><a href="#">Blogging</a></div>
+			<div>{{ content.shown_date|date:"l" }}</div>
+			<div class="date">{{ content.shown_date|date:"d" }}</div>
+			<div>{{ content.shown_date|date:"F, Y" }}</div>
+			<div>{{ content.shown_date|date:"h:i a" }}</div>
+		</div>
+	</div>
+	{% full_content content summary %}
 </div>
 {% endfor %}
 {% endblock %}
