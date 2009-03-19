@@ -4,8 +4,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import permalink
 
-from content.models import Content
-from content.managers import ContentManager
+from kapsh.content.models import Content
+from kapsh.content.managers import ContentManager
 
 from tagging.fields import TagField
 

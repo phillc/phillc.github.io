@@ -1,8 +1,7 @@
-from models import Entry, Section
 from django.shortcuts import get_object_or_404
 from django.views.generic import date_based
 
-from models import Section
+from kapsh.blog.models import Entry, Section
 
 def section(request, section, template_name='blog/section_archive.html'):
     section_object = get_object_or_404(Section, slug=section)
