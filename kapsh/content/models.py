@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
 
-from content.managers import ContentManager
+from kapsh.content.managers import ContentManager
 
 class Content(models.Model):
     created_by = models.ForeignKey(User, null=True)
