@@ -1,7 +1,16 @@
+<div class="span-3">
+	<div class="meta">
+		<div class="type"><a href="#">Tweeting</a></div>
+		<div>{{ content.shown_date|date:"l" }}</div>
+		<div class="date">{{ content.shown_date|date:"d" }}</div>
+		<div>{{ content.shown_date|date:"F, Y" }}</div>
+		<div>{{ content.shown_date|date:"h:i a" }}</div>
+	</div>
+</div>
 <div class="text span-15 last">
 	<h1>{{ tweet.title }}</h1>
 	<p>{{ tweet.text }}</p>
 	<div class="extras">
-		<a href="#"><a href="#">Visit Twitter</a>
+		follow on <a href="#">twitter</a>
 	</div>
 </div>
