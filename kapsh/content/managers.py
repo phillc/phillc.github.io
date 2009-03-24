@@ -19,6 +19,6 @@ class ContentManager(models.Manager):
         now = datetime.datetime.now()
         return queryset.filter(
             Q(is_published=True),
-            Q(publish_on__lte=now) | Q(publish_on__isnull=True),
+            Q(publish__lte=now),
             Q(publish_end__gte=now) | Q(publish_end__isnull=True),
         )

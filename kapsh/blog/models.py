@@ -13,14 +13,14 @@ class Entry(Content):
     title = models.CharField(_('title'), max_length=64)
     slug = models.SlugField(_('slug'), unique_for_month=True)
 
-    categories = models.ManyToManyField('categories.Category')
+    categories = models.ManyToManyField('categories.Category', blank=True)
 
     author = models.ForeignKey('authors.Author')
 
     intro_text_raw = models.TextField(_('Introduction'))
     intro_text_html = models.TextField(editable=False)
 
-    full_text_raw = models.TextField(_('Body Text'))
+    full_text_raw = models.TextField(_('Body Text'), blank=True)
     full_text_html = models.TextField(editable=False)
 
     tags = TagField()

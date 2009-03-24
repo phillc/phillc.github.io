@@ -6,6 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'kapsh.homepage.views.home', name='home'),
+    ('^blog/', include('kapsh.blog.urls')),
     ('^admin/', include(admin.site.urls)),
 )
 

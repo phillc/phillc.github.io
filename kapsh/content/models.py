@@ -13,17 +13,16 @@ class Content(models.Model):
     content_type = models.ForeignKey(ContentType,editable=False,null=True)
 
     created = models.DateTimeField(editable=False)
-    shown_date = models.DateTimeField(_('shown date'), default=datetime.datetime.now)
     modified = models.DateTimeField(editable=False)
 
     is_published = models.BooleanField(default=False)
-    publish_on = models.DateTimeField(blank=True, null=True)
+    publish = models.DateTimeField(default=datetime.datetime.now)
     publish_end = models.DateTimeField(blank=True, null=True)
 
     objects = ContentManager()
 
     class Meta:
-        ordering = ['-shown_date']
+        ordering = ['-publish']
 
     def save(self, force_insert=False, force_update=False):
 	if not self.id:

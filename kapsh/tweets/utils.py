@@ -12,8 +12,8 @@ def get_tweets():
         Tweet.objects.get_or_create(
             uid = tweet.id,
     	    defaults = {
-                'text': tweet.text,
-                'shown_date': tweet.date,
+                'text_raw': tweet.text,
+                'publish': tweet.date,
                 'is_published': True,
             }
         )

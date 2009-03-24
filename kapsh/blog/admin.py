@@ -20,12 +20,12 @@ class EntryAdmin(admin.ModelAdmin):
             'classes': ('adminMain',)
         }),
         ('Advanced options', {
-            'fields': ('shown_date', 'publish_on', 'publish_end', 'is_published',),
+            'fields': ('publish', 'publish_end', 'is_published',),
             'classes': ('adminSide',)
         }),
     )
 
-    list_display = ('title', 'shown_date', 'is_published', 'author',)
+    list_display = ('title', 'publish', 'is_published', 'author',)
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ['title']
     list_filter = ('is_published',)
