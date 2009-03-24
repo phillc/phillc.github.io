@@ -34,7 +34,7 @@ class Entry(Content):
 
     @permalink
     def get_absolute_url(self):
-        return ('blog_entry', (),
+        return ('entry_detail', (),
             {
                 'year'        : str(self.publish.year),
                 'month'       : str(self.publish.strftime('%b')).lower(),

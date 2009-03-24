@@ -82,6 +82,17 @@ a
 .content .text .extras
 {
     margin: 0 0 1.5em;
+    text-align: right;
+}
+
+.content .text .extras ul
+{
+    list-display-type: none;
+}
+.content .text .extras ul li
+{
+    display: inline;
+    margin-left: 1em;
 }
 
 .side
