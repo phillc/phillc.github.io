@@ -57,4 +57,3 @@ INSTALLED_APPS = (
     'tagging',
 )
 
-ADMIN_MEDIA_PREFIX = '/media/admin/'

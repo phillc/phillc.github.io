@@ -28,5 +28,6 @@ DATABASE_PASSWORD = ''         # Not used with sqlite3.
 SECRET_KEY = ''
 
 MEDIA_URL = '/media/'
+ADMIN_MEDIA_PREFIX = '/media/admin/'
 
 TWITTER_USER = ''
