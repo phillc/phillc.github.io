@@ -2,7 +2,7 @@
 {% load content_tags %}
 {% block main %}
 {% for content in content_list %}
-<div class="content{% if forloop.first %} firstcontent{% endif %}">
+<div class="content{% if forloop.first %} no-border{% endif %}">
 	{% full_content content summary %}
 </div>
 {% endfor %}

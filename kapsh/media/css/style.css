@@ -10,10 +10,10 @@ a { text-decoration: none; color: #db4105; }
 
 .content { clear: both; }
 .content h1 { color: #cccc9f; font-size: 2em; margin: 1em 0; }
-.content .meta { margin: 2em 4em 2em 0; font-family: Georgia, "Times New Roman", Times,serif; text-align: center; }
+.content .meta { padding: 2em 4em 2em 0; font-family: Georgia, "Times New Roman", Times,serif; text-align: center; border-top: 2px solid #db4105; }
 .content .meta .date { font-size: 5em; }
-.content .intro-text { border-top: 1px dotted #9FB4CC; }
-.firstcontent .intro-text { border: none; }
+.content .intro-text { border-top: 2px solid #9FB4CC; }
+.no-border .intro-text, .no-border .meta { border: none; }
 .content p { font-family: Baskerville, Times, Times New Roman, serif; line-height: 1.5em; font-size: 1.9em; }
 .content .extras { margin: 0 0 1.5em; text-align: right; }
 .content .extras ul { list-style-type: none; }
