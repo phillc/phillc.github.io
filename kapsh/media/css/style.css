@@ -1,101 +1,22 @@
-body
-{
-    background-color: #fff;
-}
+body { background-color: #fff; }
+a { text-decoration: none; color: #db4105; }
 
-a
-{
-    text-decoration: none;
-    color: #db4105;
-}
+#header { background-color: #33332d; }
+#header  .logo { height: 7em; line-height: 7em; }
+#header .logo h2 { color: #9fb4cc; font-size: 2.5em; font-family: "Trebuchet MS",Arial,Helvetica,sans-serif; font-weight: bold; }
+#header .accent { background-color: #db4105; height: 5px; }
 
-#header
-{
-    background-color: #33332d;
-}
+.main { }
 
-#header  .logo
-{
-    height: 7em;
-    line-height: 7em;
-}
+.content { clear: both; }
+.content h1 { color: #cccc9f; font-size: 2em; margin: 1em 0; }
+.content .meta { margin: 2em 4em 2em 0; font-family: Georgia, "Times New Roman", Times,serif; text-align: center; }
+.content .meta .date { font-size: 5em; }
+.content .intro-text { border-top: 1px dotted #9FB4CC; }
+.firstcontent .intro-text { border: none; }
+.content p { font-family: Baskerville, Times, Times New Roman, serif; line-height: 1.5em; font-size: 1.9em; }
+.content .extras { margin: 0 0 1.5em; text-align: right; }
+.content .extras ul { list-style-type: none; }
+.content .extras ul li { display: inline; margin-left: 1em; }
 
-#header .logo h2
-{
-    color: #9fb4cc;
-    font-size: 2.5em;
-    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
-    font-weight: bold;
-}
-
-#header .accent
-{
-    background-color: #db4105;
-    height: 5px;
-}
-
-.main
-{
-
-}
-
-.content
-{
-    clear: both;
-}
-
-.content h1
-{
-    color: #cccc9f;
-    font-size: 2em;
-    margin: 1em 0;
-}
-
-.content .meta
-{
-    margin: 2em 4em 2em 0;
-    font-family: Georgia, "Times New Roman", Times,serif;
-    text-align: center;
-}
-.content .meta .date
-{
-    font-size: 5em;
-}
-
-.content .text
-{
-    border-top: 1px dotted #9FB4CC;
-}
-
-.firstcontent .text
-{
-    border: none;
-}
-
-.content .text p 
-{
-    font-family: Baskerville, Times, Times New Roman, serif;
-    line-height: 1.5em;
-    font-size: 1.9em;
-}
-
-.content .text .extras
-{
-    margin: 0 0 1.5em;
-    text-align: right;
-}
-
-.content .text .extras ul
-{
-    list-display-type: none;
-}
-.content .text .extras ul li
-{
-    display: inline;
-    margin-left: 1em;
-}
-
-.side
-{
-    
-}
+.side { }

@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
 {% block main %}
-{% include 'blog/_entry_summary.html' %}
+<div class="content">
+{% include 'blog/_entry_intro.html' %}
+{{ entry.full_text_html|safe }}
+</div>
 {% endblock %}

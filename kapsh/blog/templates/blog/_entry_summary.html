@@ -1,19 +1,2 @@
-<div class="span-3">
-	<div class="meta">
-		<div class="type"><a href="#">Blogging</a></div>
-		<div>{{ entry.publish|date:"l" }}</div>
-		<div class="date">{{ entry.publish|date:"d" }}</div>
-		<div>{{ entry.publish|date:"F, Y" }}</div>
-		<div>{{ entry.publish|date:"h:i a" }}</div>
-	</div>
-</div>
-<div class="text span-15 last">
-	<h1>{{ entry.title }}</h1>
-	{{ entry.intro_text_html|safe }}
-	<div class="extras">
-		<ul>
-			<li><a href="{{ entry.get_absolute_url }}">Continue Reading &raquo;</a></li>
-			<li><a href="#">Comment &raquo;</a></li>
-		</ul>
-	</div>
-</div>
+{% include 'blog/_entry_intro.html' %}
+{% include 'blog/_entry_extras.html' %}
