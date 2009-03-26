@@ -27,6 +27,9 @@ class Entry(Content):
 
     objects = ContentManager()
 
+    def __unicode__(self):
+	return self.title
+
     def save(self):
         self.intro_text_html = markdown.markdown(self.intro_text_raw)
 	self.full_text_html = markdown.markdown(self.full_text_raw, ['codehilite'])
