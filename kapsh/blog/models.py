@@ -32,7 +32,7 @@ class Entry(Content):
 
     def save(self):
         self.intro_text_html = markdown.markdown(self.intro_text_raw)
-	self.full_text_html = markdown.markdown(self.full_text_raw, ['codehilite'])
+	self.full_text_html = markdown.markdown(self.full_text_raw, ['codehilite(force_linenos=True)'])
         super(Entry, self).save()
 
     @permalink
