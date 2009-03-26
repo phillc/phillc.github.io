@@ -1,5 +1,6 @@
 body { background-color: #fff; }
 a { text-decoration: none; color: #db4105; }
+a:hover { text-decoration: underline; }
 
 #header { background-color: #33332d; }
 #header  .logo { height: 7em; line-height: 7em; }
@@ -10,6 +11,7 @@ a { text-decoration: none; color: #db4105; }
 
 .content { clear: both; }
 .content h1 { color: #cccc9f; font-size: 2em; margin: 1em 0; }
+.content h1 a, .content h1 a:visited { color: #cccc9f; }
 .content .meta { padding: 2em 2em 2em 0; font-family: Georgia, "Times New Roman", Times,serif; text-align: center; border-top: 2px solid #db4105; }
 .content .meta .date { font-size: 5em; }
 .content .summary { border-top: 2px solid #9FB4CC; }

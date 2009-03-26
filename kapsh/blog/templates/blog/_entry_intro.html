@@ -8,6 +8,6 @@
 	</div>
 </div>
 <div class="summary span-15 last">
-	<h1>{{ entry.title }}</h1>
+	<h1><a href="{{ entry.get_absolute_url }}">{{ entry.title }}</a></h1>
 	{{ entry.intro_text_html|safe }}
 </div>
