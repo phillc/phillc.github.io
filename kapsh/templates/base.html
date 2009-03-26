@@ -2,12 +2,13 @@
                       "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
-  <title>{% block title %}kapsh.com{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{% block title %}kapsh.com{% endblock %}</title>
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/print.css" type="text/css" media="print">
     <!--[if IE]><link rel="stylesheet" href="{{ MEDIA_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css" media="screen, projection">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    {% block extrahead %}{% endblock %}
 </head>
 <body>
     <div id="header">

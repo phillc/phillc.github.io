@@ -2,6 +2,10 @@
 
 {% block title %}{{ entry.title }}{% endblock %}
 
+{% block extrahead %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/code_style.css" type="text/css" media="screen, projection">
+{% endblock %}
+
 {% block main %}
 <div class="content no-border">
 {% include 'blog/_entry_intro.html' %}
