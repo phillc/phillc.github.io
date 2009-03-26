@@ -1,11 +1,15 @@
-from django.views.generic.simple import direct_to_template
+from django.views.generic import list_detail
 from kapsh.content.models import Content
 
 def home(request):
     content_list = Content.objects.live()
-    return direct_to_template(request,
-        'homepage/home.html',
-        {
+    return list_detail.object_list(
+        request,
+	queryset=content_list,
+	paginate_by=10,
+        template_object_name='content',
+        template_name='homepage/home.html',
+        extra_context={
             'page_id': 'home',
-            'content_list': content_list,
-        })
+        },
+    )

@@ -28,4 +28,3 @@ def do_full_content(parser, token):
     return FullContentNode(content, template_type)
 
 register.tag('full_content', do_full_content)
-
