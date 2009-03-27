@@ -5,7 +5,8 @@ from kapsh.settings import DEBUG, DEV_SERVER, MEDIA_ROOT
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'kapsh.homepage.views.home', name='home'),
+    url(r'^$', 'kapsh.content.views.archive', name='home'),
+    ('^', include('kapsh.content.urls')),
     ('^blog/', include('kapsh.blog.urls')),
     ('^admin/', include(admin.site.urls)),
 )

@@ -23,4 +23,72 @@ a:hover { text-decoration: underline; }
 .content .extras ul li { display: inline; margin-left: 1em; }
 .content .tweet { padding-top: 4.5em; }
 
+/** PAGINATOR **/
+.paginator
+{
+	padding:.5em .75em; float:left; font:normal 1.2em arial; clear: both;
+}
+ 
+.paginator .prev-na,
+.paginator .next-na {
+	padding:.3em;
+	font:bold .875em arial;
+}
+ 
+.paginator .prev-na,
+.paginator .next-na
+{
+	border:1px solid #ccc;
+	background-color:#f9f9f9;
+	color:#aaa;
+	font-weight:normal;
+}
+ 
+.paginator .prev a, .paginator .prev a:visited,
+.paginator .next a, .paginator .next a:visited
+{
+	border:1px solid #222222;
+	background-color:#9FB4CC;
+	color:#222222;
+	padding:.3em;
+	font:bold .875em arial;
+}
+ 
+.paginator .prev, .paginator .prev-na
+{
+	margin-right:.5em;
+}
+.paginator .next, .paginator .next-na {
+	margin-left:.5em;
+}
+ 
+.paginator .page a, .paginator .page a:visited, .paginator .curr
+{
+	padding:.25em;
+	font:normal .875em verdana;
+	border:1px solid #222222;
+	background-color:#9FB4CC;
+	margin:0em .25em;	
+	color:#222222;
+}
+ 
+.paginator .curr
+{ 
+	background-color:#fff;
+	color:#222222;
+	border:1px solid #9FB4CC;
+	font-weight:bold;
+	font-size:1em;
+}
+ 
+.paginator .page a:hover,
+.paginator .curr a:hover,
+.paginator .prev a:hover,
+.paginator .next a:hover
+{
+	color:#fff;
+	background-color:#DB4105;
+	border:1px solid #234f32;
+}
+
 .side { }
