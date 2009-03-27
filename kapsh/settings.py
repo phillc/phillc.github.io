@@ -39,7 +39,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "kapsh.tweets.context_processors.twitter_user",
-    "kapsh.context_processors.disqus_forum",
+    "kapsh.context_processors.intense_debate_acct",
 )
 
 INSTALLED_APPS = (

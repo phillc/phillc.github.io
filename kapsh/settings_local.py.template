@@ -30,4 +30,5 @@ SECRET_KEY = ''
 MEDIA_URL = '/media/'
 ADMIN_MEDIA_PREFIX = '/media/admin/'
 
+INTENSE_DEBATE_ACCT =''
 TWITTER_USER = ''
