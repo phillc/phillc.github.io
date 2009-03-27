@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     ('^', include('kapsh.content.urls')),
     ('^blog/', include('kapsh.blog.urls')),
     ('^admin/', include(admin.site.urls)),
+    ('^google9eee2da00290540a.html$', 'django.views.generic.simple.direct_to_template', {'template': 'blank.html'}),
 )
 
 if DEBUG and DEV_SERVER:
