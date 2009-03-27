@@ -48,7 +48,7 @@ a:hover { text-decoration: underline; }
 .paginator .next a, .paginator .next a:visited
 {
 	border:1px solid #222222;
-	background-color:#9FB4CC;
+	background-color:#fff;
 	color:#222222;
 	padding:.3em;
 	font:bold .875em arial;
@@ -67,14 +67,14 @@ a:hover { text-decoration: underline; }
 	padding:.25em;
 	font:normal .875em verdana;
 	border:1px solid #222222;
-	background-color:#9FB4CC;
+	background-color:#fff;
 	margin:0em .25em;	
 	color:#222222;
 }
  
 .paginator .curr
 { 
-	background-color:#fff;
+	background-color:#9FB4CC;
 	color:#222222;
 	border:1px solid #9FB4CC;
 	font-weight:bold;
@@ -91,4 +91,6 @@ a:hover { text-decoration: underline; }
 	border:1px solid #234f32;
 }
 
-.side { }
+.side {
+	padding: 2em 0 0 2em;
+}
