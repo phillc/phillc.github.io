@@ -3,13 +3,11 @@ from kapsh.content.models import Content
 from django.db import models
 
 class Photo(Content):
-    uid = models.IntegerField()
-    text_raw = models.TextField()
-    text_html = models.TextField()
+    uid = models.CharField(max_length="64", unique=True)
+    title = models.CharField(max_length=128)
+    server = models.CharField(max_length=16)
+    farm = models.CharField(max_length=8)
+    secret = models.CharField(max_length=16)
 
     def __unicode__(self):
-	return self.text_html
-
-    def save(self, force_insert=False, force_update=False):
-	self.text_html = self.text_raw
-	super(Tweet, self).save(force_insert, force_update)
+        return 'http://farm' + self.farm + '.static.flickr.com/' + self.server+ '/' + self.uid + '_' + self.secret + '.jpg'

@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'kapsh.blog',
     'kapsh.categories',
     'kapsh.content',
+    'kapsh.flickr',
     'kapsh.tweets',
     'tagging',
 )

@@ -25,14 +25,14 @@ class Content(models.Model):
         ordering = ['-publish']
 
     def save(self, force_insert=False, force_update=False):
-	if not self.id:
-	    self.created = datetime.datetime.now()
-        self.modified = datetime.datetime.now()
+        if not self.id:
+            self.created = datetime.datetime.now()
+            self.modified = datetime.datetime.now()
 
-	if(not self.content_type):
+        if(not self.content_type):
             self.content_type = ContentType.objects.get_for_model(self.__class__)
 
-	super(Content, self).save(force_insert, force_update)
+        super(Content, self).save(force_insert, force_update)
 
     def live(self):
         return self in Content.objects.live()
@@ -40,4 +40,4 @@ class Content(models.Model):
 
     @property
     def type(self):
-	return getattr(self, self.content_type.model)
+        return getattr(self, self.content_type.model)
