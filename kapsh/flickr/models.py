@@ -1,0 +1,15 @@
+from kapsh.content.models import Content
+
+from django.db import models
+
+class Photo(Content):
+    uid = models.IntegerField()
+    text_raw = models.TextField()
+    text_html = models.TextField()
+
+    def __unicode__(self):
+	return self.text_html
+
+    def save(self, force_insert=False, force_update=False):
+	self.text_html = self.text_raw
+	super(Tweet, self).save(force_insert, force_update)
