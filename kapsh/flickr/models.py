@@ -8,6 +8,7 @@ class Photo(Content):
     server = models.CharField(max_length=16)
     farm = models.CharField(max_length=8)
     secret = models.CharField(max_length=16)
+    url = models.CharField(max_length=512)
 
     def __unicode__(self):
         return 'http://farm' + self.farm + '.static.flickr.com/' + self.server+ '/' + self.uid + '_' + self.secret + '.jpg'

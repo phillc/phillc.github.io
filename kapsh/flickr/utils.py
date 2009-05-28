@@ -14,14 +14,21 @@ def get_photos():
         uid = photo.attrib['id']
         farm = photo.attrib['farm']
         secret = photo.attrib['secret']
-        Photo.objects.get_or_create(
+
+        photo_info = flickr.photos_getInfo(photo_id=uid)
+        posted_at = datetime.datetime.fromtimestamp(int(photo_info.find('photo').find('dates').attrib['posted']))
+        url = photo_info.find('photo').find('urls')[0].text
+
+        p, created = Photo.objects.get_or_create(
             uid = uid,
             defaults = {
                 'server': server,
-                'title': title,
                 'farm': farm,
                 'secret': secret,
                 'is_published': True,
-                'publish': datetime.datetime.now()
+                'publish': posted_at,
             }
         )
+        p.title = title
+        p.url = url
+        p.save()
