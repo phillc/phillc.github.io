@@ -15,7 +15,7 @@ def get_tweets():
         date_utc = datetime.datetime.strptime(tweet.created_at, '%a %b %d %H:%M:%S +0000 %Y').replace(tzinfo=utc)
         tweet.date = date_utc.astimezone(tz).replace(tzinfo=None)
         Tweet.objects.get_or_create(
-            uid = tweet.id,
+            uid = "%s" % (tweet.id),
     	    defaults = {
                 'text_raw': tweet.text,
                 'publish': tweet.date,
