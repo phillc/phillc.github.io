@@ -3,7 +3,7 @@ from kapsh.content.models import Content
 from django.db import models
 
 class Tweet(Content):
-    uid = models.PositiveIntegerField()
+    uid = models.CharField(max_length=128)
     text_raw = models.TextField()
     text_html = models.TextField()
 
