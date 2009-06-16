@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     url(r'^$', 'kapsh.content.views.archive', name='home'),
     ('^', include('kapsh.content.urls')),
     ('^blog/', include('kapsh.blog.urls')),
-    ('^admin/', include(admin.site.urls)),
+    (r'^admin/(.*)', admin.site.root),
     ('^google9eee2da00290540a.html$', 'django.views.generic.simple.direct_to_template', {'template': 'blank.html'}),
 )
 
