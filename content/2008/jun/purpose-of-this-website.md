@@ -1,3 +1,8 @@
+---
+kind: article
+created_at: 2008-10-03
+title: "ASDFASDF"
+---
 Over the course of my programming life, I have written some form of blog in perl, then php, then in a framework of php, then ruby on rails, and now Django.
 
 The real purpose of this site is to get an understanding of every component that goes into a blog. This is without a doubt the best one I've ever written, but the same could be said about each of the ones I built before at that time.
