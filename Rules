@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 
+compile '/' do
+  filter :haml
+  layout 'default'
+end
+
 compile '*' do
   ext = item[:extension]
  
@@ -13,6 +18,7 @@ compile '*' do
     raise "Filter is not configured for #{item.identifier} in Rules file."
   end
 
+  layout 'article'
   layout 'default'
 end
 
