@@ -6,18 +6,8 @@ compile '/' do
 end
 
 compile '*' do
-  ext = item[:extension]
- 
-  if ext == '.erb'
-    filter :erb
-  elsif ext == '.haml' || ext.nil?
-    filter :haml
-  elsif ext == '.md' || ext == '.markdown'
-    filter :kramdown
-  else
-    raise "Filter is not configured for #{item.identifier} in Rules file."
-  end
-
+  filter 'coderay'
+  filter 'bluecloth'
   layout 'article'
   layout 'default'
 end
