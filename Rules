@@ -1,19 +1,26 @@
 #!/usr/bin/env ruby
 
-compile '/' do
-  filter :haml
-  layout 'default'
-end
+#compile '/' do
+  #filter :haml
+  #layout 'default'
+#end
 
-compile '*' do
-  filter 'coderay'
-  filter 'bluecloth'
-  layout 'article'
-  layout 'default'
-end
+#compile '/css/*/' do
+  #filter :sass
+#end
 
-route '*' do
-  item.identifier + 'index.html'
-end
+#compile '*' do
+  #filter 'coderay'
+  #filter 'bluecloth'
+  #layout 'article'
+  #layout 'default'
+#end
 
-layout '*', :haml, :format => :html5
+#route '/css/*/' do
+  #item.identifier.chop + '.css'
+#end
+
+
+#route '*' do
+  #item.identifier + 'index.html'
+#end
