@@ -1,8 +1,0 @@
---- 
-title: Home
----
-%ul
-  - sorted_articles.each do |article|
-    %li
-      = link_to article[:title], article.reps.find { |r| r.name == :default }
-
