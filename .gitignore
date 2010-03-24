@@ -1,3 +1,4 @@
 *.swp
 out/
+webgen.cache
 .DS_Store
