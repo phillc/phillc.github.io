@@ -1,9 +1,5 @@
 #!/usr/bin/env ruby
 
-#compile '/' do
-  #filter :haml
-  #layout 'default'
-#end
 
 #compile '/css/*/' do
   #filter :sass
@@ -21,6 +17,48 @@
 #end
 
 
-#route '*' do
-  #item.identifier + 'index.html'
-#end
+
+#!/usr/bin/env ruby
+
+# A few helpful tips about the Rules file:
+#
+# * The order of rules is important: for each item, only the first matching
+#   rule is applied.
+#
+# * Item identifiers start and end with a slash (e.g. “/about/” for the file
+#   “content/about.html”). To select all children, grandchildren, … of an
+#   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
+#   because “*” matches zero or more characters.
+
+compile '/stylesheets/*/' do
+  filter :sass if item[:extension] == 'sass'
+end
+
+compile '/' do
+  filter :haml, :format => :html5
+  layout 'default'
+end
+
+
+compile '*' do
+  case item[:extension]
+    when 'haml'
+      filter :haml, :format => :html5
+    when 'md'
+      filter :kramdown
+    else
+      filter :erb
+  end
+  layout 'article'
+  layout 'default'
+end
+
+route '/stylesheets/*/' do
+  item.identifier.chop + '.css'
+end
+
+route '*' do
+  item.identifier + 'index.html'
+end
+
+layout '*', :haml, :format => :html5

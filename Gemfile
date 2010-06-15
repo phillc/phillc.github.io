@@ -1,6 +1,9 @@
 source :gemcutter
 
-gem "mime-types"
+# for compile
+gem "nanoc3"
 gem "haml"
-gem "bluecloth"
-gem "coderay"
+
+# for view
+gem "rack"
+gem "adsf"

@@ -1,7 +1,7 @@
 ---
 kind: article
-created_at: 2008-10-03
-title: "ASDFASDF"
+created_at: 2008-06-25
+title: "Purpose of this website"
 ---
 Over the course of my programming life, I have written some form of blog in perl, then php, then in a framework of php, then ruby on rails, and now Django.
 

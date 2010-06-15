@@ -1,8 +1,19 @@
 --- 
 title: Home
 ---
-%ul
-  - sorted_articles.each do |article|
-    %li
-      = link_to article[:title], article.reps.find { |r| r.name == :default }
+
+%section{:class => ["container", "wrapper"]}
+  %aside{:id => "tweet"}
+    %p
+      Some random simple tweet message
+%section{:class => ["container", "wrapper"]}
+  %ol{:id => "post_list"}
+    - sorted_articles.each do |article|
+      %li
+        %article
+          %time
+            = article[:created_at].strftime("%d %b %Y")
+          %h2
+            &raquo;
+            = link_to article[:title], article.reps.find { |r| r.name == :default }
 
