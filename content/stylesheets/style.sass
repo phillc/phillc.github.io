@@ -7,16 +7,12 @@ body
   background-color: FloralWhite
   font-size: 14px
 
-h2
-  font-size: 1.571em
-h3
-  font-size: 1.429em
-h4
-  font-size: 1.286em
-h5
-  font-size: 1.143em
-h6
-  font-size: 1em
+a:link
+  color: DarkBlue
+a:visited
+  color: #AA00AA
+a:hover
+  color: black
 
 .container
   width: 800px
@@ -31,21 +27,44 @@ h6
   -moz-border-radius: 10px
   -webkit-border-radius: 10px
   
-
+  h1
+    letter-spacing: -1.5px
+    margin-bottom: 1em
+    font-size: 1.5em
+    font-weight: bold
+    font-family: Georgia, "Times New Roman", Times, serif
+    
 #banner
   height: 2em
   margin-bottom: 2em
   
+  font-family: Gill Sans, Verdana
+  text-transform: uppercase
+  font-weight: bold
+
+  h1
+    color: DarkGoldenRod
+    letter-spacing: 4px
+
   nav
     float: right
+
     
     ul
       li
         display: inline
         float: left
+        margin-left: 3em
         
         a:link, a:visited
+          letter-spacing: 2px
           display: inline-block
+          text-decoration: none
+          color: black
+          
+        a:hover
+          text-decoration: underline
+          color: #999
 
 #tweet
   p
@@ -65,4 +84,7 @@ h6
       font-family: "Courier New", monospace
     h2
       font-size: 1em
-  
+      font-family: Helvetica,Arial,sans-serif
+      font-weight: normal
+      
+/*Baskerville,Times,Times New Roman,serif*/
