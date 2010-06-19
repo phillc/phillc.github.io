@@ -1,5 +1,13 @@
 @import url("reset.css")
 
+
+
+@mixin header
+  font-family: Gill Sans, Verdana, sans-serif
+  text-transform: uppercase
+  font-weight: bold
+  letter-spacing: 2px
+
 article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary 
   display: block
 
@@ -15,40 +23,28 @@ a:hover
   color: black
 
 .container
-  width: 800px
-  margin: 0 auto
-  
-.wrapper
-  background-color: #FFF
-  border-radius: 10px
-  margin-bottom: 2em
-  padding: 2em
-  
-  -moz-border-radius: 10px
-  -webkit-border-radius: 10px
+  width: 700px
+  margin: 0 auto 1em auto
   
   h1
-    letter-spacing: -1.5px
-    margin-bottom: 1em
-    font-size: 1.5em
-    font-weight: bold
-    font-family: Georgia, "Times New Roman", Times, serif
+    font-size: 1.25em
+    line-height: 2em
     
 #banner
   height: 2em
-  margin-bottom: 2em
+  margin-top: 1em
+  margin-bottom: 1em
   
-  font-family: Gill Sans, Verdana
-  text-transform: uppercase
-  font-weight: bold
-
+  @include header
+  
   h1
+    float: left
+    display: inline
     color: DarkGoldenRod
-    letter-spacing: 4px
+    letter-spacing: 6px
 
   nav
     float: right
-
     
     ul
       li
@@ -57,7 +53,6 @@ a:hover
         margin-left: 3em
         
         a:link, a:visited
-          letter-spacing: 2px
           display: inline-block
           text-decoration: none
           color: black
@@ -66,25 +61,25 @@ a:hover
           text-decoration: underline
           color: #999
 
-#tweet
-  p
-    font-family: Georgia, "Times New Roman", Times, serif
+#tweet_list
+  li
     font-style: italic
-    font-size: 3em
+    font-size: 1.5em
+    line-height: 1.5em
 
 #post_list
   article
     line-height: 1.75em
-    
+  
     time
       float: left
       margin-right: 0.5em
-      color: #999
+      color: DimGray
       font-size: 1em
       font-family: "Courier New", monospace
     h2
       font-size: 1em
-      font-family: Helvetica,Arial,sans-serif
+      font-family: Helvetica, Arial, sans-serif
       font-weight: normal
       
 /*Baskerville,Times,Times New Roman,serif*/

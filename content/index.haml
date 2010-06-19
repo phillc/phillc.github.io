@@ -2,11 +2,18 @@
 title: Home
 ---
 
-%section{:class => ["container", "wrapper"]}
-  %aside{:id => "tweet"}
-    %p
-      Some random simple tweet message
-%section{:class => ["container", "wrapper"]}
+%section{:id => "tweet", :class => "container"}
+  %aside{:id => "tweet_list"}
+  :javascript
+    getTwitters('tweet_list', {
+      id: 'phillc',
+      count: 1,
+      enableLinks: true,
+      clearContents: true,
+      template: '%text% <a href="http://twitter.com/%user_screen_name%/statuses/%id%/">%time%</a>'
+    });
+      
+%section{:class => "container"}
   %h1 Blog Posts
   %ol{:id => "post_list"}
     - sorted_articles.each do |article|
