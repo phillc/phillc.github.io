@@ -1,9 +1,11 @@
----
----
-%article
-  %header 
-    %time{:datetime => @item[:created_at], :pubdate => true}
-      = @item[:created_at]
-    %h2
-      = link_to @item[:title], @item
-  = yield
+%section{:class => "container"}
+  %article
+    %header 
+      %footer
+        %time{:class => "date", :pubdate => true, :datetime => @item[:created_at]}
+          = @item[:created_at].strftime("%d")
+        %time{:class => "month"}
+          = @item[:created_at].strftime("%B, %Y")
+      %h2
+        = link_to @item[:title], @item
+    = yield

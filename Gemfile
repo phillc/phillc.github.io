@@ -6,4 +6,7 @@ gem "haml"
 
 # for view
 gem "rack"
-gem "adsf"
+
+# for colorize_syntax
+gem "nokogiri"
+gem "rdiscount"

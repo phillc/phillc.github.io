@@ -45,10 +45,11 @@ compile '*' do
     when 'haml'
       filter :haml, :format => :html5
     when 'md'
-      filter :kramdown
+      filter :rdiscount
     else
       filter :erb
   end
+  filter :colorize_syntax
   layout 'article'
   layout 'default'
 end

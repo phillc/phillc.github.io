@@ -1,85 +1,110 @@
 @import url("reset.css")
 
-
-
-@mixin header
-  font-family: Gill Sans, Verdana, sans-serif
-  text-transform: uppercase
-  font-weight: bold
-  letter-spacing: 2px
-
 article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary 
   display: block
 
 body
-  background-color: FloralWhite
-  font-size: 14px
+  background-color: #fff
+  font-size: 75%
 
 a:link
-  color: DarkBlue
+  color: #DB4105
 a:visited
   color: #AA00AA
 a:hover
   color: black
 
 .container
-  width: 700px
-  margin: 0 auto 1em auto
-  
-  h1
-    font-size: 1.25em
-    line-height: 2em
-    
-#banner
-  height: 2em
-  margin-top: 1em
-  margin-bottom: 1em
-  
-  @include header
-  
-  h1
-    float: left
-    display: inline
-    color: DarkGoldenRod
-    letter-spacing: 6px
-
-  nav
-    float: right
-    
-    ul
-      li
-        display: inline
-        float: left
-        margin-left: 3em
-        
-        a:link, a:visited
-          display: inline-block
-          text-decoration: none
-          color: black
-          
-        a:hover
-          text-decoration: underline
-          color: #999
-
-#tweet_list
-  li
-    font-style: italic
-    font-size: 1.5em
-    line-height: 1.5em
-
-#post_list
-  article
-    line-height: 1.75em
-  
-    time
-      float: left
-      margin-right: 0.5em
-      color: DimGray
-      font-size: 1em
-      font-family: "Courier New", monospace
-    h2
-      font-size: 1em
-      font-family: Helvetica, Arial, sans-serif
-      font-weight: normal
+  width: 850px
+  margin: 0 auto
       
-/*Baskerville,Times,Times New Roman,serif*/
+#banner
+  background-color: #33332D
+  
+  h1
+    font-size: 2.5em
+    line-height: 2.5em
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif
+    font-weight: bold
+  
+  h1, h1 a:link, h1 a:visited, h1 a:hover
+    color: #9fb4cc
+    
+  .container
+    border-bottom: 5px solid #DB4105
+    position: relative
+
+    nav
+      position: absolute
+      right: 0
+      bottom: 0
+      ul
+        li
+          display: inline
+          float: left
+        
+          a:link, a:visited
+            display: inline-block
+            text-decoration: none
+            color: black
+            padding: 1em
+            font-size: 1.25em
+          
+          a:hover
+            text-decoration: underline
+            color: #999
+
+#tweets
+  li
+    font-size: 1.75em
+    list-style-type: circle
+    list-style-position: inside
+    font-style: italic
+    margin-bottom: 1em
+
+  .more
+    font-size: 1.25em
+    text-align: right
+  
+section
+  h1
+    font-size: 2em
+    line-height: 2em
+
+article
+  clear: both
+  font-family: Baskerville, Times, "Times New Roman", serif
+  
+  footer
+    padding: 2em 0
+    font-family: Georgia, "Times New Roman", Times, serif
+    text-align: center
+    float: left
+    width: 110px
+    border-top: 2px solid #DB4105
+    margin-right: 10px
+    
+    time
+      display: block
+      &.date
+        font-size: 5em      
+      
+  h2
+    float: left
+    width: 730px
+    padding-top: 2em
+    padding-bottom: 1em
+    font-size: 2em
+    font-weight: normal
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    border-top: 2px solid #9FB4CC
+    
+    a
+      text-decoration: none
+    
+  p
+    font-family: Baskerville, Times, Times New Roman, serif
+    line-height: 1.5em
+    font-size: 1.9em
+    margin-bottom: 1.5em
+
