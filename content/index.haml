@@ -2,32 +2,15 @@
 title: Home
 ---
 
-%section{:id => "tweets", :class => "container"}
-  %h1 Recent Tweets
-  %aside{:id => "tweet_list"}
-  :javascript
-    getTwitters('tweet_list', {
-      id: 'phillc',
-      count: 3,
-      enableLinks: true,
-      clearContents: true,
-      template: '%text%'
-    });
-  %p{:class => "more"}
-    follow me on twitter 
-    = link_to "@phillc", "http://twitter.com/phillc"
-    >>
-      
 %section{:id => "posts", :class => "container"}
-  %h1 Blog Posts
   %ol{:id => "post_list"}
-    - sorted_articles.each do |article|
+    %li
+      %article 
+        = render 'article_header', :article => sorted_articles[0]
+        = sorted_articles[0].compiled_content
+      = link_to "Comment on this article", sorted_articles[0]
+    - sorted_articles[1..-1].each do |article|
       %li
         %article
-          %footer
-            %time{:class => "date", :pubdate => true, :datetime => article[:created_at]}
-              = article[:created_at].strftime("%d")
-            %time{:class => "month"}
-              = article[:created_at].strftime("%B, %Y")
-          %h2
-            = link_to article[:title], article.reps.find { |r| r.name == :default }
+          = render 'article_header', :article => article
+

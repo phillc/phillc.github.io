@@ -44,7 +44,9 @@ Then for each virtual host, I add to the python path the projects folder, then r
 
 That works for apache, but then to get manage.py to work (it doesn't work because none of the python paths are set for it), I edit "/etc/environment" and add the line
 
-    PYTHONPATH="/home/username/projects:/home/username/common:/home/username/external"
+<% code :bash do %>
+PYTHONPATH="/home/username/projects:/home/username/common:/home/username/external"
+<% end %>
 
 Bingo, now manage.py works.
 

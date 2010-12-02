@@ -32,6 +32,7 @@
 
 compile '/stylesheets/*/' do
   filter :sass if item[:extension] == 'sass'
+  filter :scss if item[:extension] == 'scss'
 end
 
 compile '/' do
@@ -40,16 +41,9 @@ compile '/' do
 end
 
 
-compile '*' do
-  case item[:extension]
-    when 'haml'
-      filter :haml, :format => :html5
-    when 'md'
-      filter :rdiscount
-    else
-      filter :erb
-  end
-  filter :colorize_syntax
+compile '/blog/*' do
+  filter :erb
+  filter :rdiscount
   layout 'article'
   layout 'default'
 end

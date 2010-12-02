@@ -7,7 +7,7 @@ Subversion has been my friend ever since I learned about it. However, it took me
 
 Django projects can end up on many different environments. Putting settings.py into source control directly will cause our settings to migrate across all working copies. This is not reasonable, as not every person will have the same environment (not all using mysql, not all using the same directory).
 
-Removing settings.py from version control, and make a seperate settings.py.template file that contains just the basic structure is a solution to that. However, it brings another problem: What if you want to change a used application or a middleware? You would then have to make that change on all working copies.
+Removing settings.py from version control, and make a separate settings.py.template file that contains just the basic structure is a solution to that. However, it brings another problem: What if you want to change a used application or a middleware? You would then have to make that change on all working copies.
 
 My solution has been to make a settings_local.py.dist
 
@@ -17,8 +17,9 @@ This file will go under version control.
 
 Now, in your settings.py, add the line
 
-    #!python
-    from settings_local import *
+<% code :python do %>
+from settings_local import *
+<% end %>
 
 (I added the line to the very bottom of my settings.py)
 

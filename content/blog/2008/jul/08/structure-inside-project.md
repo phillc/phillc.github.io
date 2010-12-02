@@ -11,10 +11,11 @@ Previously, my template folder and my media folder were in different parent dire
 
 Inside my settings.py I have this:
 
-    #!python
-    import os, sys
-    PROJECT_ROOT = os.path.dirname(__file__)
-    sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps')) 
+<% code :python do %>
+import os, sys
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps')) 
+<% end %>
 
 The first two lines figure out the directory that the settings.py lives in
 The third line inserts my apps folder to the python path (this works great with my [django directory structure](http://kapsh.com/blog/2008/jul/01/developed-directory-structure/))
@@ -38,9 +39,10 @@ Now, the next step for me was to move my template and media directories around. 
 
 So as you can see, my templates folder is in the same directory as my settings.py. My media folder is too. In order to avoid making this a variable too:
 
-    #!python
-    MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+<% code :python do %>
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
-    TEMPLATE_DIRS = (
-         os.path.join(PROJECT_ROOT, 'templates'),
-    )
+TEMPLATE_DIRS = (
+     os.path.join(PROJECT_ROOT, 'templates'),
+)
+<% end %>

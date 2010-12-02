@@ -7,7 +7,9 @@ Was attempting to compile e-text editor on ubuntu 9.10 (yea yea, I know... my ri
 
 Finally, after trying multiple ways of compiling wxWidgets, I figured out the real error was
 
-    "./include/wx/gsocket.h:40: error: using typedef-name ‘GSocket’ after ‘class’"
+<% code :bash do %>
+"./include/wx/gsocket.h:40: error: using typedef-name ‘GSocket’ after ‘class’"
+<% end %>
     
     
 So I applied a patch I found at [http://trac.wxwidgets.org/ticket/10883](http://trac.wxwidgets.org/ticket/10883) to the wxwidgets folder. and it suddenly worked.

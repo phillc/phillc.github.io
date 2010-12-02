@@ -10,10 +10,11 @@ This is much easier.
 
 urls.py:
 
-    #!python
-    if DEBUG:
-        import os
-        media_root = os.path.join(PROJECT_ROOT, 'media')
-        urlpatterns += patterns ('',
-            (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': media_root}),
-        )
+<% code :python do %>
+if DEBUG:
+    import os
+    media_root = os.path.join(PROJECT_ROOT, 'media')
+    urlpatterns += patterns ('',
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': media_root}),
+    )
+<% end %>
