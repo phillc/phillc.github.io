@@ -1,6 +1,9 @@
 ---
 title: "v8 scons error"
+layout: post
 ---
+
+While trying to install Google v8, I had an error:
 
     v8-read-only$ scons
     scons: Reading SConscript files ...
@@ -21,4 +24,4 @@ title: "v8 scons error"
     scons: building terminated because of error
 
 
-Solved by export GCC_VERSION=44, before running scons
+Solved by using export GCC_VERSION=44, before running scons.

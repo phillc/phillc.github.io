@@ -1,14 +1,13 @@
 ---
-kind: article
-created_at: 2009-08-28
 title: "Ruby multi-dimensional array helper"
+layout: post
 ---
 
 I needed something to help me get through a multi-dimensional array. So I extended the Array class.
 
 Grab expects an array of coordinates.
 
-<% code :ruby do %>
+{% highlight ruby %}
 class Array
   def grab(position)
     value = self.fetch(position.first)
@@ -18,11 +17,11 @@ class Array
     raise(IndexError, "Multi Dimensional Array not deep enough")
   end
 end
-<% end %>
+{% endhighlight %}
 
 Then I can do this:
 
-<% code :ruby do %>
+{% highlight ruby %}
 >> [[1,2,3],"asdf",[[11,22,33],5,6,7]].grab([2,0,0])
 => 11
 >> [[1,2,3],"asdf",[[11,22,33],5,6,7]].grab([2,0,2])
@@ -36,4 +35,4 @@ IndexError: Not an array.
 >> [[1,2,3],"asdf",[[11,22,33],5,6,7]].grab([1])
 => "asdf"
 >> 
-<% end %>
+{% endhighlight %}

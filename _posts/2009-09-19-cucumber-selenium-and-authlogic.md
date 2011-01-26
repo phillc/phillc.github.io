@@ -1,57 +1,56 @@
 ---
-kind: article
-created_at: 2009-09-19
 title: "Cucumber with Selenium and Authlogic"
+layout: post
 ---
 I had some Issues with cucumber/selenium working properly with authlogic. After much searching, I've figured out how to get it all to work properly.
 
 I would get an error like:
 
-<% code :bash do %>
+{% highlight bash %}
 When I follow "Manage pages"                          # features/step_definitions/webrat_steps.rb:19
   ed out after 5000ms (Selenium::CommandError)
   /opt/local/lib/ruby/1.8/timeout.rb:62:in `timeout'
   /opt/local/lib/ruby/1.8/timeout.rb:93:in `timeout'
   (eval):2:in `/^I follow "([^\"]*)"$/'
   features/plain/admin_page.feature:8:in `When I follow "Manage pages"'
-<% end %>
+{% endhighlight %}
 
 Initially, to setup authlogic to work with regular webrat tests, I had to put the following in my env.rb:
 
 
-<% code :ruby do %>
+{% highlight ruby %}
 require "authlogic/test_case"
 
 Before do
   activate_authlogic
 end
-<% end %>
+{% endhighlight %}
 
 After getting it working with webrat, I decided I wanted to test some of my javascript and AJAX with selenium, so I followed [this guide](http://wiki.github.com/aslakhellesoy/cucumber/setting-up-selenium)
 
 The database_cleaner gem had to be added because you can't use
 
-<% code :ruby do %>
+{% highlight ruby %}
 Cucumber::Rails.use_transactional_fixtures
-<% end %>
+{% endhighlight %}
 
 with selenium, so it had to be removed from the env.rb and placed in the plain.rb. As a result, this ended up in my enhanced.rb
 
-<% code :ruby do %>
+{% highlight ruby %}
   require 'database_cleaner'
   Before do
     # truncate your tables here, since you can't use transactional fixtures*
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean
   end
-<% end %>
+{% endhighlight %}
 and this ended up in my plain.rb
 
-<% code :ruby do %>
+{% highlight ruby %}
 require 'database_cleaner'
 DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.clean
-<% end %>
+{% endhighlight %}
 
 Originally, I had it just in my enhanced.rb as an After block instead of Before, but after further contemplation, I realized that if something goes terribly wrong with the selenium tests, then the database would have bad data in it... So might as well clean it before hand.
 
@@ -59,17 +58,17 @@ Finally, my problem with authlogic + seleniu, was how I wrote my test. The way i
 
 Here is the beginning of my test that failed:
 
-<% code :ruby do %>
+{% highlight ruby %}
   Scenario: Visit Add Page page
     Given I am logged in
     And I am on "the admin page"
     When I follow "Manage pages"
     And I follow "New Page"
-<% end %>
+{% endhighlight %}
 
 With a little help from [a post on stack overflow](http://stackoverflow.com/questions/966052/cucumber-selenium-fails-randomly/966998#966998), I got it to work with the following:
 
-<% code :ruby do %>
+{% highlight ruby %}
 def user
   @user ||= Factory.create(:user)
 end
@@ -98,7 +97,7 @@ end
 When /^I login$/ do
   login
 end
-<% end %>
+{% endhighlight %}
 
 Notice I had to add the if selenium line in order to get it to work in webrat.
 

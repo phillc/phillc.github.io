@@ -1,7 +1,6 @@
 ---
-kind: article
-created_at: 2008-07-07
 title: "Developed Directory Structure"
+layout: post
 ---
 Over the course of my web development life, I have changed my work flow and directory structure many times. Each time gets a little bit better, but I doubt I will ever finish modifying it, as I am always learning new techniques.
 
@@ -9,7 +8,7 @@ I am presently using [Django](http://www.djangoproject.com) in all of my project
 
 First thing to know, is that both at work and in my pet projects, I am hosting multiple websites on the same apache instance. This is simply because the load behind the website does not justify buying a new slice (I use [slicehost](http://www.slicehost.com) for my hosting needs).
 
-I also make use of several available applications out there, [django comment utils](http://code.google.com/p/django-comment-utils/), [django tagging](http://code.google.com/p/django-tagging/), and [django-registration](django registration) just to name a few (all/most are findable through [django pluggables](http://djangoplugables.com/))
+I also make use of several available applications out there, [django comment utils](http://code.google.com/p/django-comment-utils/), [django tagging](http://code.google.com/p/django-tagging/), and [django-registration](http://code.google.com/p/django-registration/) just to name a few (all/most are findable through [django pluggables](http://djangoplugables.com/))
 
 So that being said, I need to have a directory structure capable of handling each one of my projects, all of my own shared applications, and all of the downloaded applications.
 
@@ -44,9 +43,9 @@ Then for each virtual host, I add to the python path the projects folder, then r
 
 That works for apache, but then to get manage.py to work (it doesn't work because none of the python paths are set for it), I edit "/etc/environment" and add the line
 
-<% code :bash do %>
+{% highlight bash %}
 PYTHONPATH="/home/username/projects:/home/username/common:/home/username/external"
-<% end %>
+{% endhighlight %}
 
 Bingo, now manage.py works.
 

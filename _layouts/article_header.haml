@@ -1,8 +1,0 @@
-%header 
-  %footer
-    %time{:class => "date", :pubdate => true, :datetime => article[:created_at]}
-      = article[:created_at].strftime("%d")
-    %time{:class => "month"}
-      = article[:created_at].strftime("%B, %Y")
-  %h2
-    = link_to_unless_current article[:title], article

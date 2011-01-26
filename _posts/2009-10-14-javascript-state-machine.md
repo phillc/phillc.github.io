@@ -1,7 +1,6 @@
 ---
-kind: article
-created_at: 2009-10-14
 title: "Javascript State Machine"
+layout: post
 ---
 
 [I wrote a simple Javascript State Machine.](http://github.com/phillc/Javascript-State-Machine)
@@ -98,8 +97,6 @@ Event.observe(window, 'load', function() {
     historyChange(dhtmlHistory.currentLocation || '');
 });
 {% endhighlight %}
-
-
 
 While implementing this, I also learned a bit about bookmarking and enabling the back button of ajax states. Really Simple History has worked ok for me, but it has some quirks... some of which I haven't solved yet (especially in IE) and those bugs may be above.
 

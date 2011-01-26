@@ -1,7 +1,6 @@
 ---
-kind: article
-created_at: 2009-06-16
 title: "xServer xorg.conf for 4850 X2 dual monitor - Ubuntu 9.04"
+layout: post
 ---
 
 Thanks to [gwydion](http://blog.morrigan.ch/?p=52)
@@ -12,30 +11,30 @@ Took many, many hours trying to finding this solution. I ended up being able to 
 
 Here is what I did:
 
-<% code :bash do %>
+{% highlight bash %}
 dpkg-reconfigure xserver-xorg
 aticonfig --initial -f --adapter=all
 aticonfig --cfa --adapater=all
 aticonfig --add-pairmode=<your width>x<your height>+<your width 2>x<your height 2>
-<% end %>
+{% endhighlight %}
 
 Also had to add
 
-<% code :bash do %>
+{% highlight bash %}
 Option "EnableRandR12" "false"
-<% end %>
+{% endhighlight %}
 
 to each device section and
 
-<% code :bash do %>
+{% highlight bash %}
 EnableRandR12=Sfalse
-<% end %>
+{% endhighlight %}
 
 to the [AMDPCSROOT/SYSTEM/DDX] section of /etc/ati/amdpcsdb ([source](http://ubuntuforums.org/showthread.php?p=7144148)) in order to disable RandR 1.2
 
 xorg.conf
 
-<% code :bash do %>
+{% highlight bash %}
 
 # xorg.conf (X.Org X Window System server configuration file)
 #
@@ -127,7 +126,7 @@ Section "Screen"
 		Modes      "1280x1024_75.00"
 	EndSubSection
 EndSection
-<% end %>
+{% endhighlight %}
 
 
 This probably is a solution for the 4870 X2, or any other X2 based board.

@@ -1,7 +1,6 @@
 ---
-kind: article
-created_at: 2008-07-05
 title: "Making Django Projects Version Control Friendly"
+layout: post
 ---
 Subversion has been my friend ever since I learned about it. However, it took me a while to figure out how to deal with configuration files. For Django, this specifically relates to the settings.py.
 
@@ -17,9 +16,9 @@ This file will go under version control.
 
 Now, in your settings.py, add the line
 
-<% code :python do %>
+{% highlight python %}
 from settings_local import *
-<% end %>
+{% endhighlight %}
 
 (I added the line to the very bottom of my settings.py)
 
