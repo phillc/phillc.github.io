@@ -15,7 +15,7 @@ Below is a simple example of how I use the state machine, and shows a bit of how
 
 I have included in this example some comments to show my thinking throughout, and perhaps how to use it.
 
-<% code :javascript do %>
+{% highlight javascript %}
 Site.prototype = new StateMachine();
 Site.prototype.states = {
     Begin: {
@@ -97,7 +97,8 @@ Event.observe(window, 'load', function() {
     dhtmlHistory.initialize(historyChange);
     historyChange(dhtmlHistory.currentLocation || '');
 });
-<% end %>
+{% endhighlight %}
+
 
 
 While implementing this, I also learned a bit about bookmarking and enabling the back button of ajax states. Really Simple History has worked ok for me, but it has some quirks... some of which I haven't solved yet (especially in IE) and those bugs may be above.
