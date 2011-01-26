@@ -1,3 +1,8 @@
+---
+kind: article
+title: "v8 scons error"
+---
+
 v8-read-only$ scons
 scons: Reading SConscript files ...
 scons: done reading SConscript files.
