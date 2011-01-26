@@ -3,7 +3,10 @@ layout: default
 ---
 <section class="container">
   <article>
-    <h2>{{ page.title }}</h2>
+    <hgroup>
+      <h2>{{ page.title }}</h2>
+      <time>{{ page.date | date_to_string }}</time>
+    </hgroup>
     {{ content }}
   </article>
 </section>

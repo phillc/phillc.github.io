@@ -12,14 +12,14 @@ a:link {
 }
 
 a:visited {
-  color: #AA00AA;
+  color: #DB4105;
 }
 a:hover {
   color: black;
 }
 
 .container {
-  width: 750px;
+  width: 650px;
   margin: 0 auto;
 }
       
@@ -76,6 +76,27 @@ section h1 {
   line-height: 2em;
 }
 
+#posts li {
+  clear: both;
+  font-size: 1.25em;
+  line-height: 1.5em;
+}
+
+#posts li time {
+  float: right;
+  font-family: monofur, monaco, courier;
+  font-size: 0.75em;
+}
+
+#posts li h2 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  display: inline;
+}
+
+#posts li h2 a:link, #posts li h2 a:visited {
+  text-decoration: none;
+}
+
 article {
   clear: both;
   font-family: Baskerville, Times, "Times New Roman", serif;
@@ -86,10 +107,14 @@ article h2 {
   font-size: 2em;
   font-weight: normal;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #DB4105;
 }
 
-article h2 a {
-  text-decoration: none;
+article time {
+  font-family: monofur, monaco, courier;
+}
+article hgroup {
+  margin-bottom: 1.5em;
 }
     
 article p {
