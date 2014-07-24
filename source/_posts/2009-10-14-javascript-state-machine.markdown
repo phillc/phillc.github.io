@@ -1,6 +1,8 @@
 ---
 title: "Javascript State Machine"
 layout: post
+date: "2009-10-14"
+categories: [tech]
 ---
 
 [I wrote a simple Javascript State Machine.](http://github.com/phillc/Javascript-State-Machine)

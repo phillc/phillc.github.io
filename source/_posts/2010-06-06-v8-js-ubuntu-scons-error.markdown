@@ -1,6 +1,8 @@
 ---
 title: "v8 scons error"
 layout: post
+date: "2010-06-06"
+categories: [tech]
 ---
 
 While trying to install Google v8, I had an error:

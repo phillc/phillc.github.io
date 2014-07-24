@@ -1,6 +1,8 @@
 ---
 title: "Ruby multi-dimensional array helper"
 layout: post
+date: "2009-08-28"
+categories: [tech]
 ---
 
 I needed something to help me get through a multi-dimensional array. So I extended the Array class.

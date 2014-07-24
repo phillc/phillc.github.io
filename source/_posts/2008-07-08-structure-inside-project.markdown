@@ -1,6 +1,8 @@
 ---
 title: "Structure inside a project"
 layout: post
+date: "2008-07-08"
+categories: [tech]
 ---
 A common problem I have had is that too much work was required when I needed to deploy my django project, or if i needed to work on the project on another computer. Subversion has been my friend, but part of the problem is the necessary local settings in each of the projects.
 

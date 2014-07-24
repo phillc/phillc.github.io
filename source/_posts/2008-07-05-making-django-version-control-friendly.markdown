@@ -1,6 +1,8 @@
 ---
 title: "Making Django Projects Version Control Friendly"
 layout: post
+date: "2008-07-05"
+categories: [tech]
 ---
 Subversion has been my friend ever since I learned about it. However, it took me a while to figure out how to deal with configuration files. For Django, this specifically relates to the settings.py.
 

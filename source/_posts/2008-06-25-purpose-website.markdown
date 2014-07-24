@@ -1,6 +1,7 @@
 ---
 title: "Purpose of this website"
 layout: post
+date: "2008-06-25"
 ---
 Over the course of my programming life, I have written some form of blog in perl, then php, then in a framework of php, then ruby on rails, and now Django.
 

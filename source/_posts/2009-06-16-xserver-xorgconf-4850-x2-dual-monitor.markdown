@@ -1,6 +1,8 @@
 ---
 title: "xServer xorg.conf for 4850 X2 dual monitor - Ubuntu 9.04"
 layout: post
+date: "2009-06-16"
+categories: [tech]
 ---
 
 Thanks to [gwydion](http://blog.morrigan.ch/?p=52)

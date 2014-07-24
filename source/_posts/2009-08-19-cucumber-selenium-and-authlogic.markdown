@@ -1,6 +1,8 @@
 ---
 title: "Cucumber with Selenium and Authlogic"
 layout: post
+date: "2009-08-19"
+categories: [tech]
 ---
 I had some Issues with cucumber/selenium working properly with authlogic. After much searching, I've figured out how to get it all to work properly.
 
