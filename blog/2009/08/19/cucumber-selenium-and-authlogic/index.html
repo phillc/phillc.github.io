@@ -1,0 +1,270 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Cucumber with Selenium and Authlogic - phillc - Phillip Campbell</title>
+	<meta name="author" content="Phillip Campbell">
+
+	
+	<meta name="description" content="Cucumber With Selenium and Authlogic I had some Issues with cucumber/selenium working properly with authlogic. After much searching, I&rsquo;ve &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="" rel="alternate" title="phillc - Phillip Campbell" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://phillc.com/blog/2009/08/19/cucumber-selenium-and-authlogic/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+  
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-4379922-3']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><a href="/" class="profilepic">
+	
+	<img src="http://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=160" alt="Profile Picture" style="width: 160px;" />
+	
+</a>
+
+<nav id="main-nav"><ul class="main">
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href="http://www.facebook.com/phillc" title="Facebook">Facebook</a>
+		
+		
+		
+			<a class="twitter" href="http://twitter.com/phillc" title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href="https://github.com/phillc" title="GitHub">GitHub</a>
+		
+		
+		
+		
+			<a class="linkedin" href="http://www.linkedin.com/in/phillc1" title="LinkedIn">LinkedIn</a>
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Cucumber With Selenium and Authlogic</h1>
+	<div class="entry-content" itemprop="articleBody"><p>I had some Issues with cucumber/selenium working properly with authlogic. After much searching, I&rsquo;ve figured out how to get it all to work properly.</p>
+
+<p>I would get an error like:</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">When I follow <span class="s2">&quot;Manage pages&quot;</span>                          <span class="c"># features/step_definitions/webrat_steps.rb:19</span>
+  ed out after 5000ms <span class="o">(</span>Selenium::CommandError<span class="o">)</span>
+  /opt/local/lib/ruby/1.8/timeout.rb:62:in <span class="sb">`</span>timeout<span class="s1">&#39;</span>
+<span class="s1">  /opt/local/lib/ruby/1.8/timeout.rb:93:in `timeout&#39;</span>
+  <span class="o">(</span><span class="nb">eval</span><span class="o">)</span>:2:in <span class="sb">`</span>/^I follow <span class="s2">&quot;([^\&quot;]*)&quot;</span><span class="nv">$/</span><span class="s1">&#39;</span>
+<span class="s1">  features/plain/admin_page.feature:8:in `When I follow &quot;Manage pages&quot;&#39;</span></code></pre></div>
+
+
+<p>Initially, to setup authlogic to work with regular webrat tests, I had to put the following in my env.rb:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s2">&quot;authlogic/test_case&quot;</span>
+
+<span class="no">Before</span> <span class="k">do</span>
+  <span class="n">activate_authlogic</span>
+<span class="k">end</span></code></pre></div>
+
+
+<p>After getting it working with webrat, I decided I wanted to test some of my javascript and AJAX with selenium, so I followed <a href="http://wiki.github.com/aslakhellesoy/cucumber/setting-up-selenium">this guide</a></p>
+
+<p>The database_cleaner gem had to be added because you can&rsquo;t use</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Cucumber</span><span class="o">::</span><span class="no">Rails</span><span class="o">.</span><span class="n">use_transactional_fixtures</span></code></pre></div>
+
+
+<p>with selenium, so it had to be removed from the env.rb and placed in the plain.rb. As a result, this ended up in my enhanced.rb</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;database_cleaner&#39;</span>
+  <span class="no">Before</span> <span class="k">do</span>
+    <span class="c1"># truncate your tables here, since you can&#39;t use transactional fixtures*</span>
+    <span class="no">DatabaseCleaner</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="ss">:truncation</span>
+    <span class="no">DatabaseCleaner</span><span class="o">.</span><span class="n">clean</span>
+  <span class="k">end</span></code></pre></div>
+
+
+<p>and this ended up in my plain.rb</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;database_cleaner&#39;</span>
+<span class="no">DatabaseCleaner</span><span class="o">.</span><span class="n">strategy</span> <span class="o">=</span> <span class="ss">:truncation</span>
+<span class="no">DatabaseCleaner</span><span class="o">.</span><span class="n">clean</span></code></pre></div>
+
+
+<p>Originally, I had it just in my enhanced.rb as an After block instead of Before, but after further contemplation, I realized that if something goes terribly wrong with the selenium tests, then the database would have bad data in it&hellip; So might as well clean it before hand.</p>
+
+<p>Finally, my problem with authlogic + seleniu, was how I wrote my test. The way it was erroring out made it look like something completely different (the selenium timeout error), but after I watched it a couple times closely, I determined that the test was being sent to the next page before the &ldquo;button press&rdquo; was executed.</p>
+
+<p>Here is the beginning of my test that failed:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="ss">Scenario</span><span class="p">:</span> <span class="no">Visit</span> <span class="no">Add</span> <span class="no">Page</span> <span class="n">page</span>
+    <span class="no">Given</span> <span class="n">I</span> <span class="n">am</span> <span class="n">logged</span> <span class="k">in</span>
+    <span class="no">And</span> <span class="n">I</span> <span class="n">am</span> <span class="n">on</span> <span class="s2">&quot;the admin page&quot;</span>
+    <span class="no">When</span> <span class="n">I</span> <span class="n">follow</span> <span class="s2">&quot;Manage pages&quot;</span>
+    <span class="no">And</span> <span class="n">I</span> <span class="n">follow</span> <span class="s2">&quot;New Page&quot;</span></code></pre></div>
+
+
+<p>With a little help from <a href="http://stackoverflow.com/questions/966052/cucumber-selenium-fails-randomly/966998#966998">a post on stack overflow</a>, I got it to work with the following:</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">user</span>
+  <span class="vi">@user</span> <span class="o">||=</span> <span class="no">Factory</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">login</span>
+  <span class="n">user</span>
+  <span class="n">fill_in</span> <span class="s2">&quot;Email&quot;</span><span class="p">,</span> <span class="ss">:with</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="o">.</span><span class="n">email</span> 
+  <span class="n">fill_in</span> <span class="s2">&quot;Password&quot;</span><span class="p">,</span> <span class="ss">:with</span> <span class="o">=&gt;</span> <span class="vi">@user</span><span class="o">.</span><span class="n">password</span>
+  <span class="n">click_button</span> <span class="s2">&quot;Login&quot;</span>
+
+  <span class="c1"># This is what was added</span>
+  <span class="k">if</span> <span class="no">Webrat</span><span class="o">.</span><span class="n">configuration</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="ss">:selenium</span>
+    <span class="n">selenium</span><span class="o">.</span><span class="n">wait_for_page_to_load</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">Given</span> <span class="sr">/^I am logged out$/</span> <span class="k">do</span>
+  <span class="vi">@current_user_session</span><span class="o">.</span><span class="n">destroy</span> <span class="k">if</span> <span class="vi">@current_user_session</span>
+<span class="k">end</span>
+
+<span class="no">Given</span> <span class="sr">/^I am logged in$/</span> <span class="k">do</span>
+  <span class="n">visit</span> <span class="n">path_to</span><span class="p">(</span><span class="s2">&quot;the login page&quot;</span><span class="p">)</span>
+  <span class="n">login</span>
+<span class="k">end</span>
+
+<span class="no">When</span> <span class="sr">/^I login$/</span> <span class="k">do</span>
+  <span class="n">login</span>
+<span class="k">end</span></code></pre></div>
+
+
+<p>Notice I had to add the if selenium line in order to get it to work in webrat.</p>
+
+<p>Something tells me there is a better way to do it&hellip; probably overriding the click_button method when selenium is loaded&hellip; but I don&rsquo;t know it well enough quite yet to venture that far, I&rsquo;ll probably try it soon though.</p>
+
+<p>Edit: oh, its a thing with webrat&hellip; but installing the newest version didn&rsquo;t fix it for me, then I actually read the <a href="https://webrat.lighthouseapp.com/projects/10503/tickets/226-not-waiting-for-page-load-with-selenium">ticket&hellip;</a> I&rsquo;ll stick with my current solution for now.</p>
+
+<p>Edit2: Actually the issue is in the visit method, if you can believe that. click_button works fine, as it waits for the page to load before clicking, but the visit method is sent so fast, that because of the way my test is set up, we are sent to the next page either before the login button is pressed, or before the request gets a chance to process&hellip; I don&rsquo;t feel like investigating which one it exactly is, because the solution is the same&hellip; wait for the next page to load.</p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Phillip Campbell
+
+
+<p>Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></p>
+</footer>
+		</div>
+	</div>
+	
+
+<script type="text/javascript">
+      var disqus_shortname = 'phillc';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://phillc.com/blog/2009/08/19/cucumber-selenium-and-authlogic/';
+        var disqus_url = 'http://phillc.com/blog/2009/08/19/cucumber-selenium-and-authlogic/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

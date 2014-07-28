@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tech | phillc - Phillip Campbell]]></title>
+  <link href="http://phillc.com/blog/categories/tech/atom.xml" rel="self"/>
+  <link href="http://phillc.com/"/>
+  <updated>2014-07-28T11:31:18-04:00</updated>
+  <id>http://phillc.com/</id>
+  <author>
+    <name><![CDATA[Phillip Campbell]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript Frameworks]]></title>
+    <link href="http://phillc.com/blog/2013/08/15/javascript-frameworks/"/>
+    <updated>2013-08-15T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2013/08/15/javascript-frameworks</id>
+    <content type="html"><![CDATA[<p>Back in March, the company I work for was creating a small app and were trying to decide which javascript frame work to use. There was an email chain debating which framework to use. I finally responded, and today a coworker convinced me to post that email:</p>
+
+<hr />
+
+<p>Was debating if I wanted to take the bait, but I love to argue, so I couldn&rsquo;t resist.</p>
+
+<p>I am not a fan of pushing the entire rendering process to the client. I am also no longer a fan of client side routing (hash nor push state). It isn&rsquo;t about CPU power, and browser capabilities. I&rsquo;ve used the first six frameworks in todomvc.com and a couple of the others, and the way I grade them is by their testability, maintainability, and productivity. Also to say, I am a big fan of modularization, which can be interpreted as numerous small single purpose apps.</p>
+
+<p>My opinions on the big 4 frameworks:</p>
+
+<h3>Backbone</h3>
+
+<p>I love backbone. So easy to get started. So easy to do whatever I want. However, I have a hard time believing that it can be scaled to a team size without some hard core discipline, and structure.</p>
+
+<p>Backbone models and collections are freaking awesome, out of all client side frameworks I have dealt with, dealing with data is absolutely the easiest in Backbone. However, it is quickly negated by its shitty controllers/routers/ViewModel layer (if you haven&rsquo;t heard of a ViewModel, I think you should look up the MVVM - model view view/mode pattern). Backbone intentionally leaves this to you. I&rsquo;ve browsed a lot of random open source projects on github that use backbone and everywhere I look there is a different way to organize things, and it feels chaotic. If you value the same things about code as I do, that is testability, modularity, readability, etc, you have to come up with your own scheme that hopefully fits all your needs. Backbone&rsquo;s intentional shortcomings are picked up by some frameworks that are built on top of it, like Marionnette&hellip; but man I hate frameworks on frameworks.</p>
+
+<p>Finally the view. Not the view you know of from rails, I&rsquo;ll call that the template. The view object. I don&rsquo;t mind how they bind data or events, but ugh, the lack of templating kills me. You have to compile your own template (not a big deal, jquery and underscore provide decent templating functions), and inject that into DOM via some helper methods (Urghhh). So if you have a collection, and render a list, then behind the scenes modify a model/the collection, you have to go delete your own element and replace it in the right spot. I found it manageable until I rendered a form, and tried to modify the same view with some view changes, and it became hell.</p>
+
+<h3>Angular</h3>
+
+<p>My first attempts at angular were thwarted by horrific documentation, and my second attempt was painful because they were in progress of updating their horrific documentation to actually document the version they released. Oh and (at the time) an incredibly intimidating dependency injection strategy. They have matured and now the documentation isn&rsquo;t completely rubbish and the dependency injection thing actually makes sense. I am currently using angular for my side project.</p>
+
+<p>Angular is painfully verbose. They provide a dependency injection framework that has you declaring random variables everywhere with eye blistering $ signs (I guess that is because I usually use coffeescript these days). However, I am a big fan of DI, and out of all the frameworks, I believe Angular is the only one that really tries to solve such a problem.</p>
+
+<p>Another awesome thing about angular is it is designed to be able to be tested from the ground up. Even with the angular documentation was shit, I gave angular those attempts because they actually tested their own code with a massive test suite, and showed you how to use it, and it looked half decent. You will be surprised how many projects in the javascript community (well, any open source community really) that become popular don&rsquo;t even have a unit test suite, or a really pointless shitty one (<em>cough</em> meteor <em>cough</em>). Part of being testable is being modular, and angular skews that axis very high.</p>
+
+<p>Angular provides no model layer&hellip; it lets you use any plain old javascript object. A freedom, but given that is was so opinionated every where else (or rather, provided structure every where else), this is a let down.</p>
+
+<p>My last point is the way that angular binds its data. This has been an internal battle for me for quite some time; data and event binding via pseudo html attributes vs declared event observers and interpolation. They are very different styles. I wouldn&rsquo;t necessarily choose a framework because of how they bind events, but there are some tradeoffs that I have seen some highly philosophical and argumentative developers will fight over, but I&rsquo;m not going to get into that here.</p>
+
+<h3>Ember</h3>
+
+<p>Now that ember has successfully separated its image from sprout, I think ember is very solid. Solid models/events, solid and high profile team behind it, solid (IMHO) way to declare templates, sensible view models, not bad collections. The only thing keeping me from constantly using ember js is its tight integration with handlebars (my use case for these frameworks don&rsquo;t align with that kind of templating, I&rsquo;ll explain in a sec).</p>
+
+<h3>Knockout</h3>
+
+<p>Last time I tried knockout, it felt like they were cramming ajax down my throat&hellip; they seem much better about that now. It has an awkward and sometimes ridiculously verbose ways of doing things. Was built by microsoft, the inventors of MVVM&hellip; was built by microsoft so I don&rsquo;t give it a serious look.</p>
+
+<h3>Here are some random thoughts:</h3>
+
+<p>I&rsquo;m done with client side routing for a while, it is annoying to deal with. You have to intercept all links, and redirect it back to your own router. You have to make sure that if you fill out a form, go to another page, come back to the form that the form is emptied. If one page breaks you may have just made the user stuck without any kind of indication that they are used to. You have to basically reinvent http status codes. Github can&rsquo;t even get it right (if you hit the back button too fast while browsing code, you can end up on a page different from what is in your url bar. This happens to me all the time and annoys the crap out of me.) With pushstate you have to make sure every page works if you hit the refresh button.</p>
+
+<p>Rendering html has been solved before, and optimized. Think about all the compression web severs do, think about how browsers do progressive loading. Think about how in our ajax world we had to reinvent so many things (spinners, status codes, etc.)</p>
+
+<p>On my current side project I chose angular. There is only one reason I chose it over the others, and that is because of how it binds data/events. I don&rsquo;t know about you, but I love haml/jade. The way I like to work when I have a scenario where I have dynamic client views is to have the server do as much rendering as possible, and then provide a template for whatever needs to be dynamic. This means using haml/jade on the server, and then feeding that into the templating mechanism of my mvvm framework. The syntax of handlebars is not easily compatible with any whitespace based markup language. With angular I can have the server side compile jade, and leave in the data binding syntax of angular.</p>
+
+<p>like this (jade):</p>
+
+<pre><code>p(class=") foo  #{baz}
+</code></pre>
+
+<p>If baz was a variable set to &ldquo;qux&rdquo; on the server, that would compile to</p>
+
+<pre><code>&lt;p class="&gt;foo  qux&lt;/p&gt;
+</code></pre>
+
+<p>and then angular would pick those  up later for templating.</p>
+
+<p>This fits well with my two of my three favorite features in rails; forms and routes.</p>
+
+<p>form_for is such a time saver in my opinion, and I miss rails routes every time I try something that isn&rsquo;t rails. With this scheme in a rails environment, you get to use your form_for or your *_path methods on the server, then let the client do work after. I have gotten this to work before, I don&rsquo;t remember exactly, but I believe you can trick rails into taking odd parameters into url helpers&hellip;</p>
+
+<p>if this were my haml:</p>
+
+<pre><code>%p= post_path("")
+</code></pre>
+
+<p>and you had post declared as a resource, you would get</p>
+
+<pre><code>&lt;p&gt;/posts/&lt;/p&gt;
+</code></pre>
+
+<p>which can be fed into a templating engine. I think you can do the same with form_for and stuff too.</p>
+
+<p>However, my choices are for my personal side project, where I know where everything is&hellip; have to remember that different factors come into play when you are in a team.</p>
+
+<p>K, I&rsquo;m done rambling&hellip; I didn&rsquo;t even get into testability, but whatever.</p>
+
+<hr />
+
+<p>Fast forward to today. We use hamlc + Backbone.js + marionette, and jasmine. Looks like github finally fixed their back button problem. My url_for trick doesn&rsquo;t work with certain characters in certain versions of rails. I learned that angular is very ugly when trying to deal with events over sockets due to the lack of the model. Backbone is painful with relational data (especially many to many).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Presentation on continuous delivery]]></title>
+    <link href="http://phillc.com/blog/2013/04/18/presentation-on-continuous-delivery/"/>
+    <updated>2013-04-18T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2013/04/18/presentation-on-continuous-delivery</id>
+    <content type="html"><![CDATA[<p><a href="http://phillc-cd.meteor.com/">This presentation</a> was built with <a href="https://github.com/phillc/meteor-impress">meteor-impress</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[v8 scons error]]></title>
+    <link href="http://phillc.com/blog/2010/06/06/v8-js-ubuntu-scons-error/"/>
+    <updated>2010-06-06T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2010/06/06/v8-js-ubuntu-scons-error</id>
+    <content type="html"><![CDATA[<p>While trying to install Google v8, I had an error:</p>
+
+<pre><code>v8-read-only$ scons
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+g++ -o obj/release/api.o -c -Wall -Werror -W -Wno-unused-parameter -Wnon-virtual-dtor -pedantic -m32 -O3 -fomit-frame-pointer -fdata-sections -ffunction-sections -ansi -fno-rtti -fno-exceptions -fvisibility=hidden -Wall -Werror -W -Wno-unused-parameter -Wnon-virtual-dtor -pedantic -m32 -O3 -fomit-frame-pointer -fdata-sections -ffunction-sections -ansi -DV8_TARGET_ARCH_IA32 -DENABLE_VMSTATE_TRACKING -DENABLE_LOGGING_AND_PROFILING -DENABLE_DEBUGGER_SUPPORT -Isrc src/api.cc
+cc1plus: warnings being treated as errors
+src/handles-inl.h: In static member function 'static void v8::V8::RemoveMessageListeners(void (*)(v8::Handle&lt;v8::Message&gt;, v8::Handle&lt;v8::Value&gt;))':
+src/handles-inl.h:50: error: dereferencing pointer '&lt;anonymous&gt;' does break strict-aliasing rules
+src/handles-inl.h:50: error: dereferencing pointer '&lt;anonymous&gt;' does break strict-aliasing rules
+src/utils.h:739: note: initialized from here
+cc1plus: error: dereferencing pointer 'dest' does break strict-aliasing rules
+cc1plus: error: dereferencing pointer 'dest' does break strict-aliasing rules
+cc1plus: error: dereferencing pointer 'dest' does break strict-aliasing rules
+cc1plus: error: dereferencing pointer 'dest' does break strict-aliasing rules
+src/api.cc:3767: note: initialized from here
+scons: *** [obj/release/api.o] Error 1
+scons: building terminated because of error
+</code></pre>
+
+<p>Solved by using export GCC_VERSION=44, before running scons.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript State Machine]]></title>
+    <link href="http://phillc.com/blog/2009/10/14/javascript-state-machine/"/>
+    <updated>2009-10-14T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2009/10/14/javascript-state-machine</id>
+    <content type="html"><![CDATA[<p><a href="http://github.com/phillc/Javascript-State-Machine">I wrote a simple Javascript State Machine.</a></p>
+
+<p>It is intended for keeping track of what the current state is for my heavy AJAX app at work.</p>
+
+<p>I also learned a lot about OO in javascript without using jQuery or the prototype framework, by using prototypes. I wanted to do that so that it would be framework independent.</p>
+
+<p>Below is a simple example of how I use the state machine, and shows a bit of how I connected it with <a href="http://code.google.com/p/reallysimplehistory/">Really Simple History</a></p>
+
+<p>I have included in this example some comments to show my thinking throughout, and perhaps how to use it.</p>
+
+<p><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StateMachine</span><span class="p">();</span>
+<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">states</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">Begin</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">enter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">// do some animation</span>
+        <span class="p">},</span>
+        <span class="nx">exit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">// hide some stuff</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">Page</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">enter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">// show some page</span>
+        <span class="p">},</span>
+        <span class="nx">exit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">// hide it</span>
+        <span class="p">},</span>
+        <span class="nx">change</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">page</span><span class="p">){</span>
+            <span class="c1">// example of some event</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">change_page</span><span class="p">(</span><span class="nx">page</span><span class="p">);</span>
+            <span class="c1">// events can call events</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">handleEvent</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">setURL</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;);</span>
+        <span class="p">},</span>
+        <span class="nx">setURL</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">//example of how I integrate with really simple history</span>
+            <span class="nx">dhtmlHistory</span><span class="p">.</span><span class="nx">add</span><span class="p">([</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">pages</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;].</span><span class="nx">concat</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">current_page</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="err">/&amp;rsquo;)).join(&amp;lsquo;.&amp;rsquo;).toLowerCase());</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="c1">// These are some call backs I used for debugging with firebug to ensure</span>
+<span class="c1">// that events were firing</span>
+<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">beforeEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">begin</span> <span class="nx">event</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">afterEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">end</span> <span class="nx">event</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">beforeStateChange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="nx">from</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">begin</span> <span class="nx">state</span> <span class="nx">change</span> <span class="nx">to</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="nx">to</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span> <span class="nx">from</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="nx">from</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">// as an example of intercepting, I can stop a state from changing by returning false</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">to</span> <span class="o">==</span> <span class="s1">&#39;Page&#39;</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="k">this</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">blocker</span> <span class="o">==</span> <span class="s1">&#39;Page&#39;</span><span class="p">){</span>
+    <span class="c1">// some logic</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">}</span>
+<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">afterStateChange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="nx">from</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">end</span> <span class="nx">state</span> <span class="nx">change</span> <span class="nx">to</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="nx">to</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span> <span class="nx">from</span><span class="o">:</span> <span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="nx">from</span><span class="p">);</span>
+<span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="c1">// The actual defenition. Instance vars can be set in it.</span>
+<span class="kd">function</span> <span class="nx">Site</span><span class="p">(){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">pages</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Page</span><span class="p">();</span>
+<span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="c1">// global scope, so that it can be accessed globally (as it wouldn&amp;rsquo;t normally</span>
+<span class="c1">// be because the scope that I actually instantiate it inside prorotype&amp;rsquo;s window onload)</span>
+<span class="kd">var</span> <span class="nx">Davis</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="c1">// Once again, just an example of how I integrate it with Really Simple History</span>
+<span class="kd">function</span> <span class="nx">historyChange</span><span class="p">(</span><span class="nx">newLocation</span><span class="p">,</span> <span class="nx">historyData</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">newLocation</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;.</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;);</span>
+    <span class="kd">var</span> <span class="nx">newState</span> <span class="o">=</span> <span class="nx">hash</span><span class="p">.</span><span class="nx">shift</span><span class="p">().</span><span class="nx">capitalize</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">newState</span> <span class="o">==</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;)</span> <span class="nx">newState</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">Begin</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;;</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">Davis</span><span class="p">.</span><span class="nx">changeState</span><span class="p">(</span><span class="nx">newState</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">hash</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">Davis</span><span class="p">.</span><span class="nx">handleEvent</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">change</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="nx">hash</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="err">/&amp;rsquo;));</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="c1">// This window observe for onload is prototype specific&amp;hellip; But you can achieve the same other ways.</span>
+<span class="nx">Event</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">lsquo</span><span class="p">;</span><span class="nx">load</span><span class="o">&amp;</span><span class="nx">rsquo</span><span class="p">;,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Davis</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Site</span><span class="p">();</span> <span class="c1">// my requirements need me to initialize after load&lt;/p&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">// Really Simple History stuff</span>
+<span class="nx">dhtmlHistory</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">historyChange</span><span class="p">);</span>
+<span class="nx">historyChange</span><span class="p">(</span><span class="nx">dhtmlHistory</span><span class="p">.</span><span class="nx">currentLocation</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">});</span></code></pre></div></p>
+
+<p>While implementing this, I also learned a bit about bookmarking and enabling the back button of ajax states. Really Simple History has worked ok for me, but it has some quirks&hellip; some of which I haven&rsquo;t solved yet (especially in IE) and those bugs may be above.</p>
+
+<p>I also got my first dose of unit testing in javascript&hellip; and found some really cool library to assist in the development called <a href="http://newjs.rubyforge.org/">newjs</a> . However, at the time of this writing, the unit tests are not up to the current code, as a lot has changed&hellip; I will deal with that later.</p>
+
+<p>Anyway, while my implementation surely isn&rsquo;t the best in the world, I hope someone can find use from it.</p>
+
+<p><a href="http://github.com/phillc/Javascript-State-Machine">http://github.com/phillc/Javascript-State-Machine</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby multi-dimensional array helper]]></title>
+    <link href="http://phillc.com/blog/2009/08/28/ruby-multi-dimensional-array-helper/"/>
+    <updated>2009-08-28T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2009/08/28/ruby-multi-dimensional-array-helper</id>
+    <content type="html"><![CDATA[<p>I needed something to help me get through a multi-dimensional array. So I extended the Array class.</p>
+
+<p>Grab expects an array of coordinates.</p>
+
+<p><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Array</span>
+  <span class="k">def</span> <span class="nf">grab</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">first</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">grab</span><span class="p">(</span><span class="n">position</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="k">unless</span> <span class="n">position</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">1</span><span class="o">].</span><span class="n">empty?</span>
+    <span class="n">value</span>
+  <span class="k">rescue</span> <span class="no">NoMethodError</span>
+    <span class="k">raise</span><span class="p">(</span><span class="no">IndexError</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Multi</span> <span class="no">Dimensional</span> <span class="nb">Array</span> <span class="ow">not</span> <span class="n">deep</span> <span class="n">enough</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;)</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div></p>
+
+<p>Then I can do this:</p>
+
+<p><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;blockquote&gt;&lt;blockquote&gt;&lt;p&gt;[[1,2,3],&amp;ldquo;asdf&amp;rdquo;,[[11,22,33],5,6,7]].grab([2,0,0])</span>
+<span class="sr">=&gt; 11</span>
+<span class="sr">[[1,2,3],&amp;ldquo;asdf&amp;rdquo;,[[11,22,33],5,6,7]].grab([2,0,2])</span>
+<span class="sr">=&gt; 33</span>
+<span class="sr">[[1,2,3],&amp;ldquo;asdf&amp;rdquo;,[[11,22,33],5,6,7]].grab([2,1])</span>
+<span class="sr">=&gt; 5</span>
+<span class="sr">[[1,2,3],&amp;ldquo;asdf&amp;rdquo;,[[11,22,33],5,6,7]].grab([1,0])</span>
+<span class="sr">IndexError: Not an array.</span>
+<span class="sr">    from /</span><span class="no">Users</span><span class="o">/</span><span class="n">phillip</span><span class="o">/</span><span class="no">Desktop</span><span class="o">/</span><span class="n">rworkspace</span><span class="o">/</span><span class="n">davisbrandcapital</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">tagging</span><span class="o">.</span><span class="n">rb</span><span class="p">:</span><span class="mi">73</span><span class="ss">:in</span> <span class="sb">`grab&#39;</span>
+<span class="sb">    from (irb):64</span>
+<span class="sb">[[1,2,3],&amp;ldquo;asdf&amp;rdquo;,[[11,22,33],5,6,7]].grab([1])</span>
+<span class="sb">=&gt; &amp;ldquo;asdf&amp;rdquo;&lt;/p&gt;</span>
+
+<span class="sb">&lt;p&gt;</span></code></pre></div></p></blockquote></blockquote>
+]]></content>
+  </entry>
+  
+</feed>

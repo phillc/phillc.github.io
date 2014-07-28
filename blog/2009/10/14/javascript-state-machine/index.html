@@ -1,0 +1,273 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Javascript State Machine - phillc - Phillip Campbell</title>
+	<meta name="author" content="Phillip Campbell">
+
+	
+	<meta name="description" content="Javascript State Machine I wrote a simple Javascript State Machine. It is intended for keeping track of what the current state is for my heavy AJAX &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="" rel="alternate" title="phillc - Phillip Campbell" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://phillc.com/blog/2009/10/14/javascript-state-machine/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+  
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-4379922-3']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><a href="/" class="profilepic">
+	
+	<img src="http://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=160" alt="Profile Picture" style="width: 160px;" />
+	
+</a>
+
+<nav id="main-nav"><ul class="main">
+    <li><a href="/">Home</a></li>
+    <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+			<a class="facebook" href="http://www.facebook.com/phillc" title="Facebook">Facebook</a>
+		
+		
+		
+			<a class="twitter" href="http://twitter.com/phillc" title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href="https://github.com/phillc" title="GitHub">GitHub</a>
+		
+		
+		
+		
+			<a class="linkedin" href="http://www.linkedin.com/in/phillc1" title="LinkedIn">LinkedIn</a>
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">Javascript State Machine</h1>
+	<div class="entry-content" itemprop="articleBody"><p><a href="http://github.com/phillc/Javascript-State-Machine">I wrote a simple Javascript State Machine.</a></p>
+
+<p>It is intended for keeping track of what the current state is for my heavy AJAX app at work.</p>
+
+<p>I also learned a lot about OO in javascript without using jQuery or the prototype framework, by using prototypes. I wanted to do that so that it would be framework independent.</p>
+
+<p>Below is a simple example of how I use the state machine, and shows a bit of how I connected it with <a href="http://code.google.com/p/reallysimplehistory/">Really Simple History</a></p>
+
+<p>I have included in this example some comments to show my thinking throughout, and perhaps how to use it.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StateMachine</span><span class="p">();</span>
+<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">states</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">Begin</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">enter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">// do some animation</span>
+        <span class="p">},</span>
+        <span class="nx">exit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">// hide some stuff</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">Page</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">enter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">// show some page</span>
+        <span class="p">},</span>
+        <span class="nx">exit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">// hide it</span>
+        <span class="p">},</span>
+        <span class="nx">change</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">page</span><span class="p">){</span>
+            <span class="c1">// example of some event</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">change_page</span><span class="p">(</span><span class="nx">page</span><span class="p">);</span>
+            <span class="c1">// events can call events</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">handleEvent</span><span class="p">(</span><span class="s1">&#39;setURL&#39;</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">setURL</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="c1">//example of how I integrate with really simple history</span>
+            <span class="nx">dhtmlHistory</span><span class="p">.</span><span class="nx">add</span><span class="p">([</span><span class="s1">&#39;pages&#39;</span><span class="p">].</span><span class="nx">concat</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">current_page</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">());</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// These are some call backs I used for debugging with firebug to ensure</span>
+<span class="c1">// that events were firing</span>
+<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">beforeEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;begin event: &#39;</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">afterEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;end event: &#39;</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">beforeStateChange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="nx">from</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;begin state change to: &#39;</span><span class="p">,</span> <span class="nx">to</span><span class="p">,</span> <span class="s1">&#39; from: &#39;</span><span class="p">,</span> <span class="nx">from</span><span class="p">);</span>
+
+    <span class="c1">// as an example of intercepting, I can stop a state from changing by returning false</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">to</span> <span class="o">==</span> <span class="s1">&#39;Page&#39;</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">blocker</span> <span class="o">==</span> <span class="s1">&#39;Page&#39;</span><span class="p">){</span>
+        <span class="c1">// some logic</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">afterStateChange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="nx">from</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;end state change to: &#39;</span><span class="p">,</span> <span class="nx">to</span><span class="p">,</span> <span class="s1">&#39; from: &#39;</span><span class="p">,</span> <span class="nx">from</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// The actual defenition. Instance vars can be set in it.</span>
+<span class="kd">function</span> <span class="nx">Site</span><span class="p">(){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">pages</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Page</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// global scope, so that it can be accessed globally (as it wouldn&#39;t normally</span>
+<span class="c1">// be because the scope that I actually instantiate it inside prorotype&#39;s window onload)</span>
+<span class="kd">var</span> <span class="nx">Davis</span><span class="p">;</span> 
+
+
+<span class="c1">// Once again, just an example of how I integrate it with Really Simple History</span>
+<span class="kd">function</span> <span class="nx">historyChange</span><span class="p">(</span><span class="nx">newLocation</span><span class="p">,</span> <span class="nx">historyData</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">newLocation</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">newState</span> <span class="o">=</span> <span class="nx">hash</span><span class="p">.</span><span class="nx">shift</span><span class="p">().</span><span class="nx">capitalize</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">newState</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="nx">newState</span> <span class="o">=</span> <span class="s1">&#39;Begin&#39;</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">Davis</span><span class="p">.</span><span class="nx">changeState</span><span class="p">(</span><span class="nx">newState</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">hash</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">Davis</span><span class="p">.</span><span class="nx">handleEvent</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="nx">hash</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// This window observe for onload is prototype specific... But you can achieve the same other ways.</span>
+<span class="nx">Event</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Davis</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Site</span><span class="p">();</span> <span class="c1">// my requirements need me to initialize after load</span>
+
+    <span class="c1">// Really Simple History stuff</span>
+    <span class="nx">dhtmlHistory</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">historyChange</span><span class="p">);</span>
+    <span class="nx">historyChange</span><span class="p">(</span><span class="nx">dhtmlHistory</span><span class="p">.</span><span class="nx">currentLocation</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="p">});</span></code></pre></div>
+
+
+<p>While implementing this, I also learned a bit about bookmarking and enabling the back button of ajax states. Really Simple History has worked ok for me, but it has some quirks&hellip; some of which I haven&rsquo;t solved yet (especially in IE) and those bugs may be above.</p>
+
+<p>I also got my first dose of unit testing in javascript&hellip; and found some really cool library to assist in the development called <a href="http://newjs.rubyforge.org/">newjs</a> . However, at the time of this writing, the unit tests are not up to the current code, as a lot has changed&hellip; I will deal with that later.</p>
+
+<p>Anyway, while my implementation surely isn&rsquo;t the best in the world, I hope someone can find use from it.</p>
+
+<p><a href="http://github.com/phillc/Javascript-State-Machine">http://github.com/phillc/Javascript-State-Machine</a></p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Phillip Campbell
+
+
+<p>Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></p>
+</footer>
+		</div>
+	</div>
+	
+
+<script type="text/javascript">
+      var disqus_shortname = 'phillc';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://phillc.com/blog/2009/10/14/javascript-state-machine/';
+        var disqus_url = 'http://phillc.com/blog/2009/10/14/javascript-state-machine/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

@@ -1,132 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE HTML>
-
-<html>
-
-<head>
-	<meta charset="utf-8">
-	<title>phillc - Phillip Campbell</title>
-	<meta name="author" content="Phillip Campbell">
-
-	
-	<meta name="description" content="Aug 15th, 2013 tech Javascript Frameworks Back in March, the company I work for was creating a small app and were trying to decide which javascript &hellip;">
-	
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link href="" rel="alternate" title="phillc - Phillip Campbell" type="application/atom+xml">
-	
-	<link rel="canonical" href="http://phillc.com/">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	
-  
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-4379922-3']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
-
-
-</head>
-
-
-<body>
-	<div class="container">
-		<div class="left-col">
-			<div class="intrude-less">
-			<header id="header" class="inner"><a href="/" class="profilepic">
-	
-	<img src="http://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=160" alt="Profile Picture" style="width: 160px;" />
-	
-</a>
-
-<nav id="main-nav"><ul class="main">
-    <li><a href="/">Home</a></li>
-    <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-<nav id="sub-nav">
-	<div class="social">
-		
-		
-			<a class="facebook" href="http://www.facebook.com/phillc" title="Facebook">Facebook</a>
-		
-		
-		
-			<a class="twitter" href="http://twitter.com/phillc" title="Twitter">Twitter</a>
-		
-		
-			<a class="github" href="https://github.com/phillc" title="GitHub">GitHub</a>
-		
-		
-		
-		
-			<a class="linkedin" href="http://www.linkedin.com/in/phillc1" title="LinkedIn">LinkedIn</a>
-		
-		
-		
-		
-		
-		
-		
-    	
-    	
-	</div>
-</nav>
-</header>				
-			</div>
-		</div>	
-		<div class="mid-col">
-			
-				
-			
-			<div class="mid-col-container">
-				<div id="content" class="inner">
-<div itemscope itemtype="http://schema.org/Blog">
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
+  <title><![CDATA[phillc - Phillip Campbell]]></title>
+  <link href="http://phillc.com/atom.xml" rel="self"/>
+  <link href="http://phillc.com/"/>
+  <updated>2014-07-28T11:31:18-04:00</updated>
+  <id>http://phillc.com/</id>
+  <author>
+    <name><![CDATA[Phillip Campbell]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2013-08-15T00:00:00-04:00" data-updated="true" itemprop="datePublished">Aug 15<sup>th</sup>, 2013</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/tech/'>tech</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2013/08/15/javascript-frameworks/" itemprop="url">Javascript Frameworks</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>Back in March, the company I work for was creating a small app and were trying to decide which javascript frame work to use. There was an email chain debating which framework to use. I finally responded, and today a coworker convinced me to post that email:</p>
+  <entry>
+    <title type="html"><![CDATA[Javascript Frameworks]]></title>
+    <link href="http://phillc.com/blog/2013/08/15/javascript-frameworks/"/>
+    <updated>2013-08-15T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2013/08/15/javascript-frameworks</id>
+    <content type="html"><![CDATA[<p>Back in March, the company I work for was creating a small app and were trying to decide which javascript frame work to use. There was an email chain debating which framework to use. I finally responded, and today a coworker convinced me to post that email:</p>
 
 <hr />
 
@@ -207,138 +99,42 @@
 <hr />
 
 <p>Fast forward to today. We use hamlc + Backbone.js + marionette, and jasmine. Looks like github finally fixed their back button problem. My url_for trick doesn&rsquo;t work with certain characters in certain versions of rails. I learned that angular is very ugly when trying to deal with events over sockets due to the lack of the model. Backbone is painful with relational data (especially many to many).</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
+]]></content>
+  </entry>
   
-
-
-<time datetime="2013-04-18T00:00:00-04:00" data-updated="true" itemprop="datePublished">Apr 18<sup>th</sup>, 2013</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/tech/'>tech</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2013/04/18/presentation-on-continuous-delivery/" itemprop="url">Presentation on Continuous Delivery</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p><a href="http://phillc-cd.meteor.com/">This presentation</a> was built with <a href="https://github.com/phillc/meteor-impress">meteor-impress</a></p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
+  <entry>
+    <title type="html"><![CDATA[Presentation on continuous delivery]]></title>
+    <link href="http://phillc.com/blog/2013/04/18/presentation-on-continuous-delivery/"/>
+    <updated>2013-04-18T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2013/04/18/presentation-on-continuous-delivery</id>
+    <content type="html"><![CDATA[<p><a href="http://phillc-cd.meteor.com/">This presentation</a> was built with <a href="https://github.com/phillc/meteor-impress">meteor-impress</a></p>
+]]></content>
+  </entry>
   
-
-
-<time datetime="2012-03-31T00:00:00-04:00" data-updated="true" itemprop="datePublished">Mar 31<sup>st</sup>, 2012</time></div>
-		<div class="tags">
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2012/03/31/im-not-really-a-focused-writer/" itemprop="url">I&#8217;m Not Really a Focused Writer</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>So follow me on <a href="http://twitter.com/phillc">twitter</a> or <a href="http://github.com/phillc">github</a> instead.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
+  <entry>
+    <title type="html"><![CDATA[I'm not really a focused writer]]></title>
+    <link href="http://phillc.com/blog/2012/03/31/im-not-really-a-focused-writer/"/>
+    <updated>2012-03-31T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2012/03/31/im-not-really-a-focused-writer</id>
+    <content type="html"><![CDATA[<p>So follow me on <a href="http://twitter.com/phillc">twitter</a> or <a href="http://github.com/phillc">github</a> instead.</p>
+]]></content>
+  </entry>
   
-
-
-<time datetime="2012-01-20T00:00:00-05:00" data-updated="true" itemprop="datePublished">Jan 20<sup>th</sup>, 2012</time></div>
-		<div class="tags">
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2012/01/20/decided-to-move-my-blog-to-posterous/" itemprop="url">Decided to Move My Blog to Posterous.</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>Seems like I have a hard time being motivated enough to write anything down. There is definitely some overhead in writing my own blog, which is why I moved away from my custom Django blog. From there I have tried a bunch of static site generators powered by git/github (like nanoc, jekyll and webgen). I think switching to a tool that I don’t have to maintain and has features like mobile compatibility or email posting might tip me over the edge.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
+  <entry>
+    <title type="html"><![CDATA[Decided to move my blog to posterous.]]></title>
+    <link href="http://phillc.com/blog/2012/01/20/decided-to-move-my-blog-to-posterous/"/>
+    <updated>2012-01-20T00:00:00-05:00</updated>
+    <id>http://phillc.com/blog/2012/01/20/decided-to-move-my-blog-to-posterous</id>
+    <content type="html"><![CDATA[<p>Seems like I have a hard time being motivated enough to write anything down. There is definitely some overhead in writing my own blog, which is why I moved away from my custom Django blog. From there I have tried a bunch of static site generators powered by git/github (like nanoc, jekyll and webgen). I think switching to a tool that I don’t have to maintain and has features like mobile compatibility or email posting might tip me over the edge.</p>
+]]></content>
+  </entry>
   
-
-
-<time datetime="2010-06-06T00:00:00-04:00" data-updated="true" itemprop="datePublished">Jun 6<sup>th</sup>, 2010</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/tech/'>tech</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2010/06/06/v8-js-ubuntu-scons-error/" itemprop="url">V8 Scons Error</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>While trying to install Google v8, I had an error:</p>
+  <entry>
+    <title type="html"><![CDATA[v8 scons error]]></title>
+    <link href="http://phillc.com/blog/2010/06/06/v8-js-ubuntu-scons-error/"/>
+    <updated>2010-06-06T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2010/06/06/v8-js-ubuntu-scons-error</id>
+    <content type="html"><![CDATA[<p>While trying to install Google v8, I had an error:</p>
 
 <pre><code>v8-read-only$ scons
 scons: Reading SConscript files ...
@@ -360,41 +156,15 @@ scons: building terminated because of error
 </code></pre>
 
 <p>Solved by using export GCC_VERSION=44, before running scons.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
+]]></content>
+  </entry>
   
-
-
-<time datetime="2009-10-14T00:00:00-04:00" data-updated="true" itemprop="datePublished">Oct 14<sup>th</sup>, 2009</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/tech/'>tech</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2009/10/14/javascript-state-machine/" itemprop="url">Javascript State Machine</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p><a href="http://github.com/phillc/Javascript-State-Machine">I wrote a simple Javascript State Machine.</a></p>
+  <entry>
+    <title type="html"><![CDATA[Javascript State Machine]]></title>
+    <link href="http://phillc.com/blog/2009/10/14/javascript-state-machine/"/>
+    <updated>2009-10-14T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2009/10/14/javascript-state-machine</id>
+    <content type="html"><![CDATA[<p><a href="http://github.com/phillc/Javascript-State-Machine">I wrote a simple Javascript State Machine.</a></p>
 
 <p>It is intended for keeping track of what the current state is for my heavy AJAX app at work.</p>
 
@@ -494,41 +264,15 @@ scons: building terminated because of error
 <p>Anyway, while my implementation surely isn&rsquo;t the best in the world, I hope someone can find use from it.</p>
 
 <p><a href="http://github.com/phillc/Javascript-State-Machine">http://github.com/phillc/Javascript-State-Machine</a></p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
+]]></content>
+  </entry>
   
-
-
-<time datetime="2009-08-28T00:00:00-04:00" data-updated="true" itemprop="datePublished">Aug 28<sup>th</sup>, 2009</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/tech/'>tech</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2009/08/28/ruby-multi-dimensional-array-helper/" itemprop="url">Ruby Multi-dimensional Array Helper</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>I needed something to help me get through a multi-dimensional array. So I extended the Array class.</p>
+  <entry>
+    <title type="html"><![CDATA[Ruby multi-dimensional array helper]]></title>
+    <link href="http://phillc.com/blog/2009/08/28/ruby-multi-dimensional-array-helper/"/>
+    <updated>2009-08-28T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2009/08/28/ruby-multi-dimensional-array-helper</id>
+    <content type="html"><![CDATA[<p>I needed something to help me get through a multi-dimensional array. So I extended the Array class.</p>
 
 <p>Grab expects an array of coordinates.</p>
 
@@ -561,41 +305,15 @@ scons: building terminated because of error
 
 
 
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
+]]></content>
+  </entry>
   
-
-
-<time datetime="2009-08-19T00:00:00-04:00" data-updated="true" itemprop="datePublished">Aug 19<sup>th</sup>, 2009</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/tech/'>tech</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2009/08/19/cucumber-selenium-and-authlogic/" itemprop="url">Cucumber With Selenium and Authlogic</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>I had some Issues with cucumber/selenium working properly with authlogic. After much searching, I&rsquo;ve figured out how to get it all to work properly.</p>
+  <entry>
+    <title type="html"><![CDATA[Cucumber with Selenium and Authlogic]]></title>
+    <link href="http://phillc.com/blog/2009/08/19/cucumber-selenium-and-authlogic/"/>
+    <updated>2009-08-19T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2009/08/19/cucumber-selenium-and-authlogic</id>
+    <content type="html"><![CDATA[<p>I had some Issues with cucumber/selenium working properly with authlogic. After much searching, I&rsquo;ve figured out how to get it all to work properly.</p>
 
 <p>I would get an error like:</p>
 
@@ -692,41 +410,15 @@ scons: building terminated because of error
 <p>Edit: oh, its a thing with webrat&hellip; but installing the newest version didn&rsquo;t fix it for me, then I actually read the <a href="https://webrat.lighthouseapp.com/projects/10503/tickets/226-not-waiting-for-page-load-with-selenium">ticket&hellip;</a> I&rsquo;ll stick with my current solution for now.</p>
 
 <p>Edit2: Actually the issue is in the visit method, if you can believe that. click_button works fine, as it waits for the page to load before clicking, but the visit method is sent so fast, that because of the way my test is set up, we are sent to the next page either before the login button is pressed, or before the request gets a chance to process&hellip; I don&rsquo;t feel like investigating which one it exactly is, because the solution is the same&hellip; wait for the next page to load.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
+]]></content>
+  </entry>
   
-
-
-<time datetime="2009-08-18T00:00:00-04:00" data-updated="true" itemprop="datePublished">Aug 18<sup>th</sup>, 2009</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/tech/'>tech</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2009/08/18/e-text-editor/" itemprop="url">e-Text Editor</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>Was attempting to compile e-text editor on ubuntu 9.10 (yea yea, I know&hellip; my right to complain about broken packages disappears since its alpha) just to try it out, but had a sick number of errors ranging from &ldquo;Cannot compile wxWidgets&rdquo; to &ldquo;Cannot compile WebKit&rdquo;.</p>
+  <entry>
+    <title type="html"><![CDATA[e-Text Editor]]></title>
+    <link href="http://phillc.com/blog/2009/08/18/e-text-editor/"/>
+    <updated>2009-08-18T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2009/08/18/e-text-editor</id>
+    <content type="html"><![CDATA[<p>Was attempting to compile e-text editor on ubuntu 9.10 (yea yea, I know&hellip; my right to complain about broken packages disappears since its alpha) just to try it out, but had a sick number of errors ranging from &ldquo;Cannot compile wxWidgets&rdquo; to &ldquo;Cannot compile WebKit&rdquo;.</p>
 
 <p>Finally, after trying multiple ways of compiling wxWidgets, I figured out the real error was</p>
 
@@ -736,41 +428,15 @@ scons: building terminated because of error
 <p>So I applied a patch I found at <a href="http://trac.wxwidgets.org/ticket/10883">http://trac.wxwidgets.org/ticket/10883</a> to the wxwidgets folder. and it suddenly worked.</p>
 
 <p>edit: I turned out that I also had to update glib. glib version 2.20 did it for me.</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
+]]></content>
+  </entry>
   
-
-
-<time datetime="2009-06-16T00:00:00-04:00" data-updated="true" itemprop="datePublished">Jun 16<sup>th</sup>, 2009</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/tech/'>tech</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/" itemprop="url">xServer xorg.conf for 4850 X2 Dual Monitor - Ubuntu 9.04</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>Thanks to <a href="http://blog.morrigan.ch/?p=52">gwydion</a></p>
+  <entry>
+    <title type="html"><![CDATA[xServer xorg.conf for 4850 X2 dual monitor - Ubuntu 9.04]]></title>
+    <link href="http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/"/>
+    <updated>2009-06-16T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor</id>
+    <content type="html"><![CDATA[<p>Thanks to <a href="http://blog.morrigan.ch/?p=52">gwydion</a></p>
 
 <p>I got my xorg.conf to finally work in Ubunutu 9.04 Jaunty. I was having problems where when I boot into ubuntu, I didn&rsquo;t even get a login screen, it just froze at a black screen after boot up with a few artifacts of color here and there.</p>
 
@@ -891,65 +557,189 @@ EndSection</code></pre></div>
 
 
 <p>This probably is a solution for the 4870 X2, or any other X2 based board.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Automatic static media folder]]></title>
+    <link href="http://phillc.com/blog/2008/09/19/automatic-static-media-folder/"/>
+    <updated>2008-09-19T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2008/09/19/automatic-static-media-folder</id>
+    <content type="html"><![CDATA[<p>Added another shortcut&hellip;
+I had a config variable in my settings_local file to specify where the media folder was in order to have django static serve it.</p>
 
-		
-		
-	</div>
+<p>This is much easier.</p>
 
-</article>
+<p>urls.py:</p>
 
-</div>
-<nav id="pagenavi">
-    
-    
-        <a href="/posts/2" class="next">Next</a>
-    
-    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
-</nav>
-</div>
-			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2014
-
-    Phillip Campbell
-
-
-<p>Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></p>
-</footer>
-		</div>
-	</div>
-	
-
-<script type="text/javascript">
-      var disqus_shortname = 'phillc';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">if</span> <span class="n">DEBUG</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">os</span>
+    <span class="n">media_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">,</span> <span class="s">&#39;media&#39;</span><span class="p">)</span>
+    <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">patterns</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span>
+        <span class="p">(</span><span class="s">r&#39;^media/(?P&lt;path&gt;.*)$&#39;</span><span class="p">,</span> <span class="s">&#39;django.views.static.serve&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s">&#39;document_root&#39;</span><span class="p">:</span> <span class="n">media_root</span><span class="p">}),</span>
+    <span class="p">)</span></code></pre></div>
 
 
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Structure inside a project]]></title>
+    <link href="http://phillc.com/blog/2008/07/08/structure-inside-project/"/>
+    <updated>2008-07-08T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2008/07/08/structure-inside-project</id>
+    <content type="html"><![CDATA[<p>A common problem I have had is that too much work was required when I needed to deploy my django project, or if i needed to work on the project on another computer. Subversion has been my friend, but part of the problem is the necessary local settings in each of the projects.</p>
+
+<p>In addition to the overall structure between all my projects, I have developed a few tricks to make handling things inside of a project much easier.</p>
+
+<p>Previously, my template folder and my media folder were in different parent directories. This caused me to need to change several variables in the settings.py (or my <a href="http://kapsh.com/blog/2008/jul/05/making-django-version-control-friendly/">settings_local.py</a>) of django in each environment that it existed in. However I no longer have to do that.</p>
+
+<p>Inside my settings.py I have this:</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="n">PROJECT_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">,</span> <span class="s">&#39;apps&#39;</span><span class="p">))</span></code></pre></div>
+
+
+<p>The first two lines figure out the directory that the settings.py lives in
+The third line inserts my apps folder to the python path (this works great with my <a href="http://kapsh.com/blog/2008/jul/01/developed-directory-structure/">django directory structure</a>)</p>
+
+<p>Now, the next step for me was to move my template and media directories around. My directory structure for a project is as follows:</p>
+
+<p>-project<br/>
+&ndash;media <br/>
+&mdash;css  <br/>
+&mdash;js   <br/>
+&mdash;images<br/>
+&ndash;templates<br/>
+&mdash;application template directory 1<br/>
+&mdash;application template directory 2<br/>
+&mdash;base.html                       <br/>
+&ndash;apps                             <br/>
+&mdash;app1                            <br/>
+&mdash;app2                            <br/>
+&ndash;settings.py                      <br/>
+&ndash;settings_local.py</p>
+
+<p>So as you can see, my templates folder is in the same directory as my settings.py. My media folder is too. In order to avoid making this a variable too:</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">,</span> <span class="s">&#39;media&#39;</span><span class="p">)</span>
+
+<span class="n">TEMPLATE_DIRS</span> <span class="o">=</span> <span class="p">(</span>
+     <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">,</span> <span class="s">&#39;templates&#39;</span><span class="p">),</span>
+<span class="p">)</span></code></pre></div>
 
 
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Developed Directory Structure]]></title>
+    <link href="http://phillc.com/blog/2008/07/07/developed-directory-structure/"/>
+    <updated>2008-07-07T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2008/07/07/developed-directory-structure</id>
+    <content type="html"><![CDATA[<p>Over the course of my web development life, I have changed my work flow and directory structure many times. Each time gets a little bit better, but I doubt I will ever finish modifying it, as I am always learning new techniques.</p>
 
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
+<p>I am presently using <a href="http://www.djangoproject.com">Django</a> in all of my projects, both at work and as a hobby. Django&rsquo;s ability to easily reuse applications has mad me change my directory structure several time. Finally, I do believe I have settled.</p>
+
+<p>First thing to know, is that both at work and in my pet projects, I am hosting multiple websites on the same apache instance. This is simply because the load behind the website does not justify buying a new slice (I use <a href="http://www.slicehost.com">slicehost</a> for my hosting needs).</p>
+
+<p>I also make use of several available applications out there, <a href="http://code.google.com/p/django-comment-utils/">django comment utils</a>, <a href="http://code.google.com/p/django-tagging/">django tagging</a>, and <a href="http://code.google.com/p/django-registration/">django-registration</a> just to name a few (all/most are findable through <a href="http://djangoplugables.com/">django pluggables</a>)</p>
+
+<p>So that being said, I need to have a directory structure capable of handling each one of my projects, all of my own shared applications, and all of the downloaded applications.</p>
+
+<p>Here is what I have come up with.</p>
+
+<ul>
+<li><p>projects/<br/>
+&ndash; project 1/<br/>
+&mdash; apps/    <br/>
+&mdash;- non reusable app 1/<br/>
+&mdash;- non reusable app 2/<br/>
+&ndash; project 2/           <br/>
+&ndash; project 3/           <br/>
+&mdash;apps                 <br/>
+&mdash;- non reusable app 3/</p></li>
+<li><p>common/<br/>
+&ndash; self made reusable app 1/<br/>
+&ndash; self made reusable app 2/</p></li>
+<li><p>external/<br/>
+&ndash; grabbed reusable app 1/<br/>
+&ndash; grabbed reusable app 2/<br/>
+&ndash; grabbed reusable app 3/</p></li>
+</ul>
 
 
+<p>Basically, the idea being that I store my projects in the projects folder, with applications made just for that project in the project&rsquo;s application folder.</p>
+
+<p>I put applications that I build that will be used by more than one project into the common folder.</p>
+
+<p>Applications that I have grabbed from other people (comment_utils, tagging, etc) into the external folder.</p>
+
+<p>Then for each virtual host, I add to the python path the projects folder, then reference settings by projectname.settings (from observation, django adds the folder where the settings file is to the python path itsself), and the common folder and the external folder. I also add the projects, external, and common folders to the python path inside of conf file.</p>
+
+<p>That works for apache, but then to get manage.py to work (it doesn&rsquo;t work because none of the python paths are set for it), I edit &ldquo;/etc/environment&rdquo; and add the line</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="s2">&quot;/home/username/projects:/home/username/common:/home/username/external&quot;</span></code></pre></div>
 
 
-</body>
-</html>
+<p>Bingo, now manage.py works.</p>
+
+<p>Now, any time I want to add a new project, I do not have a ton of hassle trying to get the project&rsquo;s manage.py to work, and all my virtual hosts in apache have the same structure!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Making Django Projects Version Control Friendly]]></title>
+    <link href="http://phillc.com/blog/2008/07/05/making-django-version-control-friendly/"/>
+    <updated>2008-07-05T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2008/07/05/making-django-version-control-friendly</id>
+    <content type="html"><![CDATA[<p>Subversion has been my friend ever since I learned about it. However, it took me a while to figure out how to deal with configuration files. For Django, this specifically relates to the settings.py.</p>
+
+<p>Django projects can end up on many different environments. Putting settings.py into source control directly will cause our settings to migrate across all working copies. This is not reasonable, as not every person will have the same environment (not all using mysql, not all using the same directory).</p>
+
+<p>Removing settings.py from version control, and make a separate settings.py.template file that contains just the basic structure is a solution to that. However, it brings another problem: What if you want to change a used application or a middleware? You would then have to make that change on all working copies.</p>
+
+<p>My solution has been to make a settings_local.py.dist</p>
+
+<p>This file has variables in it like media path, database information, and caching options. You can copy these things straight out of the settings.py (and delete them from settings.py)</p>
+
+<p>This file will go under version control.</p>
+
+<p>Now, in your settings.py, add the line</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">settings_local</span> <span class="kn">import</span> <span class="o">*</span></code></pre></div>
+
+
+<p>(I added the line to the very bottom of my settings.py)</p>
+
+<p>So, now when a working copy of the project is grabbed, the person behind it can copy settings_local.py.dist to settings_local.py. Inside settings_local.py the environment&rsquo;s details are placed. This file will be ignored from version control.</p>
+
+<p>With this setup, you can add an application or middle ware to settings.py for easy distributing through version control, and it will not affect a workspace&rsquo;s local variables.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Purpose of this website]]></title>
+    <link href="http://phillc.com/blog/2008/06/25/purpose-website/"/>
+    <updated>2008-06-25T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2008/06/25/purpose-website</id>
+    <content type="html"><![CDATA[<p>Over the course of my programming life, I have written some form of blog in perl, then php, then in a framework of php, then ruby on rails, and now Django.</p>
+
+<p>The real purpose of this site is to get an understanding of every component that goes into a blog. This is without a doubt the best one I&rsquo;ve ever written, but the same could be said about each of the ones I built before at that time.</p>
+
+<p>This website is built in Django, where I currently build most of my applications now.</p>
+
+<p>In addition to the building of the blog, I decided that it is time for me to write some of my technical thoughts down.</p>
+
+<p>Yes I like to share, discuss, and debate many technological things, however another purpose of this site is to store my docs so that I can grab them anywhere. Not real big things or private things, but things like, a step by step on server setup, so that I can copy paste my long apt-get install command, without trying to remember it from memory.</p>
+
+<p>This serves that purpose well.</p>
+
+<p>This blog is obviously not complete. I will finish it over time, but it does share the same code with another website, so any improvements will reflect on both.</p>
+]]></content>
+  </entry>
+  
+</feed>
