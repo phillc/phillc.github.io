@@ -4,7 +4,7 @@
   <title><![CDATA[phillc - Phillip Campbell]]></title>
   <link href="http://phillc.com/atom.xml" rel="self"/>
   <link href="http://phillc.com/"/>
-  <updated>2015-01-17T11:39:04-05:00</updated>
+  <updated>2015-07-21T05:23:53-04:00</updated>
   <id>http://phillc.com/</id>
   <author>
     <name><![CDATA[Phillip Campbell]]></name>
@@ -12,6 +12,155 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Page Specific JavaScript with the Rails Asset Pipeline]]></title>
+    <link href="http://phillc.com/blog/2015/07/21/page-specific-javascript-with-the-rails-asset-pipeline/"/>
+    <updated>2015-07-21T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2015/07/21/page-specific-javascript-with-the-rails-asset-pipeline</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been using a pattern for loading javascript for specific pages that I would like to share. I have been using it for the past three years across many projects, and has proven to be durable.</p>
+
+<p>It was created in response to three patterns that I saw and disliked.</p>
+
+<ul>
+<li>Using <code>javascript_include_tag</code> to bring in page specific javascript</li>
+<li>Keying javascript off of a html element id <code>if ($("#some_div")) { ... }</code></li>
+<li>Inline javascript</li>
+</ul>
+
+
+<p>I found all these solutions to be inadequate because they required extra web requests, didn&rsquo;t take advantage of js compression, had javascript overhead of checking the page for contents, didn&rsquo;t allow the use of coffeescript, or left javascript scattered around the project. The Rails Asset Pipeline solves all those problems.</p>
+
+<p>My solution is to use a JavaScript object to wrap pages, which I will call Page Objects.</p>
+
+<p>A Page Object looks like this:</p>
+
+<figure class='code'><figcaption><span>app/assets/javascripts/app/pages/home_page.js.coffee</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nv">APP.HomePage = </span><span class="k">class</span> <span class="nx">HomePage</span>
+</span><span class='line'>  <span class="nv">constructor: </span><span class="nf">(options) -&gt;</span>
+</span><span class='line'>    <span class="vi">@data = </span><span class="nx">options</span><span class="p">[</span><span class="s">&quot;data&quot;</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nv">bind: </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">@bindThing</span><span class="p">()</span>
+</span><span class='line'>    <span class="nx">@bindOtherthing</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nv">bindThing: </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">otherSomething</span><span class="p">(</span><span class="nx">@data</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nv">bindOtherthing: </span><span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nx">otherSomething</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Every Page Object is applied to window.APP, has a <code>bind</code> method which will run any page specific code, and lives in app/assets/javascripts/app/pages. You will see why in a moment. The constructor is optional.</p>
+
+<p>We bring this into our asset pipeline like so:</p>
+
+<figure class='code'><figcaption><span>app/assets/javascripts/application.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="o">//=</span> <span class="nx">require</span> <span class="p">.</span><span class="o">/</span><span class="nx">app</span><span class="o">/</span><span class="nx">init</span>
+</span><span class='line'><span class="o">//=</span> <span class="nx">require_tree</span> <span class="p">.</span><span class="o">/</span><span class="nx">app</span><span class="o">/</span><span class="nx">objects</span>
+</span><span class='line'><span class="o">//=</span> <span class="nx">require_tree</span> <span class="p">.</span><span class="o">/</span><span class="nx">app</span><span class="o">/</span><span class="nx">pages</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Our pages are assigned to <code>window.APP</code>, which needs to be initialized before the page objects are loaded. Because requiring javascript files must happen at the top of your file, before any executable javascript is written, we must move the initialization of <code>window.APP</code> to another file.</p>
+
+<figure class='code'><figcaption><span>app/assets/javascripts/app/init.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nv">APP = </span><span class="p">{}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now, we want to have rails instantiate one of these objects, and call our <code>bind</code> method for us.</p>
+
+<figure class='code'><figcaption><span>app/helpers/application_helper.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">ApplicationHelper</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">load_javascript_class</span><span class="p">(</span><span class="n">javascript_class</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">content_for</span> <span class="ss">:page_javascript</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">javascript_tag</span> <span class="s2">&quot;$(function(){ (new window.APP.</span><span class="si">#{</span><span class="n">javascript_class</span><span class="si">}</span><span class="s2">(</span><span class="si">#{</span><span class="n">options</span><span class="o">.</span><span class="n">to_json</span><span class="si">}</span><span class="s2">)).bind(); })&quot;</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>app/views/layouts/application.html.haml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="nn">!!!5</span>
+</span><span class='line'><span class="nt">%html</span><span class="p">{</span><span class="ss">lang</span><span class="p">:</span> <span class="s2">&quot;en&quot;</span><span class="p">}</span>
+</span><span class='line'>  <span class="nt">%body</span>
+</span><span class='line'>    <span class="p">=</span> <span class="n">render</span> <span class="s1">&#39;layouts/header&#39;</span>
+</span><span class='line'>    <span class="p">=</span> <span class="k">yield</span>
+</span><span class='line'>    <span class="p">=</span> <span class="n">render</span> <span class="s1">&#39;layouts/footer&#39;</span>
+</span><span class='line'>    <span class="p">=</span> <span class="k">yield</span> <span class="ss">:page_javascript</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The last part of it is to call it from your view</p>
+
+<figure class='code'><figcaption><span>app/views/home/index.html.haml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='haml'><span class='line'><span class="p">-</span> <span class="n">load_javascript_class</span> <span class="s2">&quot;HomePage&quot;</span><span class="p">,</span> <span class="ss">data</span><span class="p">:</span> <span class="o">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="nc">.container</span>
+</span><span class='line'>  <span class="nc">.row</span>
+</span><span class='line'>    <span class="nt">%h3</span> List:
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With this pattern, you can have page specific javascript while utilizing the asset pipeline of rails. This solution also solves the problem of how to get data from rails to your javascript. You can see in the helper that if you pass in a second argument to <code>load_javascript_class</code> that it will take it, and turn it into json for your page object&rsquo;s constructor.</p>
+
+<p>You may have noticed that I also have a app/objects required in the application.js. I do this to create objects that may be shared between pages. I tend to use a similar pattern as page objects, and instantiate/delegate to them from a page object.</p>
+
+<p>Some sites need to have two sets of javascript, perhaps for very different sections of the site, like an admin area. You can change the helper to be</p>
+
+<figure class='code'><figcaption><span>app/helpers/application_helper.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">load_javascript_class</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="n">javascript_class</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="kp">nil</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">content_for</span> <span class="ss">:page_javascript</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">javascript_tag</span> <span class="s2">&quot;$(function(){ (new window.</span><span class="si">#{</span><span class="n">namespace</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">upcase</span><span class="si">}</span><span class="s2">.</span><span class="si">#{</span><span class="n">javascript_class</span><span class="si">}</span><span class="s2">(</span><span class="si">#{</span><span class="n">options</span><span class="o">.</span><span class="n">to_json</span><span class="si">}</span><span class="s2">)).bind(); })&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The first parameter is now where on <code>window</code> to look for your objects. Perhaps you add a line in init.js for <code>window.ADMIN = {}</code> and then load objects from there with <code>load_javascript_class :admin, "SomePage"</code>. This pattern should be flexible from there.</p>
+
+<p>This pattern has solved most my issues for the past few years. I am sure there is a different pattern to use for projects with turbolinks, but I will continue to bring this pattern into all other projects because of the utility it provides.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Javascript Frameworks]]></title>

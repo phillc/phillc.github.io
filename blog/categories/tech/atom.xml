@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tech | phillc - Phillip Campbell]]></title>
   <link href="http://phillc.com/blog/categories/tech/atom.xml" rel="self"/>
   <link href="http://phillc.com/"/>
-  <updated>2015-01-17T11:39:04-05:00</updated>
+  <updated>2015-07-21T05:23:53-04:00</updated>
   <id>http://phillc.com/</id>
   <author>
     <name><![CDATA[Phillip Campbell]]></name>
@@ -12,6 +12,105 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Page Specific JavaScript with the Rails Asset Pipeline]]></title>
+    <link href="http://phillc.com/blog/2015/07/21/page-specific-javascript-with-the-rails-asset-pipeline/"/>
+    <updated>2015-07-21T00:00:00-04:00</updated>
+    <id>http://phillc.com/blog/2015/07/21/page-specific-javascript-with-the-rails-asset-pipeline</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been using a pattern for loading javascript for specific pages that I would like to share. I have been using it for the past three years across many projects, and has proven to be durable.</p>
+
+<p>It was created in response to three patterns that I saw and disliked.</p>
+
+<ul>
+<li>Using <code>javascript_include_tag</code> to bring in page specific javascript</li>
+<li>Keying javascript off of a html element id <code>if ($("#some_div")) { ... }</code></li>
+<li>Inline javascript</li>
+</ul>
+
+
+<p>I found all these solutions to be inadequate because they required extra web requests, didn&rsquo;t take advantage of js compression, had javascript overhead of checking the page for contents, didn&rsquo;t allow the use of coffeescript, or left javascript scattered around the project. The Rails Asset Pipeline solves all those problems.</p>
+
+<p>My solution is to use a JavaScript object to wrap pages, which I will call Page Objects.</p>
+
+<p>A Page Object looks like this:</p>
+
+<pre><code class="coffeescript app/assets/javascripts/app/pages/home_page.js.coffee">window.APP.HomePage = class HomePage
+  constructor: (options) -&gt;
+    @data = options["data"]
+
+  bind: -&gt;
+    @bindThing()
+    @bindOtherthing()
+
+  bindThing: -&gt;
+    otherSomething(@data)
+
+  bindOtherthing: -&gt;
+    otherSomething()
+</code></pre>
+
+<p>Every Page Object is applied to window.APP, has a <code>bind</code> method which will run any page specific code, and lives in app/assets/javascripts/app/pages. You will see why in a moment. The constructor is optional.</p>
+
+<p>We bring this into our asset pipeline like so:</p>
+
+<pre><code class="coffeescript app/assets/javascripts/application.js">//= require ./app/init
+//= require_tree ./app/objects
+//= require_tree ./app/pages
+</code></pre>
+
+<p>Our pages are assigned to <code>window.APP</code>, which needs to be initialized before the page objects are loaded. Because requiring javascript files must happen at the top of your file, before any executable javascript is written, we must move the initialization of <code>window.APP</code> to another file.</p>
+
+<pre><code class="coffeescript app/assets/javascripts/app/init.js">window.APP = {}
+</code></pre>
+
+<p>Now, we want to have rails instantiate one of these objects, and call our <code>bind</code> method for us.</p>
+
+<pre><code class="ruby app/helpers/application_helper.rb">module ApplicationHelper
+  def load_javascript_class(javascript_class, options = nil)
+    content_for :page_javascript do
+      javascript_tag "$(function(){ (new window.APP.#{javascript_class}(#{options.to_json})).bind(); })"
+    end
+  end
+end
+</code></pre>
+
+<pre><code class="haml app/views/layouts/application.html.haml">!!!5
+%html{lang: "en"}
+  %body
+    = render 'layouts/header'
+    = yield
+    = render 'layouts/footer'
+    = yield :page_javascript
+</code></pre>
+
+<p>The last part of it is to call it from your view</p>
+
+<pre><code class="haml app/views/home/index.html.haml">- load_javascript_class "HomePage", data: ["foo", "bar"]
+
+.container
+  .row
+    %h3 List:
+</code></pre>
+
+<p>With this pattern, you can have page specific javascript while utilizing the asset pipeline of rails. This solution also solves the problem of how to get data from rails to your javascript. You can see in the helper that if you pass in a second argument to <code>load_javascript_class</code> that it will take it, and turn it into json for your page object&rsquo;s constructor.</p>
+
+<p>You may have noticed that I also have a app/objects required in the application.js. I do this to create objects that may be shared between pages. I tend to use a similar pattern as page objects, and instantiate/delegate to them from a page object.</p>
+
+<p>Some sites need to have two sets of javascript, perhaps for very different sections of the site, like an admin area. You can change the helper to be</p>
+
+<pre><code class="ruby app/helpers/application_helper.rb">def load_javascript_class(namespace, javascript_class, options = nil)
+  content_for :page_javascript do
+    javascript_tag "$(function(){ (new window.#{namespace.to_s.upcase}.#{javascript_class}(#{options.to_json})).bind(); })"
+  end
+end
+</code></pre>
+
+<p>The first parameter is now where on <code>window</code> to look for your objects. Perhaps you add a line in init.js for <code>window.ADMIN = {}</code> and then load objects from there with <code>load_javascript_class :admin, "SomePage"</code>. This pattern should be flexible from there.</p>
+
+<p>This pattern has solved most my issues for the past few years. I am sure there is a different pattern to use for projects with turbolinks, but I will continue to bring this pattern into all other projects because of the utility it provides.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Javascript Frameworks]]></title>
@@ -248,46 +347,6 @@ scons: building terminated because of error
 <p>Anyway, while my implementation surely isn&rsquo;t the best in the world, I hope someone can find use from it.</p>
 
 <p><a href="http://github.com/phillc/Javascript-State-Machine">http://github.com/phillc/Javascript-State-Machine</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby multi-dimensional array helper]]></title>
-    <link href="http://phillc.com/blog/2009/08/28/ruby-multi-dimensional-array-helper/"/>
-    <updated>2009-08-28T00:00:00-04:00</updated>
-    <id>http://phillc.com/blog/2009/08/28/ruby-multi-dimensional-array-helper</id>
-    <content type="html"><![CDATA[<p>I needed something to help me get through a multi-dimensional array. So I extended the Array class.</p>
-
-<p>Grab expects an array of coordinates.</p>
-
-<p><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">Array</span>
-  <span class="k">def</span> <span class="nf">grab</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">first</span><span class="p">)</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">grab</span><span class="p">(</span><span class="n">position</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="k">unless</span> <span class="n">position</span><span class="o">[</span><span class="mi">1</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">1</span><span class="o">].</span><span class="n">empty?</span>
-    <span class="n">value</span>
-  <span class="k">rescue</span> <span class="no">NoMethodError</span>
-    <span class="k">raise</span><span class="p">(</span><span class="no">IndexError</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="no">Multi</span> <span class="no">Dimensional</span> <span class="nb">Array</span> <span class="ow">not</span> <span class="n">deep</span> <span class="n">enough</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;)</span>
-  <span class="k">end</span>
-<span class="k">end</span></code></pre></div></p>
-
-<p>Then I can do this:</p>
-
-<p><div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="sr">/p&gt;</span>
-
-<span class="sr">&lt;blockquote&gt;&lt;blockquote&gt;&lt;p&gt;[[1,2,3],&amp;ldquo;asdf&amp;rdquo;,[[11,22,33],5,6,7]].grab([2,0,0])</span>
-<span class="sr">=&gt; 11</span>
-<span class="sr">[[1,2,3],&amp;ldquo;asdf&amp;rdquo;,[[11,22,33],5,6,7]].grab([2,0,2])</span>
-<span class="sr">=&gt; 33</span>
-<span class="sr">[[1,2,3],&amp;ldquo;asdf&amp;rdquo;,[[11,22,33],5,6,7]].grab([2,1])</span>
-<span class="sr">=&gt; 5</span>
-<span class="sr">[[1,2,3],&amp;ldquo;asdf&amp;rdquo;,[[11,22,33],5,6,7]].grab([1,0])</span>
-<span class="sr">IndexError: Not an array.</span>
-<span class="sr">    from /</span><span class="no">Users</span><span class="o">/</span><span class="n">phillip</span><span class="o">/</span><span class="no">Desktop</span><span class="o">/</span><span class="n">rworkspace</span><span class="o">/</span><span class="n">davisbrandcapital</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">tagging</span><span class="o">.</span><span class="n">rb</span><span class="p">:</span><span class="mi">73</span><span class="ss">:in</span> <span class="sb">`grab&#39;</span>
-<span class="sb">    from (irb):64</span>
-<span class="sb">[[1,2,3],&amp;ldquo;asdf&amp;rdquo;,[[11,22,33],5,6,7]].grab([1])</span>
-<span class="sb">=&gt; &amp;ldquo;asdf&amp;rdquo;&lt;/p&gt;</span>
-
-<span class="sb">&lt;p&gt;</span></code></pre></div></p></blockquote></blockquote>
 ]]></content>
   </entry>
   
