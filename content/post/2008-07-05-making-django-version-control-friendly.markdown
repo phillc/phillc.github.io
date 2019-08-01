@@ -1,3 +1,8 @@
+---
+title: "Making Django Projects Version Control Friendly"
+date: 2008-07-05
+---
+
 Subversion has been my friend ever since I learned about it. However, it took me a while to figure out how to deal with configuration files. For Django, this specifically relates to the settings.py.
 
 Django projects can end up on many different environments. Putting settings.py into source control directly will cause our settings to migrate across all working copies. This is not reasonable, as not every person will have the same environment (not all using mysql, not all using the same directory).

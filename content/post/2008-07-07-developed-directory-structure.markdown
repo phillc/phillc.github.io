@@ -1,3 +1,8 @@
+---
+title: "Developed Directory Structure"
+date: 2008-07-07
+---
+
 Over the course of my web development life, I have changed my work flow and directory structure many times. Each time gets a little bit better, but I doubt I will ever finish modifying it, as I am always learning new techniques.
 
 I am presently using [Django](http://www.djangoproject.com) in all of my projects, both at work and as a hobby. Django's ability to easily reuse applications has mad me change my directory structure several time. Finally, I do believe I have settled.
