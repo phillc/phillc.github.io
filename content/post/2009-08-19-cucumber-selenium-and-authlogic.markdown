@@ -1,3 +1,9 @@
+---
+title: "Cucumber With Selenium and Authlogic"
+date: 2009-08-19
+slug: cucumber-selenium-and-authlogic
+---
+
 I had some Issues with cucumber/selenium working properly with authlogic. After much searching, I've figured out how to get it all to work properly.
 
 I would get an error like:

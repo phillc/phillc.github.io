@@ -32,7 +32,7 @@ canonifyurls = true
 
 [author]
   name = "Phillip Campbell"
-  bio = "Working towards being a dysruptive scientist"
+  bio = "Phosfluorescently meshing leveraged dysruptive scientist incubator interfaces"
   job = "Software Developer"
   location = "New Jersey"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog

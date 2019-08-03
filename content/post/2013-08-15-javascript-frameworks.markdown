@@ -1,3 +1,7 @@
+---
+title: "Javascript Frameworks"
+date: 2013-08-15
+---
 
 Back in March, the company I work for was creating a small app and were trying to decide which javascript frame work to use. There was an email chain debating which framework to use. I finally responded, and today a coworker convinced me to post that email:
 
@@ -9,7 +13,7 @@ I am not a fan of pushing the entire rendering process to the client. I am also 
 
 My opinions on the big 4 frameworks:
 
-###Backbone
+# Backbone
 
 I love backbone. So easy to get started. So easy to do whatever I want. However, I have a hard time believing that it can be scaled to a team size without some hard core discipline, and structure.
 
@@ -17,7 +21,7 @@ Backbone models and collections are freaking awesome, out of all client side fra
 
 Finally the view. Not the view you know of from rails, I'll call that the template. The view object. I don't mind how they bind data or events, but ugh, the lack of templating kills me. You have to compile your own template (not a big deal, jquery and underscore provide decent templating functions), and inject that into DOM via some helper methods (Urghhh). So if you have a collection, and render a list, then behind the scenes modify a model/the collection, you have to go delete your own element and replace it in the right spot. I found it manageable until I rendered a form, and tried to modify the same view with some view changes, and it became hell.
 
-###Angular
+# Angular
 
 My first attempts at angular were thwarted by horrific documentation, and my second attempt was painful because they were in progress of updating their horrific documentation to actually document the version they released. Oh and (at the time) an incredibly intimidating dependency injection strategy. They have matured and now the documentation isn't completely rubbish and the dependency injection thing actually makes sense. I am currently using angular for my side project.
 
@@ -29,15 +33,15 @@ Angular provides no model layer... it lets you use any plain old javascript obje
 
 My last point is the way that angular binds its data. This has been an internal battle for me for quite some time; data and event binding via pseudo html attributes vs declared event observers and interpolation. They are very different styles. I wouldn't necessarily choose a framework because of how they bind events, but there are some tradeoffs that I have seen some highly philosophical and argumentative developers will fight over, but I'm not going to get into that here.
 
-###Ember
+# Ember
 
 Now that ember has successfully separated its image from sprout, I think ember is very solid. Solid models/events, solid and high profile team behind it, solid (IMHO) way to declare templates, sensible view models, not bad collections. The only thing keeping me from constantly using ember js is its tight integration with handlebars (my use case for these frameworks don't align with that kind of templating, I'll explain in a sec).
 
-###Knockout
+# Knockout
 
 Last time I tried knockout, it felt like they were cramming ajax down my throat... they seem much better about that now. It has an awkward and sometimes ridiculously verbose ways of doing things. Was built by microsoft, the inventors of MVVM... was built by microsoft so I don't give it a serious look.
 
-###Here are some random thoughts:
+# Here are some random thoughts:
 
 I'm done with client side routing for a while, it is annoying to deal with. You have to intercept all links, and redirect it back to your own router. You have to make sure that if you fill out a form, go to another page, come back to the form that the form is emptied. If one page breaks you may have just made the user stuck without any kind of indication that they are used to. You have to basically reinvent http status codes. Github can't even get it right (if you hit the back button too fast while browsing code, you can end up on a page different from what is in your url bar. This happens to me all the time and annoys the crap out of me.) With pushstate you have to make sure every page works if you hit the refresh button.
 

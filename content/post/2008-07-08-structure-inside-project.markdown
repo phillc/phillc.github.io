@@ -1,3 +1,8 @@
+---
+title: "Structure Inside a Project"
+date: 2008-07-08
+slug: structure-inside-project
+---
 A common problem I have had is that too much work was required when I needed to deploy my django project, or if i needed to work on the project on another computer. Subversion has been my friend, but part of the problem is the necessary local settings in each of the projects.
 
 In addition to the overall structure between all my projects, I have developed a few tricks to make handling things inside of a project much easier.

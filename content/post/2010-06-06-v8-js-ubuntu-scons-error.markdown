@@ -1,3 +1,8 @@
+---
+title: "V8 Scons Error"
+date: 2010-06-06
+slug: v8-js-ubuntu-scons-error
+---
 
 While trying to install Google v8, I had an error:
 

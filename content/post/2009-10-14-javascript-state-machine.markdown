@@ -1,3 +1,7 @@
+---
+title: "Javascript State Machine"
+date: 2009-10-14
+---
 
 [I wrote a simple Javascript State Machine.](http://github.com/phillc/Javascript-State-Machine)
 

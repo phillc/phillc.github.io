@@ -1,3 +1,7 @@
+---
+title: "Page Specific JavaScript With the Rails Asset Pipeline"
+date: 2015-07-21
+---
 
 I've been using a pattern for loading javascript for specific pages that I would like to share. I have been using it for the past three years across many projects, and has proven to be durable.
 
