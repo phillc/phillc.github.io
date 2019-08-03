@@ -6,6 +6,7 @@ date: 2009-08-28
 I needed something to help me get through a multi-dimensional array. So I extended the Array class.
 
 Grab expects an array of coordinates.
+<!--more-->>
 
 {{< highlight ruby >}}
 class Array

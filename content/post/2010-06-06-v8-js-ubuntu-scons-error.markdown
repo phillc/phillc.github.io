@@ -5,6 +5,7 @@ slug: v8-js-ubuntu-scons-error
 ---
 
 While trying to install Google v8, I had an error:
+<!--more-->>
 
     v8-read-only$ scons
     scons: Reading SConscript files ...

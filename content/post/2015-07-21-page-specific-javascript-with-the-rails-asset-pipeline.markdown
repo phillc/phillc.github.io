@@ -6,6 +6,7 @@ date: 2015-07-21
 I've been using a pattern for loading javascript for specific pages that I would like to share. I have been using it for the past three years across many projects, and has proven to be durable.
 
 It was created in response to three patterns that I saw and disliked.
+<!--more-->>
 
 - Using `javascript_include_tag` to bring in page specific javascript
 - Keying javascript off of a html element id `if ($("#some_div")) { ... }`

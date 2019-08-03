@@ -7,6 +7,7 @@ Added another shortcut...
 I had a config variable in my settings_local file to specify where the media folder was in order to have django static serve it.
 
 This is much easier.
+<!--more-->>
 
 urls.py:
 

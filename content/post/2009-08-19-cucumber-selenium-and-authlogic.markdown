@@ -7,6 +7,7 @@ slug: cucumber-selenium-and-authlogic
 I had some Issues with cucumber/selenium working properly with authlogic. After much searching, I've figured out how to get it all to work properly.
 
 I would get an error like:
+<!--more-->>
 
 {{< highlight bash >}}
 When I follow "Manage pages"                          # features/step_definitions/webrat_steps.rb:19

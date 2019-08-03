@@ -15,10 +15,10 @@
 baseURL = "http://phillc.com/"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
-title = "phillc - Phillip Campbell"
+title = "Phillip Campbell"
 theme = "hugo-tranquilpeak-theme"
 disqusShortname = "phillc"
-# googleAnalytics = "UA-123-45"
+googleAnalytics = "UA-4379922-3"
 paginate = 7
 canonifyurls = true
 
@@ -26,8 +26,8 @@ canonifyurls = true
   post = "/blog/:year/:month/:day/:slug/"
 
 [taxonomies]
-  tag = "tags"
-  category = "categories"
+  # tag = "tags"
+  # category = "categories"
   archive = "archives"
 
 [author]
@@ -39,9 +39,9 @@ canonifyurls = true
   gravatarEmail = "spyyderz@gmail.com"
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
-  picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
+  # picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
   # Your Twitter username without the @. E.g : thibaudlepretre
-  # twitter = "phillc"
+  twitter = "phillc"
 
 # Menu Configuration
 [[menu.main]]
@@ -50,26 +50,26 @@ canonifyurls = true
   name = "Home"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-home\"></i>"
   url = "/"
+# [[menu.main]]
+#   weight = 2
+#   identifier = "categories"
+#   name = "Categories"
+#   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bookmark\"></i>"
+#   url = "/categories"
+# [[menu.main]]
+#   weight = 3
+#   identifier = "tags"
+#   name = "Tags"
+#   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-tags\"></i>"
+#   url = "/tags"
 [[menu.main]]
   weight = 2
-  identifier = "categories"
-  name = "Categories"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bookmark\"></i>"
-  url = "/categories"
-[[menu.main]]
-  weight = 3
-  identifier = "tags"
-  name = "Tags"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-tags\"></i>"
-  url = "/tags"
-[[menu.main]]
-  weight = 4
   identifier = "archives"
   name = "Archives"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-archive\"></i>"
   url = "/archives"
 [[menu.main]]
-  weight = 5
+  weight = 3
   identifier = "about"
   name = "About"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-question\"></i>"
@@ -87,13 +87,55 @@ canonifyurls = true
   name = "Stack Overflow"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-stack-overflow\"></i>"
   url = "https://stackoverflow.com/users/93380/phillc"
+[[menu.links]]
+  weight = 3
+  identifier = "facebook"
+  name = "Facebook"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-facebook\"></i>"
+  url = "http://www.facebook.com/phillc"
+[[menu.links]]
+  weight = 4
+  identifier = "linkedin"
+  name = "Linkedin"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-linkedin\"></i>"
+  url = "http://www.linkedin.com/in/phillc1"
+[[menu.links]]
+  weight = 5
+  identifier = "twitter"
+  name = "Twitter"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-twitter\"></i>"
+  url = "http://twitter.com/phillc"
 
 [[menu.misc]]
   weight = 1
-  identifier = "rss"
-  name = "RSS"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-rss\"></i>"
-  url = "/index.xml"
+  name = "Agent vs Agent"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-external-link\"></i>"
+  url = "http://agentvsagent.com/"
+
+[[menu.misc]]
+  weight = 2
+  name = "Rosterbater"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-external-link\"></i>"
+  url = "http://rosterbater.com/"
+
+[[menu.misc]]
+  weight = 3
+  name = "the Cheap Boardgamer"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-external-link\"></i>"
+  url = "http://www.cheapboardgamer.com/"
+
+[[menu.misc]]
+  weight = 4
+  name = "South Jersey Disc Golf"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-external-link\"></i>"
+  url = "http://www.southjerseydiscgolf.com/"
+
+# [[menu.misc]]
+#   weight = 1
+#   identifier = "rss"
+#   name = "RSS"
+#   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-rss\"></i>"
+#   url = "/index.xml"
 
 [params]
   # Customize date format use to render blog post date, categories and other
@@ -116,7 +158,7 @@ canonifyurls = true
   # If false it will flat categories.
   hierarchicalCategories = true
 
-  description = "Hugo tranquilpeak theme demo"
+  description = "phillc's blog"
 
   # Customization
   # Define the behavior of the sidebar
