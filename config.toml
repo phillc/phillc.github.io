@@ -16,8 +16,8 @@ baseURL = "http://phillc.com/"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
 title = "Phillip Campbell"
-theme = "hugo-tranquilpeak-theme"
-disqusShortname = "phillc"
+theme = ["hugo-tranquilpeak-theme"]
+# disqusShortname = "phillc"
 googleAnalytics = "UA-4379922-3"
 paginate = 7
 canonifyurls = true
@@ -109,32 +109,36 @@ canonifyurls = true
 [[menu.misc]]
   weight = 1
   name = "Agent vs Agent"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-external-link\"></i>"
+  pre = "<i class=\"sidebar-button-icon fa fa-external-link\"></i>"
   url = "http://agentvsagent.com/"
+  class = "external-link"
 
 [[menu.misc]]
   weight = 2
   name = "Rosterbater"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-external-link\"></i>"
+  pre = "<i class=\"sidebar-button-icon fa fa-external-link\"></i>"
   url = "http://rosterbater.com/"
+  class = "external-link"
 
 [[menu.misc]]
   weight = 3
   name = "the Cheap Boardgamer"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-external-link\"></i>"
+  pre = "<i class=\"sidebar-button-icon fa fa-external-link\"></i>"
   url = "http://www.cheapboardgamer.com/"
+  class = "external-link"
 
 [[menu.misc]]
   weight = 4
   name = "South Jersey Disc Golf"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-external-link\"></i>"
+  pre = "<i class=\"sidebar-button-icon fa fa-external-link\"></i>"
   url = "http://www.southjerseydiscgolf.com/"
+  class = "external-link"
 
 # [[menu.misc]]
 #   weight = 1
 #   identifier = "rss"
 #   name = "RSS"
-#   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-rss\"></i>"
+#   pre = "<i class=\"sidebar-button-icon fa fa-rss\"></i>"
 #   url = "/index.xml"
 
 [params]
@@ -214,8 +218,8 @@ canonifyurls = true
 
   # Custom CSS. Put here your custom CSS files. They are loaded after the theme CSS;
   # they have to be referred from static root. Example
-  # [[params.customCSS]]
-  #   href = "css/mystyle.css"
+  [[params.customCSS]]
+    href = "css/mystyle.css"
 
   # Custom JS. Put here your custom JS files. They are loaded after the theme JS;
   # they have to be referred from static root. Example
