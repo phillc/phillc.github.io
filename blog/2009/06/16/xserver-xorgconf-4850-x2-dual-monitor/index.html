@@ -1,108 +1,310 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.55.6 with theme Tranquilpeak 0.4.6-BETA">
+<meta name="author" content="Phillip Campbell">
+<meta name="keywords" content="">
+<meta name="description" content="Thanks to gwydion
+I got my xorg.conf to finally work in Ubunutu 9.04 Jaunty. I was having problems where when I boot into ubuntu, I didn&rsquo;t even get a login screen, it just froze at a black screen after boot up with a few artifacts of color here and there.
+Took many, many hours trying to finding this solution. I ended up being able to use the proprietary driver fglrx when all was said and done, instead of having to use vesa.">
 
-<!DOCTYPE HTML>
 
-<html>
+<meta property="og:description" content="Thanks to gwydion
+I got my xorg.conf to finally work in Ubunutu 9.04 Jaunty. I was having problems where when I boot into ubuntu, I didn&rsquo;t even get a login screen, it just froze at a black screen after boot up with a few artifacts of color here and there.
+Took many, many hours trying to finding this solution. I ended up being able to use the proprietary driver fglrx when all was said and done, instead of having to use vesa.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xServer xorg.conf for 4850 X2 Dual Monitor - Ubuntu 9.04">
+<meta name="twitter:title" content="xServer xorg.conf for 4850 X2 Dual Monitor - Ubuntu 9.04">
+<meta property="og:url" content="http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/">
+<meta property="twitter:url" content="http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/">
+<meta property="og:site_name" content="Phillip Campbell">
+<meta property="og:description" content="Thanks to gwydion
+I got my xorg.conf to finally work in Ubunutu 9.04 Jaunty. I was having problems where when I boot into ubuntu, I didn&rsquo;t even get a login screen, it just froze at a black screen after boot up with a few artifacts of color here and there.
+Took many, many hours trying to finding this solution. I ended up being able to use the proprietary driver fglrx when all was said and done, instead of having to use vesa.">
+<meta name="twitter:description" content="Thanks to gwydion
+I got my xorg.conf to finally work in Ubunutu 9.04 Jaunty. I was having problems where when I boot into ubuntu, I didn&rsquo;t even get a login screen, it just froze at a black screen after boot up with a few artifacts of color here and there.
+Took many, many hours trying to finding this solution. I ended up being able to use the proprietary driver fglrx when all was said and done, instead of having to use vesa.">
+<meta property="og:locale" content="en-us">
 
-<head>
-	<meta charset="utf-8">
-	<title>xServer xorg.conf for 4850 X2 dual monitor - Ubuntu 9.04 - phillc - Phillip Campbell</title>
-	<meta name="author" content="Phillip Campbell">
-
-	
-	<meta name="description" content="xServer xorg.conf for 4850 X2 Dual Monitor - Ubuntu 9.04 Thanks to gwydion I got my xorg.conf to finally work in Ubunutu 9.04 Jaunty. I was having &hellip;">
-	
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link href="" rel="alternate" title="phillc - Phillip Campbell" type="application/atom+xml">
-	
-	<link rel="canonical" href="http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	
   
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-4379922-3']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
+    <meta property="article:published_time" content="2009-06-16T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2009-06-16T00:00:00">
+  
+  
+  
+  
 
 
-</head>
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@phillc">
 
 
-<body>
-	<div class="container">
-		<div class="left-col">
-			<div class="intrude-less">
-			<header id="header" class="inner"><a href="/" class="profilepic">
+  <meta name="twitter:creator" content="@phillc">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=640">
+
+
+    <title>xServer xorg.conf for 4850 X2 Dual Monitor - Ubuntu 9.04</title>
+
+    <link rel="icon" href="http://phillc.com/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="http://phillc.com/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="http://phillc.com/css/mystyle.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4379922-3', 'auto');
 	
-	<img src="http://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=160" alt="Profile Picture" style="width: 160px;" />
-	
-</a>
+	ga('send', 'pageview');
+}
+</script>
 
-<nav id="main-nav"><ul class="main">
-    <li><a href="/">Home</a></li>
-    <li><a href="/blog/archives">Archives</a></li>
-    <li style="color: #666;">Side projects:</li>
-    <li><a href="http://agentvsagent.com">Agent vs Agent</a></li>
-    <li><a href="http://rosterbater.com">Rosterbater</a></li>
-    <li><a href="http://www.cheapboardgamer.com">the Cheap Boardgamer</a></li>
-</ul>
+    
+    
+  </head>
 
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://phillc.com/">Phillip Campbell</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="http://phillc.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://phillc.com/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Phillip Campbell</h4>
+        
+          <h5 class="sidebar-profile-bio">Phosfluorescently meshing leveraged dysruptive scientist incubator interfaces</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://phillc.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://phillc.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://phillc.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/phillc" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/93380/phillc" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.facebook.com/phillc" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+      
+      <span class="sidebar-button-desc">Facebook</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.linkedin.com/in/phillc1" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://twitter.com/phillc" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://agentvsagent.com/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-external-link"></i>
+      
+      <span class="sidebar-button-desc">Agent vs Agent</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://rosterbater.com/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-external-link"></i>
+      
+      <span class="sidebar-button-desc">Rosterbater</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.cheapboardgamer.com/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-external-link"></i>
+      
+      <span class="sidebar-button-desc">the Cheap Boardgamer</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.southjerseydiscgolf.com/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-external-link"></i>
+      
+      <span class="sidebar-button-desc">South Jersey Disc Golf</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
 </nav>
-<nav id="sub-nav">
-	<div class="social">
-		
-		
-			<a class="facebook" href="http://www.facebook.com/phillc" title="Facebook">Facebook</a>
-		
-		
-		
-			<a class="twitter" href="http://twitter.com/phillc" title="Twitter">Twitter</a>
-		
-		
-			<a class="github" href="https://github.com/phillc" title="GitHub">GitHub</a>
-		
-		
-		
-		
-			<a class="linkedin" href="http://www.linkedin.com/in/phillc1" title="LinkedIn">LinkedIn</a>
-		
-		
-		
-		
-		
-		
-		
-    	
-    	
-	</div>
-</nav>
-</header>				
-			</div>
-		</div>	
-		<div class="mid-col">
-			
-				
-			
-			<div class="mid-col-container">
-				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name">xServer xorg.conf for 4850 X2 Dual Monitor - Ubuntu 9.04</h1>
-	<div class="entry-content" itemprop="articleBody"><p>Thanks to <a href="http://blog.morrigan.ch/?p=52">gwydion</a></p>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      xServer xorg.conf for 4850 X2 Dual Monitor - Ubuntu 9.04
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2009-06-16T00:00:00Z">
+        
+  June 16, 2009
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Thanks to <a href="http://blog.morrigan.ch/?p=52">gwydion</a></p>
 
 <p>I got my xorg.conf to finally work in Ubunutu 9.04 Jaunty. I was having problems where when I boot into ubuntu, I didn&rsquo;t even get a login screen, it just froze at a black screen after boot up with a few artifacts of color here and there.</p>
 
@@ -110,189 +312,358 @@
 
 <p>Here is what I did:</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">dpkg-reconfigure xserver-xorg
-aticonfig --initial -f --adapter<span class="o">=</span>all
-aticonfig --cfa --adapater<span class="o">=</span>all
-aticonfig --add-pairmode<span class="o">=</span>&lt;your width&gt;x&lt;your height&gt;+&lt;your width 2&gt;x&lt;your height 2&gt;</code></pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dpkg-reconfigure xserver-xorg
+aticonfig --initial -f --adapter<span style="color:#f92672">=</span>all
+aticonfig --cfa --adapater<span style="color:#f92672">=</span>all
+aticonfig --add-pairmode<span style="color:#f92672">=</span>&lt;your width&gt;x&lt;your height&gt;+&lt;your width <span style="color:#ae81ff">2</span>&gt;x&lt;your height <span style="color:#ae81ff">2</span>&gt;</code></pre></div>
 
 <p>Also had to add</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">Option <span class="s2">&quot;EnableRandR12&quot;</span> <span class="s2">&quot;false&quot;</span></code></pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Option <span style="color:#e6db74">&#34;EnableRandR12&#34;</span> <span style="color:#e6db74">&#34;false&#34;</span></code></pre></div>
 
 <p>to each device section and</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">EnableRandR12</span><span class="o">=</span>Sfalse</code></pre></div>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">EnableRandR12<span style="color:#f92672">=</span>Sfalse</code></pre></div>
 
 <p>to the [AMDPCSROOT/SYSTEM/DDX] section of /etc/ati/amdpcsdb (<a href="http://ubuntuforums.org/showthread.php?p=7144148">source</a>) in order to disable RandR 1.2</p>
 
 <p>xorg.conf</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># xorg.conf (X.Org X Window System server configuration file)</span>
-<span class="c">#</span>
-<span class="c"># This file was generated by dexconf, the Debian X Configuration tool, using</span>
-<span class="c"># values from the debconf database.</span>
-<span class="c">#</span>
-<span class="c"># Edit this file with caution, and see the xorg.conf manual page.</span>
-<span class="c"># (Type &quot;man xorg.conf&quot; at the shell prompt.)</span>
-<span class="c">#</span>
-<span class="c"># This file is automatically updated on xserver-xorg package upgrades *only*</span>
-<span class="c"># if it has not been modified since the last upgrade of the xserver-xorg</span>
-<span class="c"># package.</span>
-<span class="c">#</span>
-<span class="c"># Note that some configuration settings that could be done previously</span>
-<span class="c"># in this file, now are automatically configured by the server and settings</span>
-<span class="c"># here are ignored.</span>
-<span class="c">#</span>
-<span class="c"># If you have edited this file but would like it to be automatically updated</span>
-<span class="c"># again, run the following command:</span>
-<span class="c">#   sudo dpkg-reconfigure -phigh xserver-xorg</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># xorg.conf (X.Org X Window System server configuration file)</span>
+#
+<span style="color:#75715e"># This file was generated by dexconf, the Debian X Configuration tool, using</span>
+<span style="color:#75715e"># values from the debconf database.</span>
+#
+<span style="color:#75715e"># Edit this file with caution, and see the xorg.conf manual page.</span>
+<span style="color:#75715e"># (Type &#34;man xorg.conf&#34; at the shell prompt.)</span>
+#
+<span style="color:#75715e"># This file is automatically updated on xserver-xorg package upgrades *only*</span>
+<span style="color:#75715e"># if it has not been modified since the last upgrade of the xserver-xorg</span>
+<span style="color:#75715e"># package.</span>
+#
+<span style="color:#75715e"># Note that some configuration settings that could be done previously</span>
+<span style="color:#75715e"># in this file, now are automatically configured by the server and settings</span>
+<span style="color:#75715e"># here are ignored.</span>
+#
+<span style="color:#75715e"># If you have edited this file but would like it to be automatically updated</span>
+<span style="color:#75715e"># again, run the following command:</span>
+<span style="color:#75715e">#   sudo dpkg-reconfigure -phigh xserver-xorg</span>
 
-Section <span class="s2">&quot;ServerLayout&quot;</span>
-    Identifier     <span class="s2">&quot;aticonfig Layout&quot;</span>
-    Screen      <span class="m">0</span>  <span class="s2">&quot;aticonfig-Screen[0]-0&quot;</span> <span class="m">0</span> 0
-    Screen         <span class="s2">&quot;aticonfig-Screen[1]-0&quot;</span><span class="c"># RightOf &quot;aticonfig-Screen[0]-0&quot;</span>
+Section <span style="color:#e6db74">&#34;ServerLayout&#34;</span>
+	Identifier     <span style="color:#e6db74">&#34;aticonfig Layout&#34;</span>
+	Screen      <span style="color:#ae81ff">0</span>  <span style="color:#e6db74">&#34;aticonfig-Screen[0]-0&#34;</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>
+	Screen         <span style="color:#e6db74">&#34;aticonfig-Screen[1]-0&#34;</span><span style="color:#75715e"># RightOf &#34;aticonfig-Screen[0]-0&#34;</span>
 EndSection
 
-Section <span class="s2">&quot;Files&quot;</span>
+Section <span style="color:#e6db74">&#34;Files&#34;</span>
 EndSection
 
-Section <span class="s2">&quot;Module&quot;</span>
+Section <span style="color:#e6db74">&#34;Module&#34;</span>
 EndSection
 
-Section <span class="s2">&quot;Monitor&quot;</span>
-    Identifier   <span class="s2">&quot;aticonfig-Monitor[0]-0&quot;</span>
-    Option      <span class="s2">&quot;VendorName&quot;</span> <span class="s2">&quot;ATI Proprietary Driver&quot;</span>
-    Option      <span class="s2">&quot;ModelName&quot;</span> <span class="s2">&quot;Generic Autodetecting Monitor&quot;</span>
-    Option      <span class="s2">&quot;DPMS&quot;</span> <span class="s2">&quot;true&quot;</span>
-    HorizSync   30-82
-    VertRefresh  56-76
+Section <span style="color:#e6db74">&#34;Monitor&#34;</span>
+	Identifier   <span style="color:#e6db74">&#34;aticonfig-Monitor[0]-0&#34;</span>
+	Option	    <span style="color:#e6db74">&#34;VendorName&#34;</span> <span style="color:#e6db74">&#34;ATI Proprietary Driver&#34;</span>
+	Option	    <span style="color:#e6db74">&#34;ModelName&#34;</span> <span style="color:#e6db74">&#34;Generic Autodetecting Monitor&#34;</span>
+	Option	    <span style="color:#e6db74">&#34;DPMS&#34;</span> <span style="color:#e6db74">&#34;true&#34;</span>
+	HorizSync   <span style="color:#ae81ff">30</span>-82
+	VertRefresh  <span style="color:#ae81ff">56</span>-76
 EndSection
 
-Section <span class="s2">&quot;Monitor&quot;</span>
-    Identifier   <span class="s2">&quot;aticonfig-Monitor[1]-0&quot;</span>
-    Option      <span class="s2">&quot;VendorName&quot;</span> <span class="s2">&quot;ATI Proprietary Driver&quot;</span>
-    Option      <span class="s2">&quot;ModelName&quot;</span> <span class="s2">&quot;Generic Autodetecting Monitor&quot;</span>
-    Option      <span class="s2">&quot;DPMS&quot;</span> <span class="s2">&quot;true&quot;</span>
-    HorizSync   30-82
-    VertRefresh  50-75
+Section <span style="color:#e6db74">&#34;Monitor&#34;</span>
+	Identifier   <span style="color:#e6db74">&#34;aticonfig-Monitor[1]-0&#34;</span>
+	Option	    <span style="color:#e6db74">&#34;VendorName&#34;</span> <span style="color:#e6db74">&#34;ATI Proprietary Driver&#34;</span>
+	Option	    <span style="color:#e6db74">&#34;ModelName&#34;</span> <span style="color:#e6db74">&#34;Generic Autodetecting Monitor&#34;</span>
+	Option	    <span style="color:#e6db74">&#34;DPMS&#34;</span> <span style="color:#e6db74">&#34;true&#34;</span>
+	HorizSync   <span style="color:#ae81ff">30</span>-82
+	VertRefresh  <span style="color:#ae81ff">50</span>-75
 EndSection
 
-Section <span class="s2">&quot;Device&quot;</span>
-    Identifier  <span class="s2">&quot;aticonfig-Device[0]-0&quot;</span>
-    Driver      <span class="s2">&quot;fglrx&quot;</span>
-    Option      <span class="s2">&quot;EnableRandR12&quot;</span> <span class="s2">&quot;false&quot;</span>
-    Option      <span class="s2">&quot;PairModes&quot;</span> <span class="s2">&quot;1680x1050+1280x1024&quot;</span>
-    BusID       <span class="s2">&quot;PCI:3:0:0&quot;</span>
-    Option          <span class="s2">&quot;XAANoOffscreenPixmaps&quot;</span>
+Section <span style="color:#e6db74">&#34;Device&#34;</span>
+	Identifier  <span style="color:#e6db74">&#34;aticonfig-Device[0]-0&#34;</span>
+	Driver      <span style="color:#e6db74">&#34;fglrx&#34;</span>
+	Option	    <span style="color:#e6db74">&#34;EnableRandR12&#34;</span> <span style="color:#e6db74">&#34;false&#34;</span>
+	Option	    <span style="color:#e6db74">&#34;PairModes&#34;</span> <span style="color:#e6db74">&#34;1680x1050+1280x1024&#34;</span>
+	BusID       <span style="color:#e6db74">&#34;PCI:3:0:0&#34;</span>
+	Option          <span style="color:#e6db74">&#34;XAANoOffscreenPixmaps&#34;</span>
 EndSection
 
-Section <span class="s2">&quot;Device&quot;</span>
-    Identifier  <span class="s2">&quot;aticonfig-Device[1]-0&quot;</span>
-    Driver      <span class="s2">&quot;fglrx&quot;</span>
-    Option      <span class="s2">&quot;EnableRandR12&quot;</span> <span class="s2">&quot;false&quot;</span>
-    BusID       <span class="s2">&quot;PCI:4:0:0&quot;</span>
-    Option          <span class="s2">&quot;XAANoOffscreenPixmaps&quot;</span>
+Section <span style="color:#e6db74">&#34;Device&#34;</span>
+	Identifier  <span style="color:#e6db74">&#34;aticonfig-Device[1]-0&#34;</span>
+	Driver      <span style="color:#e6db74">&#34;fglrx&#34;</span>
+	Option	    <span style="color:#e6db74">&#34;EnableRandR12&#34;</span> <span style="color:#e6db74">&#34;false&#34;</span>
+	BusID       <span style="color:#e6db74">&#34;PCI:4:0:0&#34;</span>
+	Option          <span style="color:#e6db74">&#34;XAANoOffscreenPixmaps&#34;</span>
 EndSection
 
-Section <span class="s2">&quot;Screen&quot;</span>
-    Identifier <span class="s2">&quot;aticonfig-Screen[0]-0&quot;</span>
-    Device     <span class="s2">&quot;aticonfig-Device[0]-0&quot;</span>
-    Monitor    <span class="s2">&quot;aticonfig-Monitor[0]-0&quot;</span>
-    DefaultDepth     24
-    SubSection <span class="s2">&quot;Display&quot;</span>
-        Viewport   <span class="m">0</span> 0
-        Depth     24
-        Modes      <span class="s2">&quot;1680x1050_75.00&quot;</span>
-    EndSubSection
+Section <span style="color:#e6db74">&#34;Screen&#34;</span>
+	Identifier <span style="color:#e6db74">&#34;aticonfig-Screen[0]-0&#34;</span>
+	Device     <span style="color:#e6db74">&#34;aticonfig-Device[0]-0&#34;</span>
+	Monitor    <span style="color:#e6db74">&#34;aticonfig-Monitor[0]-0&#34;</span>
+	DefaultDepth     <span style="color:#ae81ff">24</span>
+	SubSection <span style="color:#e6db74">&#34;Display&#34;</span>
+		Viewport   <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>
+		Depth     <span style="color:#ae81ff">24</span>
+		Modes      <span style="color:#e6db74">&#34;1680x1050_75.00&#34;</span>
+	EndSubSection
 EndSection
 
-Section <span class="s2">&quot;Screen&quot;</span>
-    Identifier <span class="s2">&quot;aticonfig-Screen[1]-0&quot;</span>
-    Device     <span class="s2">&quot;aticonfig-Device[1]-0&quot;</span>
-    Monitor    <span class="s2">&quot;aticonfig-Monitor[1]-0&quot;</span>
-    DefaultDepth     24
-    SubSection <span class="s2">&quot;Display&quot;</span>
-        Viewport   <span class="m">0</span> 0
-        Depth     24
-        Modes      <span class="s2">&quot;1280x1024_75.00&quot;</span>
-    EndSubSection
+Section <span style="color:#e6db74">&#34;Screen&#34;</span>
+	Identifier <span style="color:#e6db74">&#34;aticonfig-Screen[1]-0&#34;</span>
+	Device     <span style="color:#e6db74">&#34;aticonfig-Device[1]-0&#34;</span>
+	Monitor    <span style="color:#e6db74">&#34;aticonfig-Monitor[1]-0&#34;</span>
+	DefaultDepth     <span style="color:#ae81ff">24</span>
+	SubSection <span style="color:#e6db74">&#34;Display&#34;</span>
+		Viewport   <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>
+		Depth     <span style="color:#ae81ff">24</span>
+		Modes      <span style="color:#e6db74">&#34;1280x1024_75.00&#34;</span>
+	EndSubSection
 EndSection</code></pre></div>
 
-
 <p>This probably is a solution for the 4870 X2, or any other X2 based board.</p>
-</div>
 
-</article>
-
-	<div class="share">
-	<div class="addthis_toolbox addthis_default_style ">
-	
-	
-	<a class="addthis_button_tweet"></a>
-	
-	
-	<a class="addthis_counter addthis_pill_style"></a>
-	</div>
-  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
-</div>
-
-
-
-<section id="comment">
-    <h1 class="title">Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-</section>
-</div>
-			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2015
-
-    Phillip Campbell
-
-
-<p>Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></p>
-</footer>
-		</div>
-	</div>
-	
-
-<script type="text/javascript">
-      var disqus_shortname = 'phillc';
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://phillc.com/blog/2009/08/18/e-text-editor/" data-tooltip="e-Text Editor">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://phillc.com/blog/2008/09/19/automatic-static-media-folder/" data-tooltip="Automatic Static Media Folder">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
       
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/';
-        var disqus_url = 'http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/';
-        var disqus_script = 'embed.js';
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
       
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Phillip Campbell. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://phillc.com/blog/2009/08/18/e-text-editor/" data-tooltip="e-Text Editor">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://phillc.com/blog/2008/09/19/automatic-static-media-folder/" data-tooltip="Automatic Static Media Folder">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fphillc.com%2Fblog%2F2009%2F06%2F16%2Fxserver-xorgconf-4850-x2-dual-monitor%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3A%2F%2Fphillc.com%2Fblog%2F2009%2F06%2F16%2Fxserver-xorgconf-4850-x2-dual-monitor%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Phillip Campbell</h4>
+    
+      <div id="about-card-bio">Phosfluorescently meshing leveraged dysruptive scientist incubator interfaces</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        New Jersey
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('http://phillc.com/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="http://phillc.com/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
 </script>
 
 
+  
+    
+  
 
 
 
 
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-</body>
+    
+  </body>
 </html>
+

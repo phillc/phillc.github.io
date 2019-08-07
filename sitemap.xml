@@ -1,79 +1,97 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
   <url>
     <loc>http://phillc.com/blog/2015/07/21/page-specific-javascript-with-the-rails-asset-pipeline/</loc>
-    <lastmod>2015-07-21T00:00:00-04:00</lastmod>
+    <lastmod>2015-07-21T00:00:00+00:00</lastmod>
   </url>
-  <url>
-    <loc>http://phillc.com/blog/2013/08/15/javascript-frameworks/</loc>
-    <lastmod>2013-08-15T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2013/04/18/presentation-on-continuous-delivery/</loc>
-    <lastmod>2013-04-18T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2012/03/31/im-not-really-a-focused-writer/</loc>
-    <lastmod>2012-03-31T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2012/01/20/decided-to-move-my-blog-to-posterous/</loc>
-    <lastmod>2012-01-20T00:00:00-05:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2010/06/06/v8-js-ubuntu-scons-error/</loc>
-    <lastmod>2010-06-06T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2009/10/14/javascript-state-machine/</loc>
-    <lastmod>2009-10-14T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2009/08/28/ruby-multi-dimensional-array-helper/</loc>
-    <lastmod>2009-08-28T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2009/08/19/cucumber-selenium-and-authlogic/</loc>
-    <lastmod>2009-08-19T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2009/08/18/e-text-editor/</loc>
-    <lastmod>2009-08-18T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/</loc>
-    <lastmod>2009-06-16T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2008/09/19/automatic-static-media-folder/</loc>
-    <lastmod>2008-09-19T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2008/07/08/structure-inside-project/</loc>
-    <lastmod>2008-07-08T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2008/07/07/developed-directory-structure/</loc>
-    <lastmod>2008-07-07T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2008/07/05/making-django-version-control-friendly/</loc>
-    <lastmod>2008-07-05T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/2008/06/25/purpose-website/</loc>
-    <lastmod>2008-06-25T00:00:00-04:00</lastmod>
-  </url>
-  <url>
-    <loc>http://phillc.com/blog/archives/</loc>
-  </url>
+  
   <url>
     <loc>http://phillc.com/</loc>
+    <lastmod>2015-07-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
+  
   <url>
-    <loc>http://phillc.com/blog/categories/</loc>
+    <loc>http://phillc.com/post/</loc>
+    <lastmod>2015-07-21T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
+  
   <url>
-    <loc>http://phillc.com/blog/categories/tech/</loc>
+    <loc>http://phillc.com/blog/2013/08/15/javascript-frameworks/</loc>
+    <lastmod>2013-08-15T00:00:00+00:00</lastmod>
   </url>
+  
+  <url>
+    <loc>http://phillc.com/blog/2013/04/18/presentation-on-continuous-delivery/</loc>
+    <lastmod>2013-04-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phillc.com/blog/2012/01/20/decided-to-move-my-blog-to-posterous/</loc>
+    <lastmod>2012-01-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phillc.com/blog/2010/06/06/v8-js-ubuntu-scons-error/</loc>
+    <lastmod>2010-06-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phillc.com/blog/2009/10/14/javascript-state-machine/</loc>
+    <lastmod>2009-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phillc.com/blog/2009/08/28/ruby-multi-dimensional-array-helper/</loc>
+    <lastmod>2009-08-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phillc.com/blog/2009/08/19/cucumber-selenium-and-authlogic/</loc>
+    <lastmod>2009-08-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phillc.com/blog/2009/08/18/e-text-editor/</loc>
+    <lastmod>2009-08-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/</loc>
+    <lastmod>2009-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phillc.com/blog/2008/09/19/automatic-static-media-folder/</loc>
+    <lastmod>2008-09-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phillc.com/blog/2008/07/08/structure-inside-project/</loc>
+    <lastmod>2008-07-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phillc.com/blog/2008/07/07/developed-directory-structure/</loc>
+    <lastmod>2008-07-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phillc.com/blog/2008/07/05/making-django-version-control-friendly/</loc>
+    <lastmod>2008-07-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phillc.com/blog/2008/06/25/purpose-website/</loc>
+    <lastmod>2008-06-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phillc.com/archives/</loc>
+    <priority>0</priority>
+  </url>
+  
 </urlset>

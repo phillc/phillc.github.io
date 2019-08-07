@@ -1,108 +1,314 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.55.6 with theme Tranquilpeak 0.4.6-BETA">
+<meta name="author" content="Phillip Campbell">
+<meta name="keywords" content="">
+<meta name="description" content="I wrote a simple Javascript State Machine.
+It is intended for keeping track of what the current state is for my heavy AJAX app at work.
+I also learned a lot about OO in javascript without using jQuery or the prototype framework, by using prototypes. I wanted to do that so that it would be framework independent.
+Below is a simple example of how I use the state machine, and shows a bit of how I connected it with Really Simple History">
 
-<!DOCTYPE HTML>
 
-<html>
+<meta property="og:description" content="I wrote a simple Javascript State Machine.
+It is intended for keeping track of what the current state is for my heavy AJAX app at work.
+I also learned a lot about OO in javascript without using jQuery or the prototype framework, by using prototypes. I wanted to do that so that it would be framework independent.
+Below is a simple example of how I use the state machine, and shows a bit of how I connected it with Really Simple History">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript State Machine">
+<meta name="twitter:title" content="Javascript State Machine">
+<meta property="og:url" content="http://phillc.com/blog/2009/10/14/javascript-state-machine/">
+<meta property="twitter:url" content="http://phillc.com/blog/2009/10/14/javascript-state-machine/">
+<meta property="og:site_name" content="Phillip Campbell">
+<meta property="og:description" content="I wrote a simple Javascript State Machine.
+It is intended for keeping track of what the current state is for my heavy AJAX app at work.
+I also learned a lot about OO in javascript without using jQuery or the prototype framework, by using prototypes. I wanted to do that so that it would be framework independent.
+Below is a simple example of how I use the state machine, and shows a bit of how I connected it with Really Simple History">
+<meta name="twitter:description" content="I wrote a simple Javascript State Machine.
+It is intended for keeping track of what the current state is for my heavy AJAX app at work.
+I also learned a lot about OO in javascript without using jQuery or the prototype framework, by using prototypes. I wanted to do that so that it would be framework independent.
+Below is a simple example of how I use the state machine, and shows a bit of how I connected it with Really Simple History">
+<meta property="og:locale" content="en-us">
 
-<head>
-	<meta charset="utf-8">
-	<title>Javascript State Machine - phillc - Phillip Campbell</title>
-	<meta name="author" content="Phillip Campbell">
-
-	
-	<meta name="description" content="Javascript State Machine I wrote a simple Javascript State Machine. It is intended for keeping track of what the current state is for my heavy AJAX &hellip;">
-	
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<link href="" rel="alternate" title="phillc - Phillip Campbell" type="application/atom+xml">
-	
-	<link rel="canonical" href="http://phillc.com/blog/2009/10/14/javascript-state-machine/">
-	<link href="/favicon.png" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	
   
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-4379922-3']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
+    <meta property="article:published_time" content="2009-10-14T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2009-10-14T00:00:00">
+  
+  
+  
+  
 
 
-</head>
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@phillc">
 
 
-<body>
-	<div class="container">
-		<div class="left-col">
-			<div class="intrude-less">
-			<header id="header" class="inner"><a href="/" class="profilepic">
+  <meta name="twitter:creator" content="@phillc">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=640">
+
+
+    <title>Javascript State Machine</title>
+
+    <link rel="icon" href="http://phillc.com/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="http://phillc.com/blog/2009/10/14/javascript-state-machine/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="http://phillc.com/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="http://phillc.com/css/mystyle.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4379922-3', 'auto');
 	
-	<img src="http://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=160" alt="Profile Picture" style="width: 160px;" />
-	
-</a>
+	ga('send', 'pageview');
+}
+</script>
 
-<nav id="main-nav"><ul class="main">
-    <li><a href="/">Home</a></li>
-    <li><a href="/blog/archives">Archives</a></li>
-    <li style="color: #666;">Side projects:</li>
-    <li><a href="http://agentvsagent.com">Agent vs Agent</a></li>
-    <li><a href="http://rosterbater.com">Rosterbater</a></li>
-    <li><a href="http://www.cheapboardgamer.com">the Cheap Boardgamer</a></li>
-</ul>
+    
+    
+  </head>
 
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="http://phillc.com/">Phillip Campbell</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="http://phillc.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="http://phillc.com/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Phillip Campbell</h4>
+        
+          <h5 class="sidebar-profile-bio">Phosfluorescently meshing leveraged dysruptive scientist incubator interfaces</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://phillc.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://phillc.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://phillc.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/phillc" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/93380/phillc" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.facebook.com/phillc" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+      
+      <span class="sidebar-button-desc">Facebook</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.linkedin.com/in/phillc1" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://twitter.com/phillc" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://agentvsagent.com/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-external-link"></i>
+      
+      <span class="sidebar-button-desc">Agent vs Agent</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://rosterbater.com/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-external-link"></i>
+      
+      <span class="sidebar-button-desc">Rosterbater</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.cheapboardgamer.com/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-external-link"></i>
+      
+      <span class="sidebar-button-desc">the Cheap Boardgamer</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.southjerseydiscgolf.com/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-external-link"></i>
+      
+      <span class="sidebar-button-desc">South Jersey Disc Golf</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
 </nav>
-<nav id="sub-nav">
-	<div class="social">
-		
-		
-			<a class="facebook" href="http://www.facebook.com/phillc" title="Facebook">Facebook</a>
-		
-		
-		
-			<a class="twitter" href="http://twitter.com/phillc" title="Twitter">Twitter</a>
-		
-		
-			<a class="github" href="https://github.com/phillc" title="GitHub">GitHub</a>
-		
-		
-		
-		
-			<a class="linkedin" href="http://www.linkedin.com/in/phillc1" title="LinkedIn">LinkedIn</a>
-		
-		
-		
-		
-		
-		
-		
-    	
-    	
-	</div>
-</nav>
-</header>				
-			</div>
-		</div>	
-		<div class="mid-col">
-			
-				
-			
-			<div class="mid-col-container">
-				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name">Javascript State Machine</h1>
-	<div class="entry-content" itemprop="articleBody"><p><a href="http://github.com/phillc/Javascript-State-Machine">I wrote a simple Javascript State Machine.</a></p>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Javascript State Machine
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2009-10-14T00:00:00Z">
+        
+  October 14, 2009
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p><a href="http://github.com/phillc/Javascript-State-Machine">I wrote a simple Javascript State Machine.</a></p>
 
 <p>It is intended for keeping track of what the current state is for my heavy AJAX app at work.</p>
 
@@ -112,88 +318,88 @@
 
 <p>I have included in this example some comments to show my thinking throughout, and perhaps how to use it.</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">StateMachine</span><span class="p">();</span>
-<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">states</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">Begin</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">enter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="c1">// do some animation</span>
-        <span class="p">},</span>
-        <span class="nx">exit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="c1">// hide some stuff</span>
-        <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="nx">Page</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">enter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="c1">// show some page</span>
-        <span class="p">},</span>
-        <span class="nx">exit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="c1">// hide it</span>
-        <span class="p">},</span>
-        <span class="nx">change</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">page</span><span class="p">){</span>
-            <span class="c1">// example of some event</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">change_page</span><span class="p">(</span><span class="nx">page</span><span class="p">);</span>
-            <span class="c1">// events can call events</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">handleEvent</span><span class="p">(</span><span class="s1">&#39;setURL&#39;</span><span class="p">);</span>
-        <span class="p">},</span>
-        <span class="nx">setURL</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="c1">//example of how I integrate with really simple history</span>
-            <span class="nx">dhtmlHistory</span><span class="p">.</span><span class="nx">add</span><span class="p">([</span><span class="s1">&#39;pages&#39;</span><span class="p">].</span><span class="nx">concat</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">current_page</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">());</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">Site</span>.<span style="color:#a6e22e">prototype</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">StateMachine</span>();
+<span style="color:#a6e22e">Site</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">states</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">Begin</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">enter</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+            <span style="color:#75715e">// do some animation
+</span><span style="color:#75715e"></span>        },
+        <span style="color:#a6e22e">exit</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+            <span style="color:#75715e">// hide some stuff
+</span><span style="color:#75715e"></span>        }
+    },
+    <span style="color:#a6e22e">Page</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">enter</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+            <span style="color:#75715e">// show some page
+</span><span style="color:#75715e"></span>        },
+        <span style="color:#a6e22e">exit</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+            <span style="color:#75715e">// hide it
+</span><span style="color:#75715e"></span>        },
+        <span style="color:#a6e22e">change</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">page</span>){
+            <span style="color:#75715e">// example of some event
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pages</span>.<span style="color:#a6e22e">change_page</span>(<span style="color:#a6e22e">page</span>);
+            <span style="color:#75715e">// events can call events
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleEvent</span>(<span style="color:#e6db74">&#39;setURL&#39;</span>);
+        },
+        <span style="color:#a6e22e">setURL</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+            <span style="color:#75715e">//example of how I integrate with really simple history
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">dhtmlHistory</span>.<span style="color:#a6e22e">add</span>([<span style="color:#e6db74">&#39;pages&#39;</span>].<span style="color:#a6e22e">concat</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pages</span>.<span style="color:#a6e22e">current_page</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;/&#39;</span>)).<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;.&#39;</span>).<span style="color:#a6e22e">toLowerCase</span>());
+        }
+    }
+};
 
-<span class="c1">// These are some call backs I used for debugging with firebug to ensure</span>
-<span class="c1">// that events were firing</span>
-<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">beforeEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;begin event: &#39;</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">afterEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;end event: &#39;</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">beforeStateChange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="nx">from</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;begin state change to: &#39;</span><span class="p">,</span> <span class="nx">to</span><span class="p">,</span> <span class="s1">&#39; from: &#39;</span><span class="p">,</span> <span class="nx">from</span><span class="p">);</span>
+<span style="color:#75715e">// These are some call backs I used for debugging with firebug to ensure
+</span><span style="color:#75715e">// that events were firing
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Site</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">beforeEvent</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">name</span>){
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;begin event: &#39;</span>, <span style="color:#a6e22e">name</span>);
+}
+<span style="color:#a6e22e">Site</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">afterEvent</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">name</span>){
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;end event: &#39;</span>, <span style="color:#a6e22e">name</span>);
+}
+<span style="color:#a6e22e">Site</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">beforeStateChange</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">from</span>){
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;begin state change to: &#39;</span>, <span style="color:#a6e22e">to</span>, <span style="color:#e6db74">&#39; from: &#39;</span>, <span style="color:#a6e22e">from</span>);
 
-    <span class="c1">// as an example of intercepting, I can stop a state from changing by returning false</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">to</span> <span class="o">==</span> <span class="s1">&#39;Page&#39;</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">pages</span><span class="p">.</span><span class="nx">blocker</span> <span class="o">==</span> <span class="s1">&#39;Page&#39;</span><span class="p">){</span>
-        <span class="c1">// some logic</span>
-        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">Site</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">afterStateChange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="nx">from</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;end state change to: &#39;</span><span class="p">,</span> <span class="nx">to</span><span class="p">,</span> <span class="s1">&#39; from: &#39;</span><span class="p">,</span> <span class="nx">from</span><span class="p">);</span>
-<span class="p">}</span>
+    <span style="color:#75715e">// as an example of intercepting, I can stop a state from changing by returning false
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">to</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Page&#39;</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pages</span>.<span style="color:#a6e22e">blocker</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Page&#39;</span>){
+        <span style="color:#75715e">// some logic
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+}
+<span style="color:#a6e22e">Site</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">afterStateChange</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">to</span>, <span style="color:#a6e22e">from</span>){
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;end state change to: &#39;</span>, <span style="color:#a6e22e">to</span>, <span style="color:#e6db74">&#39; from: &#39;</span>, <span style="color:#a6e22e">from</span>);
+}
 
-<span class="c1">// The actual defenition. Instance vars can be set in it.</span>
-<span class="kd">function</span> <span class="nx">Site</span><span class="p">(){</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">pages</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Page</span><span class="p">();</span>
-<span class="p">}</span>
+<span style="color:#75715e">// The actual defenition. Instance vars can be set in it.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Site</span>(){
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">pages</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Page</span>();
+}
 
-<span class="c1">// global scope, so that it can be accessed globally (as it wouldn&#39;t normally</span>
-<span class="c1">// be because the scope that I actually instantiate it inside prorotype&#39;s window onload)</span>
-<span class="kd">var</span> <span class="nx">Davis</span><span class="p">;</span> 
+<span style="color:#75715e">// global scope, so that it can be accessed globally (as it wouldn&#39;t normally
+</span><span style="color:#75715e">// be because the scope that I actually instantiate it inside prorotype&#39;s window onload)
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Davis</span>; 
 
 
-<span class="c1">// Once again, just an example of how I integrate it with Really Simple History</span>
-<span class="kd">function</span> <span class="nx">historyChange</span><span class="p">(</span><span class="nx">newLocation</span><span class="p">,</span> <span class="nx">historyData</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">newLocation</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">newState</span> <span class="o">=</span> <span class="nx">hash</span><span class="p">.</span><span class="nx">shift</span><span class="p">().</span><span class="nx">capitalize</span><span class="p">();</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">newState</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="nx">newState</span> <span class="o">=</span> <span class="s1">&#39;Begin&#39;</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">Davis</span><span class="p">.</span><span class="nx">changeState</span><span class="p">(</span><span class="nx">newState</span><span class="p">))</span>
-    <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">hash</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">Davis</span><span class="p">.</span><span class="nx">handleEvent</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="nx">hash</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">));</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span style="color:#75715e">// Once again, just an example of how I integrate it with Really Simple History
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">historyChange</span>(<span style="color:#a6e22e">newLocation</span>, <span style="color:#a6e22e">historyData</span>) {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hash</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newLocation</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;.&#39;</span>);
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newState</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">hash</span>.<span style="color:#a6e22e">shift</span>().<span style="color:#a6e22e">capitalize</span>();
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">newState</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;&#39;</span>) <span style="color:#a6e22e">newState</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Begin&#39;</span>;
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">Davis</span>.<span style="color:#a6e22e">changeState</span>(<span style="color:#a6e22e">newState</span>))
+    {
+        <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">hash</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#a6e22e">Davis</span>.<span style="color:#a6e22e">handleEvent</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#a6e22e">hash</span>.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;/&#39;</span>));
+    }
+}
 
-<span class="c1">// This window observe for onload is prototype specific... But you can achieve the same other ways.</span>
-<span class="nx">Event</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nb">window</span><span class="p">,</span> <span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">Davis</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Site</span><span class="p">();</span> <span class="c1">// my requirements need me to initialize after load</span>
-
-    <span class="c1">// Really Simple History stuff</span>
-    <span class="nx">dhtmlHistory</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">historyChange</span><span class="p">);</span>
-    <span class="nx">historyChange</span><span class="p">(</span><span class="nx">dhtmlHistory</span><span class="p">.</span><span class="nx">currentLocation</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
-<span class="p">});</span></code></pre></div>
-
+<span style="color:#75715e">// This window observe for onload is prototype specific... But you can achieve the same other ways.
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">Event</span>.<span style="color:#a6e22e">observe</span>(window, <span style="color:#e6db74">&#39;load&#39;</span>, <span style="color:#66d9ef">function</span>() {
+    <span style="color:#a6e22e">Davis</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Site</span>(); <span style="color:#75715e">// my requirements need me to initialize after load
+</span><span style="color:#75715e"></span>
+    <span style="color:#75715e">// Really Simple History stuff
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">dhtmlHistory</span>.<span style="color:#a6e22e">initialize</span>(<span style="color:#a6e22e">historyChange</span>);
+    <span style="color:#a6e22e">historyChange</span>(<span style="color:#a6e22e">dhtmlHistory</span>.<span style="color:#a6e22e">currentLocation</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#39;&#39;</span>);
+});
+</code></pre></div>
 
 <p>While implementing this, I also learned a bit about bookmarking and enabling the back button of ajax states. Really Simple History has worked ok for me, but it has some quirks&hellip; some of which I haven&rsquo;t solved yet (especially in IE) and those bugs may be above.</p>
 
@@ -202,76 +408,249 @@
 <p>Anyway, while my implementation surely isn&rsquo;t the best in the world, I hope someone can find use from it.</p>
 
 <p><a href="http://github.com/phillc/Javascript-State-Machine">http://github.com/phillc/Javascript-State-Machine</a></p>
-</div>
 
-</article>
-
-	<div class="share">
-	<div class="addthis_toolbox addthis_default_style ">
-	
-	
-	<a class="addthis_button_tweet"></a>
-	
-	
-	<a class="addthis_counter addthis_pill_style"></a>
-	</div>
-  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
-</div>
-
-
-
-<section id="comment">
-    <h1 class="title">Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-</section>
-</div>
-			</div>
-			<footer id="footer" class="inner">Copyright &copy; 2015
-
-    Phillip Campbell
-
-
-<p>Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></p>
-</footer>
-		</div>
-	</div>
-	
-
-<script type="text/javascript">
-      var disqus_shortname = 'phillc';
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://phillc.com/blog/2010/06/06/v8-js-ubuntu-scons-error/" data-tooltip="V8 Scons Error">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://phillc.com/blog/2009/08/28/ruby-multi-dimensional-array-helper/" data-tooltip="Ruby Multi-dimensional Array Helper">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
       
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://phillc.com/blog/2009/10/14/javascript-state-machine/';
-        var disqus_url = 'http://phillc.com/blog/2009/10/14/javascript-state-machine/';
-        var disqus_script = 'embed.js';
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://phillc.com/blog/2009/10/14/javascript-state-machine/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://phillc.com/blog/2009/10/14/javascript-state-machine/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
       
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Phillip Campbell. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://phillc.com/blog/2010/06/06/v8-js-ubuntu-scons-error/" data-tooltip="V8 Scons Error">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="http://phillc.com/blog/2009/08/28/ruby-multi-dimensional-array-helper/" data-tooltip="Ruby Multi-dimensional Array Helper">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://phillc.com/blog/2009/10/14/javascript-state-machine/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://phillc.com/blog/2009/10/14/javascript-state-machine/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fphillc.com%2Fblog%2F2009%2F10%2F14%2Fjavascript-state-machine%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3A%2F%2Fphillc.com%2Fblog%2F2009%2F10%2F14%2Fjavascript-state-machine%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Phillip Campbell</h4>
+    
+      <div id="about-card-bio">Phosfluorescently meshing leveraged dysruptive scientist incubator interfaces</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        New Jersey
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('http://phillc.com/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="http://phillc.com/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
 </script>
 
 
+  
+    
+  
 
 
 
 
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-</body>
+    
+  </body>
 </html>
+

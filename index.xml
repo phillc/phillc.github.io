@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Phillip Campbell</title>
+    <link>http://phillc.com/</link>
+    <description>Recent content on Phillip Campbell</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Jul 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://phillc.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Page Specific JavaScript With the Rails Asset Pipeline</title>
+      <link>http://phillc.com/blog/2015/07/21/page-specific-javascript-with-the-rails-asset-pipeline/</link>
+      <pubDate>Tue, 21 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2015/07/21/page-specific-javascript-with-the-rails-asset-pipeline/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been using a pattern for loading javascript for specific pages that I would like to share. I have been using it for the past three years across many projects, and has proven to be durable.&lt;/p&gt;
+
+&lt;p&gt;It was created in response to three patterns that I saw and disliked.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Javascript Frameworks</title>
+      <link>http://phillc.com/blog/2013/08/15/javascript-frameworks/</link>
+      <pubDate>Thu, 15 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2013/08/15/javascript-frameworks/</guid>
+      <description>Back in March, the company I work for was creating a small app and were trying to decide which javascript frame work to use. There was an email chain debating which framework to use. I finally responded, and today a coworker convinced me to post that email:
+Was debating if I wanted to take the bait, but I love to argue, so I couldn&amp;rsquo;t resist.
+I am not a fan of pushing the entire rendering process to the client.</description>
+    </item>
+    
+    <item>
+      <title>Presentation on Continuous Delivery</title>
+      <link>http://phillc.com/blog/2013/04/18/presentation-on-continuous-delivery/</link>
+      <pubDate>Thu, 18 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2013/04/18/presentation-on-continuous-delivery/</guid>
+      <description>This presentation was built with meteor-impress</description>
+    </item>
+    
+    <item>
+      <title>Decided to Move My Blog to Posterous</title>
+      <link>http://phillc.com/blog/2012/01/20/decided-to-move-my-blog-to-posterous/</link>
+      <pubDate>Fri, 20 Jan 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2012/01/20/decided-to-move-my-blog-to-posterous/</guid>
+      <description>Seems like I have a hard time being motivated enough to write anything down. There is definitely some overhead in writing my own blog, which is why I moved away from my custom Django blog. From there I have tried a bunch of static site generators powered by git/github (like nanoc, jekyll and webgen). I think switching to a tool that I don’t have to maintain and has features like mobile compatibility or email posting might tip me over the edge.</description>
+    </item>
+    
+    <item>
+      <title>V8 Scons Error</title>
+      <link>http://phillc.com/blog/2010/06/06/v8-js-ubuntu-scons-error/</link>
+      <pubDate>Sun, 06 Jun 2010 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2010/06/06/v8-js-ubuntu-scons-error/</guid>
+      <description>&lt;p&gt;While trying to install Google v8, I had an error:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Javascript State Machine</title>
+      <link>http://phillc.com/blog/2009/10/14/javascript-state-machine/</link>
+      <pubDate>Wed, 14 Oct 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2009/10/14/javascript-state-machine/</guid>
+      <description>I wrote a simple Javascript State Machine.
+It is intended for keeping track of what the current state is for my heavy AJAX app at work.
+I also learned a lot about OO in javascript without using jQuery or the prototype framework, by using prototypes. I wanted to do that so that it would be framework independent.
+Below is a simple example of how I use the state machine, and shows a bit of how I connected it with Really Simple History</description>
+    </item>
+    
+    <item>
+      <title>Ruby Multi-dimensional Array Helper</title>
+      <link>http://phillc.com/blog/2009/08/28/ruby-multi-dimensional-array-helper/</link>
+      <pubDate>Fri, 28 Aug 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2009/08/28/ruby-multi-dimensional-array-helper/</guid>
+      <description>&lt;p&gt;I needed something to help me get through a multi-dimensional array. So I extended the Array class.&lt;/p&gt;
+
+&lt;p&gt;Grab expects an array of coordinates.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Cucumber With Selenium and Authlogic</title>
+      <link>http://phillc.com/blog/2009/08/19/cucumber-selenium-and-authlogic/</link>
+      <pubDate>Wed, 19 Aug 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2009/08/19/cucumber-selenium-and-authlogic/</guid>
+      <description>&lt;p&gt;I had some Issues with cucumber/selenium working properly with authlogic. After much searching, I&amp;rsquo;ve figured out how to get it all to work properly.&lt;/p&gt;
+
+&lt;p&gt;I would get an error like:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>e-Text Editor</title>
+      <link>http://phillc.com/blog/2009/08/18/e-text-editor/</link>
+      <pubDate>Tue, 18 Aug 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2009/08/18/e-text-editor/</guid>
+      <description>&lt;p&gt;Was attempting to compile e-text editor on ubuntu 9.10 (yea yea, I know&amp;hellip; my right to complain about broken packages disappears since its alpha) just to try it out, but had a sick number of errors ranging from &amp;ldquo;Cannot compile wxWidgets&amp;rdquo; to &amp;ldquo;Cannot compile WebKit&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Finally, after trying multiple ways of compiling wxWidgets, I figured out the real error was&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>xServer xorg.conf for 4850 X2 Dual Monitor - Ubuntu 9.04</title>
+      <link>http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/</link>
+      <pubDate>Tue, 16 Jun 2009 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2009/06/16/xserver-xorgconf-4850-x2-dual-monitor/</guid>
+      <description>Thanks to gwydion
+I got my xorg.conf to finally work in Ubunutu 9.04 Jaunty. I was having problems where when I boot into ubuntu, I didn&amp;rsquo;t even get a login screen, it just froze at a black screen after boot up with a few artifacts of color here and there.
+Took many, many hours trying to finding this solution. I ended up being able to use the proprietary driver fglrx when all was said and done, instead of having to use vesa.</description>
+    </item>
+    
+    <item>
+      <title>Automatic Static Media Folder</title>
+      <link>http://phillc.com/blog/2008/09/19/automatic-static-media-folder/</link>
+      <pubDate>Fri, 19 Sep 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2008/09/19/automatic-static-media-folder/</guid>
+      <description>&lt;p&gt;Added another shortcut&amp;hellip;
+I had a config variable in my settings_local file to specify where the media folder was in order to have django static serve it.&lt;/p&gt;
+
+&lt;p&gt;This is much easier.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Structure Inside a Project</title>
+      <link>http://phillc.com/blog/2008/07/08/structure-inside-project/</link>
+      <pubDate>Tue, 08 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2008/07/08/structure-inside-project/</guid>
+      <description>A common problem I have had is that too much work was required when I needed to deploy my django project, or if i needed to work on the project on another computer. Subversion has been my friend, but part of the problem is the necessary local settings in each of the projects.
+In addition to the overall structure between all my projects, I have developed a few tricks to make handling things inside of a project much easier.</description>
+    </item>
+    
+    <item>
+      <title>Developed Directory Structure</title>
+      <link>http://phillc.com/blog/2008/07/07/developed-directory-structure/</link>
+      <pubDate>Mon, 07 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2008/07/07/developed-directory-structure/</guid>
+      <description>Over the course of my web development life, I have changed my work flow and directory structure many times. Each time gets a little bit better, but I doubt I will ever finish modifying it, as I am always learning new techniques.
+I am presently using Django in all of my projects, both at work and as a hobby. Django&amp;rsquo;s ability to easily reuse applications has mad me change my directory structure several time.</description>
+    </item>
+    
+    <item>
+      <title>Making Django Projects Version Control Friendly</title>
+      <link>http://phillc.com/blog/2008/07/05/making-django-version-control-friendly/</link>
+      <pubDate>Sat, 05 Jul 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2008/07/05/making-django-version-control-friendly/</guid>
+      <description>Subversion has been my friend ever since I learned about it. However, it took me a while to figure out how to deal with configuration files. For Django, this specifically relates to the settings.py.
+Django projects can end up on many different environments. Putting settings.py into source control directly will cause our settings to migrate across all working copies. This is not reasonable, as not every person will have the same environment (not all using mysql, not all using the same directory).</description>
+    </item>
+    
+    <item>
+      <title>Purpose of This Website</title>
+      <link>http://phillc.com/blog/2008/06/25/purpose-website/</link>
+      <pubDate>Wed, 25 Jun 2008 00:00:00 +0000</pubDate>
+      
+      <guid>http://phillc.com/blog/2008/06/25/purpose-website/</guid>
+      <description>Over the course of my programming life, I have written some form of blog in perl, then php, then in a framework of php, then ruby on rails, and now Django.
+The real purpose of this site is to get an understanding of every component that goes into a blog. This is without a doubt the best one I&amp;rsquo;ve ever written, but the same could be said about each of the ones I built before at that time.</description>
+    </item>
+    
+  </channel>
+</rss>
