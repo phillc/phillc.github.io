@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.55.6 with theme Tranquilpeak 0.4.6-BETA">
+<meta name="author" content="Phillip Campbell">
+<meta name="keywords" content="">
+<meta name="description" content="In 2015 the company I was working for wanted us to do an overhaul of the existing UI to give a better user experience. We took it as an opportunity to explore the landscape of JavaScript frameworks, something I&rsquo;ve done many times. We knew the app would be behind a login, so server side rendering was not important for SEO, freeing up the search space to nearly anything.
+We quickly became enamored by ClojureScript, as we already had been considering Clojure for a backend rewrite.">
+
+
+<meta property="og:description" content="In 2015 the company I was working for wanted us to do an overhaul of the existing UI to give a better user experience. We took it as an opportunity to explore the landscape of JavaScript frameworks, something I&rsquo;ve done many times. We knew the app would be behind a login, so server side rendering was not important for SEO, freeing up the search space to nearly anything.
+We quickly became enamored by ClojureScript, as we already had been considering Clojure for a backend rewrite.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Single Page App Refresh Strategy">
+<meta name="twitter:title" content="Single Page App Refresh Strategy">
+<meta property="og:url" content="https://phillc.com/blog/2019/09/04/single-page-app-refresh-strategy/">
+<meta property="twitter:url" content="https://phillc.com/blog/2019/09/04/single-page-app-refresh-strategy/">
+<meta property="og:site_name" content="Phillip Campbell">
+<meta property="og:description" content="In 2015 the company I was working for wanted us to do an overhaul of the existing UI to give a better user experience. We took it as an opportunity to explore the landscape of JavaScript frameworks, something I&rsquo;ve done many times. We knew the app would be behind a login, so server side rendering was not important for SEO, freeing up the search space to nearly anything.
+We quickly became enamored by ClojureScript, as we already had been considering Clojure for a backend rewrite.">
+<meta name="twitter:description" content="In 2015 the company I was working for wanted us to do an overhaul of the existing UI to give a better user experience. We took it as an opportunity to explore the landscape of JavaScript frameworks, something I&rsquo;ve done many times. We knew the app would be behind a login, so server side rendering was not important for SEO, freeing up the search space to nearly anything.
+We quickly became enamored by ClojureScript, as we already had been considering Clojure for a backend rewrite.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2019-09-04T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-09-04T00:00:00">
+  
+  
+  
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@phillc">
+
+
+  <meta name="twitter:creator" content="@phillc">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=640">
+  <meta property="twitter:image" content="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=640">
+
+
+    <title>Single Page App Refresh Strategy</title>
+
+    <link rel="icon" href="https://phillc.com/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://phillc.com/blog/2019/09/04/single-page-app-refresh-strategy/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://phillc.com/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://phillc.com/css/mystyle.css">
+      
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4379922-3', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://phillc.com/">Phillip Campbell</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://phillc.com/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://phillc.com/#about">
+          <img class="sidebar-profile-picture" src="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Phillip Campbell</h4>
+        
+          <h5 class="sidebar-profile-bio">Phosfluorescently meshing leveraged dysruptive scientist incubator interfaces</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://phillc.com/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://phillc.com/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://phillc.com/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/phillc" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/93380/phillc" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.facebook.com/phillc" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+      
+      <span class="sidebar-button-desc">Facebook</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.linkedin.com/in/phillc1" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://twitter.com/phillc" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+      
+      <span class="sidebar-button-desc">Twitter</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://agentvsagent.com/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-external-link"></i>
+      
+      <span class="sidebar-button-desc">Agent vs Agent</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://rosterbater.com/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-external-link"></i>
+      
+      <span class="sidebar-button-desc">Rosterbater</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.cheapboardgamer.com/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-external-link"></i>
+      
+      <span class="sidebar-button-desc">the Cheap Boardgamer</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="http://www.southjerseydiscgolf.com/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-external-link"></i>
+      
+      <span class="sidebar-button-desc">South Jersey Disc Golf</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Single Page App Refresh Strategy
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-09-04T00:00:00Z">
+        
+  September 4, 2019
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>In 2015 the company I was working for wanted us to do an overhaul of the
+existing UI to give a better user experience. We took it as an opportunity to
+explore the landscape of JavaScript frameworks, something I&rsquo;ve done many times.
+We knew the app would be behind a login, so server side rendering was not
+important for SEO, freeing up the search space to nearly anything.</p>
+
+<p>We quickly became enamored by ClojureScript, as we already had been considering
+Clojure for a backend rewrite. Around the time, it also felt as though
+ClojureScript was picking up steam by piggybacking the popularity surge of
+Clojure. I was slightly hesitant because it didn&rsquo;t appear to have support for
+inline HTML like vanilla JavaScript with JSX, or even some CoffeeScript extensions.</p>
+
+<p>However, what really impressed us was <a href="https://rigsomelight.com/2014/05/01/interactive-programming-flappy-bird-clojrescript.html">this demo of flappy bird written in
+ClojureScript</a>. It demonstrated <a href="https://figwheel.org/">Figwheel</a> for live code reload, use
+of an atom to maintain state past live refreshes, and connecting directly to the
+REPL via Emacs. The HTML syntax didn&rsquo;t look as bad as I thought it would,
+either.</p>
+
+<p>At the time, there were a few examples of applications written in ClojureScript.
+The one that sticks out the most in memory is the Circle CI frontend. Not only
+was this a complete production proven stack that demonstrated great UX, they
+also <a href="https://circleci.com/blog/why-we-use-om-and-why-were-excited-for-om-next/">wrote many articles about their tech stack</a>, and
+<a href="https://www.youtube.com/watch?v=LNtQPSUi1iQ">spoke at conferences about it</a>.
+Their source <a href="https://github.com/circleci/frontend">code being openly visible</a>
+made it much easier to figure out how to architect a ClojureScript app, and I
+say we drew much of our inspiration from them. We ended up choosing Om as our ClojureScript framework because of
+this.</p>
+
+<p>In many ways, we ended up with what communities now call a <a href="https://jamstack.org/">JAMstack</a>. Here is a quick over view of our architecture, before I
+get into the refresh strategy. If you have any questions about any specific
+bullet point, please reach out.</p>
+
+<ul>
+<li>Rails backend providing an API using <a href="https://github.com/cognitect/transit-format">Transit</a> as our format for AJAX requests.</li>
+<li>Passed the Rails CSRF token to the SPA to use in AJAX requests.</li>
+<li>We utilized the authentication and authorization that already existed in our
+on our server side Rails app to wrap our API as well. Logging in via <a href="https://github.com/plataformatec/devise">Devise</a> allowed our AJAX calls in the same
+session to be authenticated.</li>
+<li>Because we piggybacked authentication, we needed to have the starting point
+of the app served by Rails. We used a wild card route to capture routes of the
+entire namespace of the app to launch the single page app, like so:</li>
+</ul>
+
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight ruby language-ruby">
+  <figcaption>
+    
+      <span>routes.rb</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-ruby"><code class="ruby">get &#39;/app/&#39;,      to: &#34;spa#page&#34;, format: false
+get &#39;/app/*page&#39;, to: &#34;spa#page&#34;, format: false, as: :spa_page</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+<ul>
+<li>Routes in the SPA were handled by <a href="https://github.com/clj-commons/secretary">Secretary</a>. We used <a href="https://github.com/kibu-australia/pushy">Pushy</a>, which was a wrapper around
+<a href="https://google.github.io/closure-library/api/goog.history.Html5History.html">Closure&rsquo;s Html5History</a>,
+to intercept all clicks on anchors in the app.</li>
+<li>The ClojureScript app was built using a Gulpfile. The Gulpfile was responsible for
+pulling together dependencies (css, fonts, resize our logo to smaller formats,
+etc.), wrapping the <a href="https://leiningen.org/">Leiningen</a> commands to build
+the ClojureScript app, minifying the output (even though ClojureScript goes through the google
+closure compiler, minification did have an effect), uploading everything (the
+artifact we called it) into a folder in S3, and pushing new version
+information to heroku.</li>
+</ul>
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>gulpfile.js</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">javascript</li>
+      
+        <li class="tab ">javascript</li>
+      
+    </ul>
+  </figcaption> 
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-javascript" style="display: block;">   
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br><span>13</span><br><span>14</span><br><span>15</span><br><span>16</span><br><span>17</span><br><span>18</span><br><span>19</span><br><span>20</span><br><span>21</span><br><span>22</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-javascript"><code class="javascript">gulp.task(&#39;publish&#39;, [&#39;build-artifact&#39;], function() {
+  var headers = {
+      &#39;Cache-Control&#39;: &#39;max-age=315360000, no-transform, public&#39;
+  };
+
+  var publisher = $.awspublish.create(s3Params());
+
+  var deploySlug = moment.utc().format(&#34;YYYYMMDD-HHmmss&#34;);
+  $.util.log(&#34;Publishing&#34;, deploySlug);
+
+  gulp.src([destination.minifiedApp,
+              destination.dependencies,
+              destination.css,
+              &#39;resources/public/fonts/**/*&#39;,
+              &#39;resources/public/images/**/*&#39;],
+          { base: &#39;resources/public/&#39; })
+      .pipe($.rename(function(path){
+        path.dirname = &#34;spa/&#34; &#43; deploySlug &#43; &#34;/&#34; &#43; path.dirname;
+      }))
+      .pipe(publisher.publish(headers))
+      .pipe($.awspublish.reporter());
+  });</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+      
+      <figure class="highlight language-javascript" style="display: none;">   
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br><span>3</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-javascript"><code class="javascript">childProcess.spawn(&#39;heroku&#39;, [&#39;config:set&#39;,
+                              SPA_ASSETS_SLUG=&#39; &#43; slug,
+                              &#39;--app=&#39; &#43; app]);</code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<ul>
+<li>The folder name used in S3 was very important, as it was the version name of
+our artifact. We used a combination of date, time, and some other signifiers,
+but it could easily have been just a uuid.</li>
+<li>This version name would then be inserted as an environment variable in the
+Rails app. The Rails app would then use the version name to point to the
+correct artifact.</li>
+</ul>
+
+<p>
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight html language-html">
+  <figcaption>
+    
+      <span>spa.html.erb</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-html"><code class="html">&lt;link href=&#34;&lt;%= root_path %&gt;/css/style.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34;&gt;
+&lt;!-- the script tag would be near closing of body tag  --&gt;
+&lt;script src=&#34;&lt;%= root_path %&gt;/js/spa.min.js&#34;
+        type=&#34;text/javascript&#34;
+        crossorigin=&#34;anonymous&#34;&gt;
+&lt;/script&gt;
+&lt;script type=&#34;text/javascript&#34;&gt;window.spa.core.launch_BANG_()&lt;/script&gt;</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight ruby language-ruby">
+  <figcaption>
+    
+      <span>spa_controller.rb</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-ruby"><code class="ruby">def root_path
+  &#34;https://our.s3.bucket.url/bucket_name/{ENV[&#39;SPA_ASSETS_SLUG&#39;]}&#34;
+end</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure></p>
+
+<ul>
+<li>By changing the environment variable, we have effectively deployed a new
+version. We did this with a simple <code>heroku config:set SPA_ASSETS_SLUG=123</code>
+assisted by our Gulpfile. This is also a cache buster, as we don&rsquo;t have to
+worry about cache expiration time. If the end user loads the page, we know
+they will end up with the version of our assets at that time.</li>
+<li>We used the same bucket for our pre-production and our production
+environments, allowing us to use the same artifact we test on to be the one
+that the end users receive.</li>
+<li>We did some magic in the HTML to point to a version with Figwheel enabled in
+development. In our automated tests, we used a symlink in our tmp folder to
+point to a compiled version in the SPA app, then mounted a rack app in our
+test environment that serves the JavaScript. This allowed us to test the
+entire stack using RSpec, Capybara, and Poltergeist.</li>
+</ul>
+
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight ruby language-ruby">
+  <figcaption>
+    
+      <span>config/environments/test.rb</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-ruby"><code class="ruby">config
+  .middleware
+  .use Rack::Static,
+        :urls =&gt; [&#39;/test_spa&#39;],
+        :root =&gt; &#34;tmp&#34;</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+<p>Now that the context is laid out, it is time to see how we refreshed a page
+after a new deploy in a way that covers most use cases.</p>
+
+<p>All summed up in one quick sentence:</p>
+
+<blockquote>
+<p>When we make an ajax request, the api returns the current version name and if
+it does not match the version the SPA was loaded with, we treat events on
+anchors like a normal link.</p>
+</blockquote>
+
+<p>By normal, I mean you can either remove your event handlers from all anchors
+(the ones in place that prevent a normal link follow, and instead route the
+event to your router to handle), or find a way to have code in between the on click
+handler of your anchors and instead force the browser to navigate to a new page.</p>
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+
+  
+    
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span>history.cljs</span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">clojurescript</li>
+      
+        <li class="tab ">javascript</li>
+      
+    </ul>
+  </figcaption> 
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-clojurescript" style="display: block;">   
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-clojurescript"><code class="clojurescript">        (set! (.. js/window -location -href) path))
+    </code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+      
+      <figure class="highlight language-javascript" style="display: none;">   
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span>1</span><br><span>2</span><br></pre>
+              </td>
+              <td class="code">
+                <pre class="code-highlight language-javascript"><code class="javascript">        window.location.href = &#34;{value.of.href}&#34;`
+    </code></pre>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p>This effectively makes all GET requests in the SPA force
+reload the page.</p>
+
+<p>The environment variable we used to determine the root path in the code above
+(SPA_ASSETS_SLUG) is passed to the SPA when it is loaded. The SPA then checks
+every request to the API for this version, and if they mismatch, we use the
+above strategy.</p>
+
+<p>Our code in Om is quite uninteresting. It was a listener that looked similar to the
+ones in <a href="https://github.com/circleci/frontend/blob/c189f3546afe49b64c8ee86d92ff67ed9d2eda78/src-cljs/frontend/core.cljs#L333">Circle CI&rsquo;s front end&rsquo;s main go loop</a>, except it was responsible for checking the AJAX responses for version numbers
+to compare against the state.</p>
+
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight clojurescript language-clojurescript">
+  <figcaption>
+    
+      <span>core.cljs</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-clojurescript"><code class="clojurescript">(defn history-handler [value history-imp app-state-atom]
+  (clog &#34;History:&#34; value)
+  (let [message (first value)
+          args (second value)
+          version-mismatch? (get-in @app-state-atom state/version-mismatch?-path)]
+      (with-airbrake-logging {:component &#34;history&#34; :action message}
+      (if version-mismatch?
+          (do
+          (clog &#34;Version mismatch. Forcing.&#34;)
+          (swap! app-state-atom assoc :navigation-point :loading)
+          (history/history-event :force args history-imp))
+          (history/history-event message args history-imp)))))
+
+...
+
+(go (while true
+      (alt!
+      ...
+      (:history comms) ([v] (history-handler v history-imp app-state))))</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+<p>Every endpoint in our Ruby API used the same method to render a Transit
+response, so it was easy to tack on the current version to every request.</p>
+
+
+  
+    
+  
+  
+    
+  
+  
+  
+
+
+<figure class="highlight ruby language-ruby">
+  <figcaption>
+    
+      <span>base_controller.rb</span>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="code-highlight language-ruby"><code class="ruby">def render_transit(payload={})
+  transit_payload = payload.merge(timestamp: Time.now.to_i,
+                                  version: ENV[&#39;SPA_ASSETS_SLUG&#39;])
+
+  respond_to do |format|
+    format.transit do
+      render transit: transit_payload,
+              handlers: { Hash =&gt; HashWriteHandler.new,
+                          ActionController::Parameters =&gt; HashWriteHandler.new }
+    end
+  end
+end</code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+
+<p>This same strategy could be used in</p>
+
+<ul>
+<li>JQuery by removing event handlers.</li>
+<li>Vue Router with a Guard or by setting catch all route at higher precedence.</li>
+<li>React Router by setting a higher precedence catch all route or somehow
+removing the router components.</li>
+</ul>
+
+<p>This strategy is not perfect. You can still have UI errors due to a mismatch
+between a parameter on the client and server side (for example if they haven&rsquo;t
+followed any links in a while). It will not work for an SPA that doesn&rsquo;t use
+normal links to navigate between components, like Trello. But it would work for
+something like a mail client or a social media website. For us it was a tradeoff
+between how much effort we were going to put into a strategy to mitigate our UI being
+out of sync with our server, and frequency where this type of error could happen.</p>
+
+<p>This strategy can be used in conjunction with other strategies. Perhaps you have
+a web socket open to notify your clients browsers that a new version is
+available, and have issues with some users&rsquo; sockets dying and not getting the
+update, this can help reduce the quantity of those left behind. Perhaps your
+fool proof strategy of waiting a few days for caches to clear and users to
+finish with the old version before yanking the old code was still hitting your
+exception notifier with UI versions that are weeks old. Either way, this is a
+pretty low effort way of handling it.</p>
+
+<p>Thank you to Circle CI for all the content they put out about their app. Thanks
+to <a href="https://github.com/yaaase">Mark Billie</a> for proof reading this and helping
+me compile a list of interesting points. Thanks to <a href="https://github.com/entrobe">Brian King</a> for working on this project with me and taking off
+quickly with this architecture. Also thanks to <a href="https://github.com/sls">Steve Salkin</a> for giving us the support to explore outside of our
+comfort zones.</p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://phillc.com/blog/2015/07/21/page-specific-javascript-with-the-rails-asset-pipeline/" data-tooltip="Page Specific JavaScript With the Rails Asset Pipeline">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://phillc.com/blog/2019/09/04/single-page-app-refresh-strategy/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://phillc.com/blog/2019/09/04/single-page-app-refresh-strategy/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Phillip Campbell. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://phillc.com/blog/2015/07/21/page-specific-javascript-with-the-rails-asset-pipeline/" data-tooltip="Page Specific JavaScript With the Rails Asset Pipeline">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://phillc.com/blog/2019/09/04/single-page-app-refresh-strategy/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://phillc.com/blog/2019/09/04/single-page-app-refresh-strategy/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fphillc.com%2Fblog%2F2019%2F09%2F04%2Fsingle-page-app-refresh-strategy%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fphillc.com%2Fblog%2F2019%2F09%2F04%2Fsingle-page-app-refresh-strategy%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://www.gravatar.com/avatar/a378a027352ae0dc9c0bd249d06b46c3?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Phillip Campbell</h4>
+    
+      <div id="about-card-bio">Phosfluorescently meshing leveraged dysruptive scientist incubator interfaces</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        New Jersey
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://phillc.com/images/cover.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://phillc.com/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
