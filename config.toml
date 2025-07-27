@@ -19,7 +19,8 @@ title = "Phillip Campbell"
 theme = ["hugo-tranquilpeak-theme"]
 # disqusShortname = "phillc"
 googleAnalytics = "UA-4379922-3"
-paginate = 7
+[pagination]
+pagerSize = 7
 canonifyurls = true
 
 [permalinks]
