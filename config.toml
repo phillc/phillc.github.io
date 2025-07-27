@@ -1,20 +1,16 @@
-# [permalinks]
-#   post = "/blog/:year/:month/:day/:slug/"
-
 baseURL = "https://phillc.com/"
 
-# Change the default theme to be use when building the site with Hugo
 theme = "LoveIt"
 
-# website title
 title = "Website of Phillip Campbell"
 
-# language code ["en", "zh-CN", "fr", "pl", ...]
 languageCode = "en"
-# language name ["English", "简体中文", "Français", "Polski", ...]
 languageName = "English"
 
 enableRobotsTXT = true
+
+[permalinks]
+posts = "/blog/:year/:month/:day/:slug/"
 
 # Menu config
 [menu]
@@ -66,7 +62,6 @@ email = ""
 link = ""
 
 [params.header]
-
 desktopMode = "fixed"
 mobileMode = "auto"
 
@@ -116,7 +111,7 @@ enable = true
 gravatarEmail = "spyyderz@gmail.com"
 avatarURL = ""
 title = ""
-subtitle = "The website of Phillip Campbell"
+subtitle = "Heya!"
 
 typeit = true
 social = true
@@ -131,84 +126,8 @@ paginate = 6
 GitHub = "phillc"
 Linkedin = "phillc1"
 X = "phillc"
-Instagram = ""
-Facebook = ""
-Telegram = ""
-Medium = ""
-Gitlab = ""
-Youtubelegacy = ""
-Youtubecustom = ""
-Youtubechannel = ""
-Tumblr = ""
-Quora = ""
-Keybase = ""
-Pinterest = ""
-Reddit = ""
-Codepen = ""
-FreeCodeCamp = ""
-Bitbucket = ""
-Stackoverflow = "93380"
-Weibo = ""
-Odnoklassniki = ""
-VK = ""
-Flickr = ""
-Xing = ""
-Snapchat = ""
-Soundcloud = ""
-Spotify = ""
-Bandcamp = ""
-Paypal = ""
-Fivehundredpx = ""
-Mix = ""
-Goodreads = ""
-Lastfm = ""
-Foursquare = ""
-Hackernews = ""
-Kickstarter = ""
-Patreon = ""
-Steam = ""
-Twitch = ""
-Strava = ""
-Skype = ""
-Whatsapp = ""
-Zhihu = ""
-Douban = ""
-Angellist = ""
-Slidershare = ""
-Jsfiddle = ""
-Deviantart = ""
-Behance = ""
-Dribbble = ""
-Wordpress = ""
-Vine = ""
-Googlescholar = ""
-Researchgate = ""
-Mastodon = ""
-Thingiverse = ""
-Devto = ""
-Gitea = ""
-XMPP = ""
-Matrix = ""
-Bilibili = ""
-Discord = ""
-DiscordInvite = ""
-Lichess = ""
-ORCID = ""
-Pleroma = ""
-Kaggle = ""
-MediaWiki = ""
-Plume = ""
-HackTheBox = ""
-RootMe = ""
-Malt = ""
-TikTok = ""
-TryHackMe = ""
-Codeberg = ""
-HuggingFace = ""
-Threads = ""
-Email = ""
-Phone = ""
-RSS = ""
+Twitter = "phillc"
+# Stackoverflow = "93380"
 
 [params.page]
 hiddenFromHomePage = false
@@ -222,7 +141,7 @@ linkToMarkdown = true
 rssFullText = false
 
 [params.page.toc]
-enable = true
+enable = false
 keepStatic = false
 auto = true
 
@@ -244,106 +163,10 @@ copyTex = true
 mhchem = true
 
 [params.page.share]
-enable = true
-X = true
-Threads = true
-Facebook = true
-Linkedin = false
-Whatsapp = false
-Pinterest = false
-Tumblr = false
-HackerNews = true
-Reddit = false
-VK = false
-Buffer = false
-Xing = false
-Line = true
-Instapaper = false
-Pocket = false
-Flipboard = false
-Weibo = true
-Blogger = false
-Baidu = false
-Odnoklassniki = false
-Evernote = false
-Skype = false
-Trello = false
-Diaspora = true
-Mix = false
-Telegram = true
+enable = false
 
 [params.page.comment]
 enable = false
-
-[params.page.comment.disqus]
-enable = false
-shortname = ""
-
-[params.page.comment.gitalk]
-enable = false
-owner = ""
-repo = ""
-clientId = ""
-clientSecret = ""
-
-[params.page.comment.valine]
-enable = false
-appId = ""
-appKey = ""
-placeholder = ""
-avatar = "mp"
-meta= ""
-pageSize = 10
-lang = ""
-visitor = true
-recordIP = true
-highlight = true
-enableQQ = false
-serverURLs = ""
-emoji = ""
-
-[params.page.comment.facebook]
-enable = false
-width = "100%"
-numPosts = 10
-appId = ""
-languageCode = ""
-
-[params.page.comment.telegram]
-enable = false
-siteID = ""
-limit = 5
-height = ""
-color = ""
-colorful = true
-dislikes = false
-outlined = false
-
-[params.page.comment.commento]
-enable = false
-
-[params.page.comment.utterances]
-enable = false
-repo = ""
-issueTerm = "pathname"
-label = ""
-lightTheme = "github-light"
-darkTheme = "github-dark"
-
-[params.page.comment.giscus]
-enable = false
-repo = ""
-repoId = ""
-category = "Announcements"
-categoryId = ""
-lang = ""
-mapping = "pathname"
-reactionsEnabled = "1"
-emitMetadata = "0"
-inputPosition = "bottom"
-lazyLoading = false
-lightTheme = "light"
-darkTheme = "dark"
 
 [params.typeit]
 speed = 100
