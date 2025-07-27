@@ -50,10 +50,10 @@ bullet point, please reach out.
   of the app served by Rails. We used a wild card route to capture routes of the
   entire namespace of the app to launch the single page app, like so:
 
-{{< codeblock "routes.rb" "ruby" >}}
+```ruby {file="routes.rb"}
 get '/app/',      to: "spa#page", format: false
 get '/app/*page', to: "spa#page", format: false, as: :spa_page
-{{< /codeblock >}}
+```
 
 - Routes in the SPA were handled by [Secretary](
   https://github.com/clj-commons/secretary ). We used [Pushy](
@@ -69,8 +69,7 @@ get '/app/*page', to: "spa#page", format: false, as: :spa_page
   artifact we called it) into a folder in S3, and pushing new version
   information to heroku.
 
-{{< tabbed-codeblock "gulpfile.js" >}}
-<!-- tab javascript -->
+```javascript {file="gulpfile.js"}
 gulp.task('publish', ['build-artifact'], function() {
   var headers = {
       'Cache-Control': 'max-age=315360000, no-transform, public'
@@ -93,13 +92,11 @@ gulp.task('publish', ['build-artifact'], function() {
       .pipe(publisher.publish(headers))
       .pipe($.awspublish.reporter());
   });
-<!-- endtab -->
-<!-- tab javascript -->
+
 childProcess.spawn('heroku', ['config:set',
                               SPA_ASSETS_SLUG=' + slug,
                               '--app=' + app]);
-<!-- endtab -->
-{{< /tabbed-codeblock >}}
+```
 
 - The folder name used in S3 was very important, as it was the version name of
   our artifact. We used a combination of date, time, and some other signifiers,
@@ -108,7 +105,7 @@ childProcess.spawn('heroku', ['config:set',
   Rails app. The Rails app would then use the version name to point to the
   correct artifact.
 
-{{< codeblock "spa.html.erb" "html" >}}
+```html {file="spa.html.erb"}
 <link href="<%= root_path %>/css/style.css" rel="stylesheet" type="text/css">
 <!-- the script tag would be near closing of body tag  -->
 <script src="<%= root_path %>/js/spa.min.js"
@@ -116,12 +113,12 @@ childProcess.spawn('heroku', ['config:set',
         crossorigin="anonymous">
 </script>
 <script type="text/javascript">window.spa.core.launch_BANG_()</script>
-{{< /codeblock >}}
-{{< codeblock "spa_controller.rb" "ruby" >}}
+```
+```ruby {file="spa_controller.rb"}
 def root_path
   "https://our.s3.bucket.url/bucket_name/{ENV['SPA_ASSETS_SLUG']}"
 end
-{{< /codeblock >}}
+```
 
 - By changing the environment variable, we have effectively deployed a new
   version. We did this with a simple `heroku config:set SPA_ASSETS_SLUG=123`
@@ -137,13 +134,13 @@ end
   test environment that serves the JavaScript. This allowed us to test the
   entire stack using RSpec, Capybara, and Poltergeist.
 
-{{< codeblock "config/environments/test.rb" "ruby" >}}
+```ruby {file="config/environments/test.rb"}
 config
   .middleware
   .use Rack::Static,
         :urls => ['/test_spa'],
         :root => "tmp"
-{{< /codeblock >}}
+```
 
 Now that the context is laid out, it is time to see how we refreshed a page
 after a new deploy in a way that covers most use cases.
@@ -159,14 +156,13 @@ By normal, I mean you can either remove your event handlers from all anchors
 event to your router to handle), or find a way to have code in between the on click
 handler of your anchors and instead force the browser to navigate to a new page.
 
-{{< tabbed-codeblock "history.cljs"  >}}
-    <!-- tab clojurescript -->
-        (set! (.. js/window -location -href) path))
-    <!-- endtab -->
-    <!-- tab javascript -->
-        window.location.href = "{value.of.href}"`
-    <!-- endtab -->
-{{< /tabbed-codeblock >}}
+```clojurescript {file="history.cljs"}
+(set! (.. js/window -location -href) path))
+```
+
+```javascript
+window.location.href = "{value.of.href}"
+```
 
 
 This effectively makes all GET requests in the SPA force
@@ -183,7 +179,7 @@ https://github.com/circleci/frontend/blob/c189f3546afe49b64c8ee86d92ff67ed9d2eda
 ), except it was responsible for checking the AJAX responses for version numbers
 to compare against the state.
 
-{{< codeblock "core.cljs" "clojurescript" >}}
+```clojurescript {file="core.cljs"}
 (defn history-handler [value history-imp app-state-atom]
   (clog "History:" value)
   (let [message (first value)
@@ -203,12 +199,12 @@ to compare against the state.
       (alt!
       ...
       (:history comms) ([v] (history-handler v history-imp app-state))))
-{{< /codeblock >}}
+```
 
 Every endpoint in our Ruby API used the same method to render a Transit
 response, so it was easy to tack on the current version to every request.
 
-{{< codeblock "base_controller.rb" "ruby" >}}
+```ruby {file="base_controller.rb"}
 def render_transit(payload={})
   transit_payload = payload.merge(timestamp: Time.now.to_i,
                                   version: ENV['SPA_ASSETS_SLUG'])
@@ -221,7 +217,7 @@ def render_transit(payload={})
     end
   end
 end
-{{< /codeblock >}}
+```
 
 This same strategy could be used in
 
