@@ -186,6 +186,7 @@ image = ""
 thumbnailUrl = ""
 
 [params.analytics]
+enable = true
 [params.analytics.google]
 id = "G-MVXG2QLEV3"
 respectDoNotTrack = false
