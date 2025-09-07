@@ -1,0 +1,27 @@
+disabled = false
+languageCode = "en"
+languageName = "English"
+weight = 1
+title = "Phillip Campbell"
+
+[params]
+  displayName = "EN"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2 January 2006"
+  # logo = "img/logo.png"
+  # secondaryLogo = "img/secondary-logo.png"
+  description = "The website of Phillip Campbell"
+  copyright = "Copyright 2008-2025 Phillip Campbell"
+
+[params.author]
+  name = "Phillip Campbell"
+  image = "img/avatar.png"
+  imageQuality = 96
+  headline = "Heya!"
+  bio = ""
+  links = [
+    { github = "https://github.com/phillc" },
+    { linkedin = "https://linkedin.com/in/phillc1" },
+    { x-twitter = "https://twitter.com/phillc" },
+  ]

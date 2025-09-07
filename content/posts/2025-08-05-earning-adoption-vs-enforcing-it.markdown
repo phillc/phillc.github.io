@@ -1,6 +1,8 @@
 ---
 title: "Productivity as a Product: Earning Adoption vs Enforcing It"
 date: 2025-08-05
+series: ["Productivity as a Product"]
+series_order: 2
 ---
 
 Not every product is adopted the same way. Some are chosen. Others are mandated. That difference matters more than most teams realize. When productivity-enabling teams treat all internal tools the same, regardless of how engineers encounter them, they risk misjudging what good support looks like, how trust is built, and what it actually takes to succeed.

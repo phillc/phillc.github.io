@@ -1,6 +1,8 @@
 ---
 title: "Productivity as a Product: You’re Building Products, Not Just Tools"
 date: 2025-08-01
+series: ["Productivity as a Product"]
+series_order: 1
 ---
 
 Imagine you're running a startup that sells bread. But not just any bread. This is highly experimental, handcrafted, possibly AI-assisted bread. Because of course it is. You’re proud of the recipe, but growing this company means doing far more than just baking a loaf.

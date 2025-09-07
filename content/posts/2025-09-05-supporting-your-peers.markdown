@@ -1,6 +1,8 @@
 ---
 title: "Productivity as a Product: Supporting Your Peers Is a Different Kind of Customer Service"
 date: 2025-09-05
+series: ["Productivity as a Product"]
+series_order: 3
 ---
 
 Imagine someone working in a call center, helping customers troubleshoot a service. All day they walk people through the basics. “Click this button.” “That feature is on the left.” “Is your monitor plugged in?” The repetition is exhausting, but over time they build a muscle for it. They’re trained to stay calm when customers get frustrated. They learn to handle confusion and blame from people who are often less informed and completely outside the system. They get training. They have scripts. The role is understood, and the distance helps.
