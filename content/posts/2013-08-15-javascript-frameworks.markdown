@@ -41,25 +41,27 @@ Now that ember has successfully separated its image from sprout, I think ember i
 
 Last time I tried knockout, it felt like they were cramming ajax down my throat... they seem much better about that now. It has an awkward and sometimes ridiculously verbose ways of doing things. Was built by microsoft, the inventors of MVVM... was built by microsoft so I don't give it a serious look.
 
-## Here are some random thoughts:
+## Here are some random thoughts
 
 I'm done with client side routing for a while, it is annoying to deal with. You have to intercept all links, and redirect it back to your own router. You have to make sure that if you fill out a form, go to another page, come back to the form that the form is emptied. If one page breaks you may have just made the user stuck without any kind of indication that they are used to. You have to basically reinvent http status codes. Github can't even get it right (if you hit the back button too fast while browsing code, you can end up on a page different from what is in your url bar. This happens to me all the time and annoys the crap out of me.) With pushstate you have to make sure every page works if you hit the refresh button.
 
 Rendering html has been solved before, and optimized. Think about all the compression web severs do, think about how browsers do progressive loading. Think about how in our ajax world we had to reinvent so many things (spinners, status codes, etc.)
 
-
 On my current side project I chose angular. There is only one reason I chose it over the others, and that is because of how it binds data/events. I don't know about you, but I love haml/jade. The way I like to work when I have a scenario where I have dynamic client views is to have the server do as much rendering as possible, and then provide a template for whatever needs to be dynamic. This means using haml/jade on the server, and then feeding that into the templating mechanism of my mvvm framework. The syntax of handlebars is not easily compatible with any whitespace based markup language. With angular I can have the server side compile jade, and leave in the data binding syntax of angular.
 
 like this (jade):
 
-    p(class="{{className}}) foo {{bar}} #{baz}
+```jade
+p(class="{{className}}) foo {{bar}} #{baz}
+```
 
 If baz was a variable set to "qux" on the server, that would compile to
 
-    <p class="{{className}}>foo {{bar}} qux</p>
+```html
+<p class="{{className}}>foo {{bar}} qux</p>
+```
 
 and then angular would pick those {{ }} up later for templating.
-
 
 This fits well with my two of my three favorite features in rails; forms and routes.
 
@@ -67,11 +69,15 @@ form_for is such a time saver in my opinion, and I miss rails routes every time 
 
 if this were my haml:
 
-    %p= post_path("{{post_id}}")
+```haml
+%p= post_path("{{post_id}}")
+```
 
 and you had post declared as a resource, you would get
 
-    <p>/posts/{{post_id}}</p>
+```html
+<p>/posts/{{post_id}}</p>
+```
 
 which can be fed into a templating engine. I think you can do the same with form_for and stuff too.
 

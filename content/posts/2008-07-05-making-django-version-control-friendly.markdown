@@ -18,13 +18,12 @@ This file will go under version control.
 
 Now, in your settings.py, add the line
 
-{{< highlight python >}}
+```python
 from settings_local import *
-{{< / highlight >}}
+```
 
 (I added the line to the very bottom of my settings.py)
 
 So, now when a working copy of the project is grabbed, the person behind it can copy settings_local.py.dist to settings_local.py. Inside settings_local.py the environment's details are placed. This file will be ignored from version control.
 
 With this setup, you can add an application or middle ware to settings.py for easy distributing through version control, and it will not affect a workspace's local variables.
-

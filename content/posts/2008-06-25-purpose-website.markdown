@@ -17,4 +17,3 @@ Yes I like to share, discuss, and debate many technological things, however anot
 This serves that purpose well.
 
 This blog is obviously not complete. I will finish it over time, but it does share the same code with another website, so any improvements will reflect on both.
-

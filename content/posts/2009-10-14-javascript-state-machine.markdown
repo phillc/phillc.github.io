@@ -11,10 +11,9 @@ I also learned a lot about OO in javascript without using jQuery or the prototyp
 
 Below is a simple example of how I use the state machine, and shows a bit of how I connected it with [Really Simple History](http://code.google.com/p/reallysimplehistory/)
 
-
 I have included in this example some comments to show my thinking throughout, and perhaps how to use it.
 
-{{< highlight javascript >}}
+```javascript
 Site.prototype = new StateMachine();
 Site.prototype.states = {
     Begin: {
@@ -96,11 +95,11 @@ Event.observe(window, 'load', function() {
     dhtmlHistory.initialize(historyChange);
     historyChange(dhtmlHistory.currentLocation || '');
 });
-{{< / highlight >}}
+```
 
 While implementing this, I also learned a bit about bookmarking and enabling the back button of ajax states. Really Simple History has worked ok for me, but it has some quirks... some of which I haven't solved yet (especially in IE) and those bugs may be above.
 
-I also got my first dose of unit testing in javascript... and found some really cool library to assist in the development called [newjs](http://newjs.rubyforge.org/) . However, at the time of this writing, the unit tests are not up to the current code, as a lot has changed... I will deal with that later.
+I also got my first dose of unit testing in javascript... and found some really cool library to assist in the development called [newjs](http://newjs.rubyforge.org/). However, at the time of this writing, the unit tests are not up to the current code, as a lot has changed... I will deal with that later.
 
 Anyway, while my implementation surely isn't the best in the world, I hope someone can find use from it.
 

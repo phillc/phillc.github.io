@@ -6,9 +6,8 @@ date: 2009-08-28
 I needed something to help me get through a multi-dimensional array. So I extended the Array class.
 
 Grab expects an array of coordinates.
-<!--more-->>
 
-{{< highlight ruby >}}
+```ruby
 class Array
   def grab(position)
     value = self.fetch(position.first)
@@ -18,11 +17,12 @@ class Array
     raise(IndexError, "Multi Dimensional Array not deep enough")
   end
 end
-{{< / highlight >}}
+```
 
 Then I can do this:
 
-{{< highlight ruby >}}
+<!-- markdownlint-disable MD010 -->
+```ruby
 >> [[1,2,3],"asdf",[[11,22,33],5,6,7]].grab([2,0,0])
 => 11
 >> [[1,2,3],"asdf",[[11,22,33],5,6,7]].grab([2,0,2])
@@ -36,4 +36,5 @@ IndexError: Not an array.
 >> [[1,2,3],"asdf",[[11,22,33],5,6,7]].grab([1])
 => "asdf"
 >> 
-{{< / highlight >}}
+```
+<!-- markdownlint-enable MD010 -->

@@ -4,7 +4,7 @@ date: 2015-02-06
 heroStyle: thumbAndBackground
 ---
 
-Over the holidays I was searching for a games that I could play with my parents or the in-laws... something easy to learn but with some depth. 
+Over the holidays I was searching for a games that I could play with my parents or the in-laws... something easy to learn but with some depth.
 
 I hit the target dead on.
 
@@ -42,7 +42,7 @@ After the seeding, the starting player now has two choices:
 
 The player has the option to play either a flower or skull disc on top of their existing disc(s) (which are on top of their square) with the flower or skull side face down.
 
-Once the disc is played, play continues to the player's left, where that player is now given these two choices (play another disc or start a challenge). 
+Once the disc is played, play continues to the player's left, where that player is now given these two choices (play another disc or start a challenge).
 
 If the player does not have a disc to play, they must start a challenge.
 
@@ -92,7 +92,6 @@ When you win a bid that is low, you don't know if you should feel good about you
 
 If you win a high bid, you suddenly feel like you maybe shouldn't have done that.
 
-
 {{< figure
     src="picking-disc.jpg"
     alt="Is this a skull?"
@@ -101,6 +100,7 @@ If you win a high bid, you suddenly feel like you maybe shouldn't have done that
 
 You win a bid of five, and have successfully flipped over four discs, with a choice between the last three. You stare the owner of one of the discs straight in the eye and ask,
 
+<!-- markdownlint-disable MD028 -->
 > "Is this a skull?"
 
 > "Yes."
@@ -112,6 +112,7 @@ You win a bid of five, and have successfully flipped over four discs, with a cho
 > "You've been waiting all game to lie to me."
 
 > "Perhaps."
+<!-- markdownlint-enable MD028 -->
 
 Even more crazy is when someone bids the maximum, not giving anyone a chance to even respond before they start flipping discs. I've won a couple games in two turns, winning a challenge in the first round and the immediately bidding the maximum after the discs are seeded. That only works once for each group though.
 

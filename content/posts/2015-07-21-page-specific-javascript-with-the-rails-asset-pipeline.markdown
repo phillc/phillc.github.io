@@ -6,7 +6,6 @@ date: 2015-07-21
 I've been using a pattern for loading javascript for specific pages that I would like to share. I have been using it for the past three years across many projects, and has proven to be durable.
 
 It was created in response to three patterns that I saw and disliked.
-<!--more-->>
 
 - Using `javascript_include_tag` to bring in page specific javascript
 - Keying javascript off of a html element id `if ($("#some_div")) { ... }`
@@ -18,7 +17,7 @@ My solution is to use a JavaScript object to wrap pages, which I will call Page 
 
 A Page Object looks like this:
 
-```coffeescript app/assets/javascripts/app/pages/home_page.js.coffee
+```coffeescript {file="app/assets/javascripts/app/pages/home_page.js.coffee"}
 window.APP.HomePage = class HomePage
   constructor: (options) ->
     @data = options["data"]
@@ -38,7 +37,7 @@ Every Page Object is applied to window.APP, has a `bind` method which will run a
 
 We bring this into our asset pipeline like so:
 
-```coffeescript app/assets/javascripts/application.js
+```coffeescript {file="app/assets/javascripts/application.js"}
 //= require ./app/init
 //= require_tree ./app/objects
 //= require_tree ./app/pages
@@ -46,13 +45,13 @@ We bring this into our asset pipeline like so:
 
 Our pages are assigned to `window.APP`, which needs to be initialized before the page objects are loaded. Because requiring javascript files must happen at the top of your file, before any executable javascript is written, we must move the initialization of `window.APP` to another file.
 
-```coffeescript app/assets/javascripts/app/init.js
+```coffeescript {file="app/assets/javascripts/app/init.js"}
 window.APP = {}
 ```
 
 Now, we want to have rails instantiate one of these objects, and call our `bind` method for us.
 
-```ruby app/helpers/application_helper.rb
+```ruby {file="app/helpers/application_helper.rb"}
 module ApplicationHelper
   def load_javascript_class(javascript_class, options = nil)
     content_for :page_javascript do
@@ -62,7 +61,7 @@ module ApplicationHelper
 end
 ```
 
-```haml app/views/layouts/application.html.haml
+```haml {file="app/views/layouts/application.html.haml"}
 !!!5
 %html{lang: "en"}
   %body
@@ -74,7 +73,7 @@ end
 
 The last part of it is to call it from your view
 
-```haml app/views/home/index.html.haml
+```haml {file="app/views/home/index.html.haml"}
 - load_javascript_class "HomePage", data: ["foo", "bar"]
 
 .container
@@ -88,7 +87,7 @@ You may have noticed that I also have a app/objects required in the application.
 
 Some sites need to have two sets of javascript, perhaps for very different sections of the site, like an admin area. You can change the helper to be
 
-```ruby app/helpers/application_helper.rb
+```ruby {file="app/helpers/application_helper.rb"}
 def load_javascript_class(namespace, javascript_class, options = nil)
   content_for :page_javascript do
     javascript_tag "$(function(){ (new window.#{namespace.to_s.upcase}.#{javascript_class}(#{options.to_json})).bind(); })"

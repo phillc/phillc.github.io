@@ -14,6 +14,9 @@
 
 [highlight]
   noClasses = false
+  lineNos = true
+  anchorLineNos = true
+  guessSyntax = true
 
 [tableOfContents]
   startLevel = 2

@@ -11,7 +11,7 @@ autoSwitchAppearance = true
 
 enableA11y = false
 enableSearch = false
-enableCodeCopy = true
+enableCodeCopy = false
 
 replyByEmail = false
 

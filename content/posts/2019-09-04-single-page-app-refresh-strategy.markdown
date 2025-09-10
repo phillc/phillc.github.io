@@ -114,6 +114,7 @@ childProcess.spawn('heroku', ['config:set',
 </script>
 <script type="text/javascript">window.spa.core.launch_BANG_()</script>
 ```
+
 ```ruby {file="spa_controller.rb"}
 def root_path
   "https://our.s3.bucket.url/bucket_name/{ENV['SPA_ASSETS_SLUG']}"
@@ -163,7 +164,6 @@ handler of your anchors and instead force the browser to navigate to a new page.
 ```javascript
 window.location.href = "{value.of.href}"
 ```
-
 
 This effectively makes all GET requests in the SPA force
 reload the page.
@@ -250,4 +250,3 @@ https://github.com/entrobe ) for working on this project with me and taking off
 quickly with this architecture. Also thanks to [Steve Salkin](
 https://github.com/sls ) for giving us the support to explore outside of our
 comfort zones.
-

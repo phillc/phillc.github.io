@@ -17,12 +17,12 @@ Here is what I have come up with.
 
 - projects/  
 -- project 1/  
---- apps/      
+--- apps/
 ---- non reusable app 1/  
 ---- non reusable app 2/  
--- project 2/             
--- project 3/             
----apps                   
+-- project 2/
+-- project 3/
+---apps
 ---- non reusable app 3/  
 
 - common/  
@@ -44,9 +44,9 @@ Then for each virtual host, I add to the python path the projects folder, then r
 
 That works for apache, but then to get manage.py to work (it doesn't work because none of the python paths are set for it), I edit "/etc/environment" and add the line
 
-{{< highlight bash >}}
+```bash
 PYTHONPATH="/home/username/projects:/home/username/common:/home/username/external"
-{{< / highlight >}}
+```
 
 Bingo, now manage.py works.
 
