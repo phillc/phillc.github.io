@@ -1,5 +1,5 @@
 ---
-title: "Productivity as a Product: Earning Adoption vs Enforcing It"
+title: "Earning Adoption vs Enforcing It"
 date: 2025-08-05
 series: ["Productivity as a Product"]
 series_order: 2

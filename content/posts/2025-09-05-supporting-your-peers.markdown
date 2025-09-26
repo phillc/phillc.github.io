@@ -1,5 +1,5 @@
 ---
-title: "Productivity as a Product: Supporting Your Peers Is a Different Kind of Customer Service"
+title: "Supporting Your Peers Is a Different Kind of Customer Service"
 date: 2025-09-05
 series: ["Productivity as a Product"]
 series_order: 3

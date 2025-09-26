@@ -1,5 +1,5 @@
 ---
-title: "Productivity as a Product: You’re Building Products, Not Just Tools"
+title: "You’re Building Products, Not Just Tools"
 date: 2025-08-01
 series: ["Productivity as a Product"]
 series_order: 1
